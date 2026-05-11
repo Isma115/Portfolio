@@ -14,6 +14,8 @@
 - region Estilos Pagina Home: selector de barras
 - region Estilos Pagina Home: adaptacion responsive
 - region Logica Pagina Home: datos de secciones
+- region Logica Pagina Home: malla gravitatoria reactiva
+- region Logica Pagina Home: particulas de fondo aleatorias
 - region Logica Pagina Home: actualizacion de seccion activa
 - region Imagen Pagina Home: perfil
 - region Imagen Pagina Home: proyectos
