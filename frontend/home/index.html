@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio | Home</title>
+    <link rel="stylesheet" href="./home.css">
+  </head>
+  <body>
+    <!-- region Vista Pagina Home: malla gravitatoria de fondo -->
+    <svg class="gravity-mesh" aria-hidden="true" viewBox="0 0 1200 800" preserveAspectRatio="none">
+      <defs>
+        <filter id="gravity-warp">
+          <feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="2" seed="8">
+            <animate attributeName="baseFrequency" values="0.006 0.012;0.011 0.006;0.007 0.014;0.006 0.012" dur="28s" repeatCount="indefinite"/>
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" scale="18"/>
+        </filter>
+        <pattern id="gravity-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+          <path d="M64 0H0V64" fill="none" stroke="rgba(184,190,200,0.18)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="800" fill="url(#gravity-grid)" filter="url(#gravity-warp)"/>
+    </svg>
+    <!-- endregion -->
+
+    <!-- region Vista Pagina Home: particulas de fondo -->
+    <div class="background-particles" aria-hidden="true">
+      <span style="--x:6%;--y:14%;--delay:0ms;--size:18px">+</span>
+      <span style="--x:18%;--y:72%;--delay:420ms;--size:14px">{}</span>
+      <span style="--x:31%;--y:22%;--delay:900ms;--size:20px">[]</span>
+      <span style="--x:44%;--y:84%;--delay:1280ms;--size:16px">x</span>
+      <span style="--x:57%;--y:12%;--delay:1720ms;--size:13px">&lt;/&gt;</span>
+      <span style="--x:68%;--y:62%;--delay:2160ms;--size:21px">{}</span>
+      <span style="--x:82%;--y:26%;--delay:2600ms;--size:15px">+</span>
+      <span style="--x:92%;--y:78%;--delay:3060ms;--size:18px">[]</span>
+      <span style="--x:12%;--y:46%;--delay:3520ms;--size:12px">+</span>
+      <span style="--x:38%;--y:55%;--delay:3940ms;--size:19px">&lt;/&gt;</span>
+      <span style="--x:73%;--y:42%;--delay:4380ms;--size:14px">{}</span>
+      <span style="--x:88%;--y:9%;--delay:4860ms;--size:17px">[]</span>
+      <span style="--x:24%;--y:9%;--delay:180ms;--size:11px">x</span>
+      <span style="--x:51%;--y:36%;--delay:680ms;--size:15px">&lt;/&gt;</span>
+      <span style="--x:63%;--y:88%;--delay:1120ms;--size:12px">{}</span>
+      <span style="--x:78%;--y:13%;--delay:1540ms;--size:18px">+</span>
+      <span style="--x:96%;--y:51%;--delay:1960ms;--size:13px">[]</span>
+      <span style="--x:4%;--y:86%;--delay:2380ms;--size:16px">+</span>
+      <span style="--x:47%;--y:7%;--delay:2800ms;--size:12px">&lt;/&gt;</span>
+      <span style="--x:66%;--y:31%;--delay:3220ms;--size:15px">{}</span>
+    </div>
+    <!-- endregion -->
+
+    <!-- region Vista Pagina Home: documento principal -->
+    <main class="home-shell" aria-labelledby="home-title">
+      <section class="portfolio-home" aria-label="Menu principal del portfolio">
+        <!-- region Vista Pagina Home: panel visual de seccion activa -->
+        <article class="feature-panel" aria-live="polite" data-section-panel>
+          <div class="feature-panel__media">
+            <img id="section-image" src="./assets/profile.svg" alt="Ilustracion simplificada de perfil profesional">
+          </div>
+          <div class="feature-panel__content">
+            <p class="feature-panel__eyebrow">Portfolio</p>
+            <h1 id="home-title" data-title="Sobre mi" aria-label="Sobre mi">Sobre mi</h1>
+            <p id="section-description">Una entrada directa al perfil profesional, con una imagen clara para reconocer la seccion activa del portfolio.</p>
+          </div>
+        </article>
+        <!-- endregion -->
+
+        <!-- region Vista Pagina Home: selector de secciones del portfolio -->
+        <nav class="section-menu" aria-label="Secciones del portfolio">
+          <button class="section-tab is-active" type="button" data-section="profile" data-label="Sobre mi" aria-pressed="true" style="--tab-color:#b8bec8">
+            <span class="section-tab__label">Sobre mi</span>
+          </button>
+          <button class="section-tab" type="button" data-section="projects" data-label="Proyectos" aria-pressed="false" style="--tab-color:#a7adb8">
+            <span class="section-tab__label">Proyectos</span>
+          </button>
+          <button class="section-tab" type="button" data-section="skills" data-label="Habilidades" aria-pressed="false" style="--tab-color:#c4c8cf">
+            <span class="section-tab__label">Habilidades</span>
+          </button>
+          <button class="section-tab" type="button" data-section="experience" data-label="Experiencia" aria-pressed="false" style="--tab-color:#8e95a1">
+            <span class="section-tab__label">Experiencia</span>
+          </button>
+          <button class="section-tab" type="button" data-section="contact" data-label="Contacto" aria-pressed="false" style="--tab-color:#d4d7dd">
+            <span class="section-tab__label">Contacto</span>
+          </button>
+        </nav>
+        <!-- endregion -->
+      </section>
+    </main>
+    <!-- endregion -->
+
+    <script src="./home.js"></script>
+  </body>
+</html>

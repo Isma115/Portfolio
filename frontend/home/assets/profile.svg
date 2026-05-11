@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="title desc">
+  <!-- region Imagen Pagina Home: perfil -->
+  <title id="title">Perfil profesional</title>
+  <desc id="desc">Retrato simplificado con tarjeta de identidad profesional en estilo hacker.</desc>
+  <rect width="480" height="480" rx="40" fill="#050a0f"/>
+  <path d="M58 84h364M58 396h364M84 58v364M396 58v364" stroke="#b8bec8" stroke-width="8" stroke-linecap="round" opacity=".34"/>
+  <circle cx="240" cy="186" r="102" fill="none" stroke="#b8bec8" stroke-width="12"/>
+  <circle cx="240" cy="160" r="46" fill="#f4f7fb"/>
+  <path d="M152 350c16-68 56-104 88-104s72 36 88 104" fill="#f4f7fb"/>
+  <path d="M158 186h164M192 294h96" stroke="#8e95a1" stroke-width="14" stroke-linecap="round"/>
+  <rect x="96" y="342" width="288" height="62" rx="10" fill="#0b1118" stroke="#b8bec8" stroke-width="8"/>
+  <path d="M136 364h80M240 364h86M136 386h162" stroke="#d4d7dd" stroke-width="8" stroke-linecap="round"/>
+  <!-- endregion -->
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="title desc">
+  <!-- region Imagen Pagina Home: contacto -->
+  <title id="title">Contacto</title>
+  <desc id="desc">Sobre de contacto con conexiones neon.</desc>
+  <rect width="480" height="480" rx="40" fill="#050a0f"/>
+  <rect x="86" y="154" width="308" height="198" rx="10" fill="#0b1118" stroke="#a7adb8" stroke-width="12"/>
+  <path d="M102 184l138 104 138-104" fill="none" stroke="#b8bec8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M128 326l78-72M352 326l-78-72" fill="none" stroke="#f4f7fb" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="120" cy="108" r="24" fill="#7f8792"/>
+  <circle cx="360" cy="108" r="24" fill="#d4d7dd"/>
+  <circle cx="240" cy="100" r="24" fill="#8e95a1"/>
+  <path d="M144 114h72M264 104h72" stroke="#b8bec8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M156 390h168" stroke="#f4f7fb" stroke-width="12" stroke-linecap="round"/>
+  <!-- endregion -->
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="title desc">
+  <!-- region Imagen Pagina Home: proyectos -->
+  <title id="title">Proyectos</title>
+  <desc id="desc">Ventanas de proyectos con codigo en estilo hacker.</desc>
+  <rect width="480" height="480" rx="40" fill="#050a0f"/>
+  <path d="M70 98h340v238H70z" fill="#0b1118" stroke="#7f8792" stroke-width="10"/>
+  <path d="M70 154h340" stroke="#7f8792" stroke-width="10"/>
+  <circle cx="108" cy="126" r="8" fill="#8e95a1"/>
+  <circle cx="136" cy="126" r="8" fill="#b8bec8"/>
+  <circle cx="164" cy="126" r="8" fill="#d4d7dd"/>
+  <path d="M154 214l-38 34 38 34M326 214l38 34-38 34M268 202l-56 92" fill="none" stroke="#f4f7fb" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M112 366h256M154 396h172" stroke="#b8bec8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M92 184h72M314 184h74" stroke="#8e95a1" stroke-width="8" stroke-linecap="round"/>
+  <!-- endregion -->
+</svg>

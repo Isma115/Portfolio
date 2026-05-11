@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="title desc">
+  <!-- region Imagen Pagina Home: habilidades -->
+  <title id="title">Habilidades</title>
+  <desc id="desc">Nodos de habilidades conectados en estilo hacker.</desc>
+  <rect width="480" height="480" rx="40" fill="#050a0f"/>
+  <path d="M160 180h160M160 300h160M190 210l100 60M290 210l-100 60" stroke="#b8bec8" stroke-width="10" stroke-linecap="round" opacity=".7"/>
+  <circle cx="160" cy="180" r="50" fill="#0b1118" stroke="#d4d7dd" stroke-width="10"/>
+  <circle cx="320" cy="180" r="50" fill="#0b1118" stroke="#b8bec8" stroke-width="10"/>
+  <circle cx="160" cy="300" r="50" fill="#0b1118" stroke="#8e95a1" stroke-width="10"/>
+  <circle cx="320" cy="300" r="50" fill="#0b1118" stroke="#7f8792" stroke-width="10"/>
+  <path d="M142 180h36M302 180h36M142 300h36M302 300h36" stroke="#f4f7fb" stroke-width="12" stroke-linecap="round"/>
+  <rect x="198" y="134" width="84" height="212" rx="28" fill="#101923" stroke="#f4f7fb" stroke-width="8"/>
+  <path d="M218 202h44M218 240h44M218 278h44" stroke="#d4d7dd" stroke-width="10" stroke-linecap="round"/>
+  <!-- endregion -->
+</svg>
