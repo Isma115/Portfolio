@@ -156,7 +156,7 @@ drawGravityMesh();
 // endregion
 
 // region Logica Pagina Home: particulas de fondo aleatorias
-const particleSymbols = ["+", "x", "{}", "[]", "</>"];
+const particleSymbols = ["+", "x", "{}", "[]", "</>", "@", "#"];
 
 function randomizeParticle(particle) {
   const size = Math.round(11 + Math.random() * 10);
