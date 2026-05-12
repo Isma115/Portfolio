@@ -68,7 +68,7 @@ function distortGravityPoint(x, y, time) {
   const radius = Math.min(window.innerWidth, window.innerHeight) * 0.56;
   const pull = Math.max(0, 1 - distance / radius) ** 2 * gravityPointer.force;
   const wave = Math.sin(distance * 0.006 - time * 0.00055) * 3.2 * pull;
-  const gravity = 10 * pull + wave;
+  const gravity = 6 * pull + wave;
   const angle = Math.atan2(dy, dx);
   const orbit = Math.sin(time * 0.00045 + distance * 0.004) * 2.2 * pull;
 
@@ -132,11 +132,11 @@ function drawGravityMesh(time = 0) {
 
   if (gravityPointer.force > 0.02) {
     const glow = gravityContext.createRadialGradient(gravityPointer.x, gravityPointer.y, 0, gravityPointer.x, gravityPointer.y, 180);
-    glow.addColorStop(0, `rgba(184, 190, 200, ${0.08 * gravityPointer.force})`);
+    glow.addColorStop(0, `rgba(184, 190, 200, ${0.05 * gravityPointer.force})`);
     glow.addColorStop(1, "rgba(184, 190, 200, 0)");
     gravityContext.fillStyle = glow;
     gravityContext.fillRect(0, 0, width, height);
-  }
+}
 
   gravityAnimationFrame = window.requestAnimationFrame(drawGravityMesh);
 }
@@ -145,10 +145,11 @@ window.addEventListener("resize", resizeGravityMesh);
 window.addEventListener("pointermove", (event) => {
   gravityPointer.targetX = event.clientX;
   gravityPointer.targetY = event.clientY;
-  gravityPointer.targetForce = 1;
+  gravityPointer.targetForce = 0.7; 
 });
+
 window.addEventListener("pointerleave", () => {
-  gravityPointer.targetForce = 0.16;
+  gravityPointer.targetForce = 0.07; 
 });
 
 resizeGravityMesh();
