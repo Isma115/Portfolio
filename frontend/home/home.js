@@ -235,7 +235,8 @@ function pulseActiveMenuButton(activeButton) {
 }
 
 function updateActiveMenu() {
-  const scrollPosition = window.scrollY + window.innerHeight / 3;
+  const currentScrollY = window.scrollY;
+  const scrollPosition = currentScrollY + window.innerHeight / 3;
   
   let currentSection = "home";
   
@@ -264,7 +265,7 @@ function updateActiveMenu() {
   }
 
   document.body.classList.toggle("is-home-active", currentSection === "home");
-  document.body.classList.toggle("is-scrolled-down", window.scrollY > 24);
+  document.body.classList.toggle("is-scrolled-down", currentScrollY > 24);
   activeMenuSection = currentSection;
 }
 
@@ -312,10 +313,20 @@ function clearGlitchState(element) {
   element.style.removeProperty("filter");
 }
 
+function clearTitleGlitchState(element) {
+  element.classList.remove("is-title-glitching");
+}
+
 function triggerEntryGlitch(element) {
   clearGlitchState(element);
   void element.offsetWidth;
   element.classList.add("is-glitching");
+}
+
+function triggerTitleGlitch(element) {
+  clearTitleGlitchState(element);
+  void element.offsetWidth;
+  element.classList.add("is-title-glitching");
 }
 
 function triggerEntryGlitchWithCooldown(element) {
@@ -355,6 +366,7 @@ function scheduleExit(element) {
     }
 
     clearGlitchState(element);
+    clearTitleGlitchState(element);
     applyExitDirection(element);
     element.classList.add("is-exiting");
     element.classList.remove("is-visible");
@@ -364,12 +376,20 @@ function scheduleExit(element) {
 }
 
 function handleGlitchAnimationEvent(event) {
-  if (event.animationName !== "glitch-enter" && event.animationName !== "glitch-flicker") {
+  if (
+    event.animationName !== "glitch-enter" &&
+    event.animationName !== "glitch-flicker" &&
+    event.animationName !== "glitch-title-enter"
+  ) {
     return;
   }
 
   if (event.animationName === "glitch-enter" || event.type === "animationcancel") {
     clearGlitchState(event.currentTarget);
+  }
+
+  if (event.animationName === "glitch-title-enter" || event.type === "animationcancel") {
+    clearTitleGlitchState(event.currentTarget);
   }
 }
 
@@ -384,7 +404,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
       if (!wasVisible) {
         entry.target.classList.add("is-visible");
-        triggerEntryGlitchWithCooldown(entry.target);
+        triggerTitleGlitch(entry.target);
       }
       return;
     }

@@ -77,9 +77,9 @@
 
     <!-- region Componente Home | Seccion | Sobre mi -->
     <section id="about" class="section-about" aria-labelledby="about-title">
-      <div class="about-layout">
+      <div class="about-layout no-glitch">
         <div class="about-layout__photo">
-          <img src="./assets/profile.svg" alt="Foto de perfil de Ismael Moraleda López">
+          <img src="./assets/about-template.jpg" alt="Foto de perfil de Ismael Moraleda López">
         </div>
         <div class="about-layout__text">
           <p class="about-layout__eyebrow">Seccion personal</p>
@@ -92,10 +92,37 @@
 
     <!-- region Componente Home | Seccion | Proyectos -->
     <section id="projects" class="section-projects" aria-labelledby="projects-title">
-      <div class="section-content">
+      <div class="section-content no-glitch">
         <p class="section-eyebrow">Seccion de trabajo</p>
         <h2 id="projects-title">Proyectos</h2>
-        <p>Seleccion de entregas tecnicas y productos funcionales, con foco en arquitectura, decisiones clave e impacto real en el uso.</p>
+        <div class="projects-grid" aria-label="Listado de proyectos de programacion">
+          <article class="project-card">
+            <img class="project-card__image" src="./assets/project-dashboard.jpg" alt="Vista previa de panel analitico para ecommerce">
+            <div class="project-card__content">
+              <h3 class="project-card__title">Dashboard Ecommerce Analytics</h3>
+              <p class="project-card__description">Panel de metricas en tiempo real con filtros por canal, cohortes y alertas de conversion para equipos de marketing y producto.</p>
+              <a class="project-card__link" href="https://github.com/ismaelmoraledalopez/ecommerce-analytics-dashboard" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-card__image" src="./assets/project-api.jpg" alt="Vista previa de API backend para gestion de tareas">
+            <div class="project-card__content">
+              <h3 class="project-card__title">TaskFlow API</h3>
+              <p class="project-card__description">API REST con autenticacion JWT, control de permisos por rol y trazabilidad de cambios para flujos colaborativos de tareas.</p>
+              <a class="project-card__link" href="https://github.com/ismaelmoraledalopez/taskflow-api" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img class="project-card__image" src="./assets/project-mobile.jpg" alt="Vista previa de app para seguimiento de habitos y productividad">
+            <div class="project-card__content">
+              <h3 class="project-card__title">Habit Tracker Mobile App</h3>
+              <p class="project-card__description">Aplicacion movil con seguimiento de habitos, estadisticas semanales y recordatorios inteligentes para mejorar consistencia diaria.</p>
+              <a class="project-card__link" href="https://github.com/ismaelmoraledalopez/habit-tracker-mobile" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
     <!-- endregion -->
@@ -105,7 +132,53 @@
       <div class="section-content">
         <p class="section-eyebrow">Seccion tecnica</p>
         <h2 id="skills-title">Habilidades</h2>
-        <p>Resumen de capacidades aplicadas en desarrollo frontend, estructura de componentes, rendimiento y experiencia de usuario.</p>
+        <p class="skills-intro">Stack y capacidades aplicadas en proyectos frontend, backend y despliegue.</p>
+        <div class="skills-template" aria-label="Listado de habilidades tecnicas">
+          <article class="skills-group">
+            <h3 class="skills-group__title">Lenguajes</h3>
+            <ul class="skills-list">
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/D7DBFF" alt="" aria-hidden="true">JavaScript (ES6+)</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/typescript/D7DBFF" alt="" aria-hidden="true">TypeScript</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/html5/D7DBFF" alt="" aria-hidden="true">HTML5</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/css/D7DBFF" alt="" aria-hidden="true">CSS3</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/sqlite/D7DBFF" alt="" aria-hidden="true">SQL</li>
+            </ul>
+          </article>
+
+          <article class="skills-group">
+            <h3 class="skills-group__title">Frontend</h3>
+            <ul class="skills-list">
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/react/D7DBFF" alt="" aria-hidden="true">React</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/nextdotjs/D7DBFF" alt="" aria-hidden="true">Next.js</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/vite/D7DBFF" alt="" aria-hidden="true">Vite</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/tailwindcss/D7DBFF" alt="" aria-hidden="true">Tailwind CSS</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/w3c/D7DBFF" alt="" aria-hidden="true">Accesibilidad (a11y)</li>
+            </ul>
+          </article>
+
+          <article class="skills-group">
+            <h3 class="skills-group__title">Backend</h3>
+            <ul class="skills-list">
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/nodedotjs/D7DBFF" alt="" aria-hidden="true">Node.js</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/express/D7DBFF" alt="" aria-hidden="true">Express</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/openapiinitiative/D7DBFF" alt="" aria-hidden="true">REST API</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/jsonwebtokens/D7DBFF" alt="" aria-hidden="true">Autenticacion JWT</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/D7DBFF" alt="" aria-hidden="true">PostgreSQL</li>
+            </ul>
+          </article>
+
+          <article class="skills-group">
+            <h3 class="skills-group__title">Herramientas</h3>
+            <ul class="skills-list">
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/git/D7DBFF" alt="" aria-hidden="true">Git</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/github/D7DBFF" alt="" aria-hidden="true">GitHub</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/docker/D7DBFF" alt="" aria-hidden="true">Docker</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/githubactions/D7DBFF" alt="" aria-hidden="true">CI/CD (GitHub Actions)</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/postman/D7DBFF" alt="" aria-hidden="true">Postman</li>
+              <li><img class="skill-icon" src="https://cdn.simpleicons.org/figma/D7DBFF" alt="" aria-hidden="true">Figma</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
     <!-- endregion -->
