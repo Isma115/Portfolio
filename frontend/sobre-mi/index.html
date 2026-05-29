@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio | Sobre mi</title>
+    <link rel="stylesheet" href="./sobre-mi.css">
+  </head>
+  <body>
+    <!-- region Componente Sobre Mi | Codigo de Componente | Malla de fondo -->
+    <canvas class="about-mesh" id="about-mesh" aria-hidden="true"></canvas>
+    <!-- endregion -->
+
+    <!-- region Componente Sobre Mi | Codigo de Componente | Particulas de fondo -->
+    <div class="about-particles" aria-hidden="true">
+      <span style="--x:8%;--y:18%;--delay:0ms;--size:18px">#</span>
+      <span style="--x:19%;--y:76%;--delay:420ms;--size:14px">{}</span>
+      <span style="--x:35%;--y:24%;--delay:900ms;--size:20px">@</span>
+      <span style="--x:49%;--y:82%;--delay:1280ms;--size:16px">x</span>
+      <span style="--x:61%;--y:16%;--delay:1720ms;--size:13px">&lt;/&gt;</span>
+      <span style="--x:74%;--y:66%;--delay:2160ms;--size:21px">+</span>
+      <span style="--x:88%;--y:31%;--delay:2600ms;--size:15px">[]</span>
+    </div>
+    <!-- endregion -->
+
+    <!-- region Componente Sobre Mi | Codigo de Componente | Contenido principal -->
+    <main class="about-shell" aria-labelledby="about-title">
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+      </button>
+
+      <nav class="portfolio-top-menu" aria-label="Secciones del portfolio">
+        <button class="top-menu__item" type="button" data-top-section="home">Home</button>
+        <button class="top-menu__item is-active" type="button" data-top-section="profile">Sobre mi</button>
+        <button class="top-menu__item" type="button" data-top-section="projects">Proyectos</button>
+        <button class="top-menu__item" type="button" data-top-section="skills">Habilidades</button>
+        <button class="top-menu__item" type="button" data-top-section="experience">Experiencia</button>
+        <button class="top-menu__item" type="button" data-top-section="contact">Contacto</button>
+      </nav>
+
+      <section class="about-layout" data-about-content>
+        <div class="about-layout__photo">
+          <img src="../home/assets/profile.svg" alt="Foto de perfil de Ismael Moraleda López">
+        </div>
+        <div class="about-layout__text">
+          <p class="about-layout__eyebrow" id="about-eyebrow">Seccion personal</p>
+          <h1 id="about-title">Sobre mi</h1>
+          <p id="about-description">Soy un perfil orientado a construir interfaces claras, experiencias cuidadas y soluciones tecnicas sostenibles. Me interesa unir criterio visual, estructura de codigo y pequenas interacciones que hagan que cada proyecto se entienda rapido y se use sin friccion.</p>
+        </div>
+      </section>
+    </main>
+    <!-- endregion -->
+
+    <!-- region Componente Sobre Mi | Backend | Sin backend (frontend estatico) -->
+    <!-- endregion -->
+
+    <script src="./sobre-mi.js"></script>
+  </body>
+</html>

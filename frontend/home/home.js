@@ -1,39 +1,12 @@
-// region Logica Pagina Home: datos de secciones
-const sections = {
-  profile: {
-    title: "Sobre mi",
-    description: "Una entrada directa al perfil profesional, con una imagen clara para reconocer la seccion activa del portfolio.",
-    image: "./assets/profile.svg",
-    alt: "Ilustracion simplificada de perfil profesional",
-  },
-  projects: {
-    title: "Proyectos",
-    description: "Acceso a trabajos destacados, prototipos y piezas tecnicas organizadas para revisar el alcance de cada entrega.",
-    image: "./assets/projects.svg",
-    alt: "Ilustracion simplificada de proyectos de software",
-  },
-  skills: {
-    title: "Habilidades",
-    description: "Mapa visual de competencias, herramientas y capacidades tecnicas que sostienen el trabajo profesional.",
-    image: "./assets/skills.svg",
-    alt: "Ilustracion simplificada de habilidades tecnicas",
-  },
-  experience: {
-    title: "Experiencia",
-    description: "Linea de recorrido profesional preparada para conectar responsabilidades, impacto y aprendizaje acumulado.",
-    image: "./assets/experience.svg",
-    alt: "Ilustracion simplificada de experiencia profesional",
-  },
-  contact: {
-    title: "Contacto",
-    description: "Punto de salida para iniciar una conversacion profesional y conectar por los canales disponibles.",
-    image: "./assets/contact.svg",
-    alt: "Ilustracion simplificada de contacto profesional",
-  },
-};
+// region Componente Home | Funcionalidad | Estado inicial de navegacion
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
+
+window.scrollTo(0, 0);
 // endregion
 
-// region Logica Pagina Home: malla gravitatoria reactiva
+// region Componente Home | Funcionalidad | Malla gravitatoria reactiva
 const gravityCanvas = document.querySelector("#gravity-mesh");
 const gravityContext = gravityCanvas.getContext("2d");
 const backgroundParticles = Array.from(document.querySelectorAll(".background-particles span"));
@@ -47,6 +20,7 @@ const gravityPointer = {
 };
 let gravityPixelRatio = 1;
 let gravityAnimationFrame = 0;
+let gravityScrollProgress = 0;
 
 function resizeGravityMesh() {
   gravityPixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -101,6 +75,9 @@ function drawGravityMesh(time = 0) {
   const step = width < 700 ? 36 : 46;
   const sample = 16;
   const padding = step * 2;
+  const scrollPhase = gravityScrollProgress * 2200;
+  const scrollShiftX = (gravityScrollProgress * 38) % step;
+  const scrollShiftY = (gravityScrollProgress * -94) % step;
 
   gravityPointer.x += (gravityPointer.targetX - gravityPointer.x) * 0.08;
   gravityPointer.y += (gravityPointer.targetY - gravityPointer.y) * 0.08;
@@ -110,24 +87,24 @@ function drawGravityMesh(time = 0) {
   gravityContext.lineWidth = 1;
   gravityContext.strokeStyle = "rgba(184, 190, 200, 0.16)";
 
-  for (let y = -padding; y <= height + padding; y += step) {
+  for (let y = -padding + scrollShiftY; y <= height + padding; y += step) {
     const points = [];
 
     for (let x = -padding; x <= width + padding; x += sample) {
       points.push({ x, y });
     }
 
-    drawGravityLine(points, time);
+    drawGravityLine(points, time + scrollPhase);
   }
 
-  for (let x = -padding; x <= width + padding; x += step) {
+  for (let x = -padding + scrollShiftX; x <= width + padding; x += step) {
     const points = [];
 
     for (let y = -padding; y <= height + padding; y += sample) {
       points.push({ x, y });
     }
 
-    drawGravityLine(points, time);
+    drawGravityLine(points, time + scrollPhase);
   }
 
   if (gravityPointer.force > 0.02) {
@@ -136,7 +113,7 @@ function drawGravityMesh(time = 0) {
     glow.addColorStop(1, "rgba(184, 190, 200, 0)");
     gravityContext.fillStyle = glow;
     gravityContext.fillRect(0, 0, width, height);
-}
+  }
 
   gravityAnimationFrame = window.requestAnimationFrame(drawGravityMesh);
 }
@@ -145,18 +122,23 @@ window.addEventListener("resize", resizeGravityMesh);
 window.addEventListener("pointermove", (event) => {
   gravityPointer.targetX = event.clientX;
   gravityPointer.targetY = event.clientY;
-  gravityPointer.targetForce = 0.7; 
+  gravityPointer.targetForce = 0.7;
 });
 
 window.addEventListener("pointerleave", () => {
-  gravityPointer.targetForce = 0.07; 
+  gravityPointer.targetForce = 0.07;
 });
+
+window.addEventListener("scroll", () => {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  gravityScrollProgress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+}, { passive: true });
 
 resizeGravityMesh();
 drawGravityMesh();
 // endregion
 
-// region Logica Pagina Home: particulas de fondo aleatorias
+// region Componente Home | Funcionalidad | Particulas de fondo aleatorias
 const particleSymbols = ["+", "x", "{}", "[]", "</>", "@", "#"];
 
 function randomizeParticle(particle) {
@@ -180,119 +162,160 @@ backgroundParticles.forEach((particle) => {
 });
 // endregion
 
-// region Logica Pagina Home: actualizacion de seccion activa
-const tabs = Array.from(document.querySelectorAll(".section-tab"));
-const image = document.querySelector("#section-image");
-const title = document.querySelector("#home-title");
-const description = document.querySelector("#section-description");
-const panel = document.querySelector("[data-section-panel]");
-let selectedSectionKey = "profile";
-let imageChangeTimer = 0;
-let clickGlitchTimer = 0;
+// region Componente Home | Funcionalidad | Medicion del ancho real del typewriter
+const typewriterEl = document.querySelector(".hero-center__typewriter");
 
-function updatePanel(sectionKey, options = {}) {
-  const section = sections[sectionKey];
-  const shouldAnimate = options.animate !== false;
+if (typewriterEl) {
+  const originalWidth = typewriterEl.style.width;
+  const originalOverflow = typewriterEl.style.overflow;
+  const originalPosition = typewriterEl.style.position;
+  const originalVisibility = typewriterEl.style.visibility;
 
-  if (!section) {
-    return;
-  }
+  typewriterEl.style.width = "auto";
+  typewriterEl.style.overflow = "visible";
+  typewriterEl.style.position = "absolute";
+  typewriterEl.style.visibility = "hidden";
 
-  window.clearTimeout(imageChangeTimer);
+  const fullWidth = typewriterEl.scrollWidth;
 
-  const applySection = () => {
-    image.src = section.image;
-    image.alt = section.alt;
-    title.textContent = section.title;
-    title.dataset.title = section.title;
-    title.setAttribute("aria-label", section.title);
-    description.textContent = section.description;
-    panel.dataset.activeSection = sectionKey;
-    image.classList.remove("is-changing");
-  };
+  typewriterEl.style.width = originalWidth;
+  typewriterEl.style.overflow = originalOverflow;
+  typewriterEl.style.position = originalPosition;
+  typewriterEl.style.visibility = originalVisibility;
 
-  if (shouldAnimate) {
-    image.classList.add("is-changing");
-    imageChangeTimer = window.setTimeout(applySection, 120);
-    return;
-  }
-
-  applySection();
+  typewriterEl.style.setProperty("--typewriter-width", `${fullWidth}px`);
 }
+// endregion
 
-function markActiveSection(sectionKey) {
-  tabs.forEach((tab) => {
-    const isActive = tab.dataset.section === sectionKey;
+// region Componente Home | Funcionalidad | Menu hamburguesa y navegacion
+const menuToggle = document.querySelector(".menu-toggle");
+const menuButtons = Array.from(document.querySelectorAll(".top-menu__item"));
+const sections = Array.from(document.querySelectorAll("section[id]"));
 
-    tab.classList.toggle("is-active", isActive);
-    tab.setAttribute("aria-pressed", String(isActive));
-  });
-}
+menuToggle.addEventListener("click", () => {
+  const isOpen = document.body.classList.toggle("is-menu-open");
+  menuToggle.classList.toggle("is-open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+});
 
-function triggerClickGlitch(tab) {
-  window.clearTimeout(clickGlitchTimer);
-  tabs.forEach((item) => item.classList.add("has-entered"));
-  tabs.forEach((item) => item.classList.remove("is-click-glitch"));
-  void tab.offsetWidth;
-
-  window.requestAnimationFrame(() => {
-    tab.classList.add("is-click-glitch");
-
-    clickGlitchTimer = window.setTimeout(() => {
-      tab.classList.remove("is-click-glitch");
-    }, 940);
-  });
-}
-
-function setActiveSection(sectionKey, tab) {
-  selectedSectionKey = sectionKey;
-  markActiveSection(sectionKey);
-  updatePanel(sectionKey);
-
-  if (tab) {
-    triggerClickGlitch(tab);
-  }
-}
-
-tabs.forEach((tab) => {
-  tab.addEventListener("animationend", (event) => {
-    if (event.animationName === "section-tab-enter") {
-      tab.classList.add("has-entered");
+menuButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const sectionId = button.dataset.section;
+    const targetSection = document.getElementById(sectionId);
+    
+    document.body.classList.remove("is-menu-open");
+    menuToggle.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menú");
+    
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   });
-
-  tab.addEventListener("pointerenter", () => {
-    updatePanel(tab.dataset.section);
-  });
-
-  tab.addEventListener("pointerleave", () => {
-    updatePanel(selectedSectionKey);
-  });
-
-  tab.addEventListener("focus", () => {
-    updatePanel(tab.dataset.section);
-  });
-
-  tab.addEventListener("blur", () => {
-    updatePanel(selectedSectionKey);
-  });
-
-  tab.addEventListener("click", () => {
-    setActiveSection(tab.dataset.section, tab);
-  });
 });
 
-panel.addEventListener("pointermove", (event) => {
-  const bounds = panel.getBoundingClientRect();
-  const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 10;
-  const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * -10;
+function updateActiveMenu() {
+  const scrollPosition = window.scrollY + window.innerHeight / 3;
+  
+  let currentSection = "home";
+  
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      currentSection = section.id;
+    }
+  });
+  
+  menuButtons.forEach((button) => {
+    const isActive = button.dataset.section === currentSection;
+    button.classList.toggle("is-active", isActive);
+  });
+}
 
-  panel.style.setProperty("--tilt-x", `${y.toFixed(2)}deg`);
-  panel.style.setProperty("--tilt-y", `${x.toFixed(2)}deg`);
-});
+window.addEventListener("scroll", updateActiveMenu, { passive: true });
+updateActiveMenu();
+// endregion
 
-panel.addEventListener("pointerleave", () => {
-  panel.style.setProperty("--tilt-x", "0deg");
-  panel.style.setProperty("--tilt-y", "0deg");
+// region Componente Home | Funcionalidad | Animacion de secciones al hacer scroll
+const sectionContents = Array.from(document.querySelectorAll(".section-content, .about-layout"));
+
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: "-50px 0px -50px 0px"
+};
+
+function getRandomExitDirection() {
+  const directions = [
+    { x: -180, y: -120, rotate: -12, scale: 0.7 },
+    { x: 200, y: -100, rotate: 15, scale: 0.75 },
+    { x: -220, y: 80, rotate: -18, scale: 0.65 },
+    { x: 180, y: 120, rotate: 10, scale: 0.8 },
+    { x: -150, y: -150, rotate: -8, scale: 0.72 },
+    { x: 240, y: -80, rotate: 20, scale: 0.68 },
+    { x: -200, y: 100, rotate: -14, scale: 0.78 },
+    { x: 160, y: -140, rotate: 12, scale: 0.74 },
+  ];
+  return directions[Math.floor(Math.random() * directions.length)];
+}
+
+function applyExitDirection(element) {
+  const x = Math.random() > 0.5 ? 200 : -200;
+  element.style.setProperty("--exit-x", `${x}px`);
+}
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.remove("is-exiting");
+      entry.target.classList.add("is-visible");
+    } else {
+      if (entry.target.classList.contains("is-visible")) {
+        applyExitDirection(entry.target);
+        entry.target.classList.add("is-exiting");
+        entry.target.classList.remove("is-visible");
+      }
+    }
+  });
+}, observerOptions);
+
+sectionContents.forEach((content) => {
+  sectionObserver.observe(content);
 });
+// endregion
+
+// region Componente Home | Funcionalidad | Indicador de scroll
+const scrollIndicator = document.querySelector(".scroll-indicator");
+
+if (scrollIndicator) {
+  scrollIndicator.addEventListener("click", () => {
+    const aboutSection = document.getElementById("about");
+    
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+}
+// endregion
+
+// region Componente Home | Funcionalidad | Estelas de color con tamaño aleatorio
+const colorTrails = document.querySelectorAll(".color-trail");
+
+function randomizeTrailSize(trail) {
+  const randomHeight = Math.floor(Math.random() * 200) + 150;
+  trail.style.setProperty("--trail-height", `${randomHeight}px`);
+}
+
+colorTrails.forEach((trail) => {
+  randomizeTrailSize(trail);
+  
+  trail.addEventListener("animationiteration", () => {
+    randomizeTrailSize(trail);
+  });
+});
+// endregion
+
+// region Componente Home | Backend | Sin backend (frontend estatico)
 // endregion

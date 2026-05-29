@@ -1,0 +1,294 @@
+{
+    "regions": {
+        "Cabecera": {
+            "items": [
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css::1:7:Estructura General",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css",
+                    "file_rel_path": "frontend/public/styles/layout.css",
+                    "header": "Estructura General",
+                    "type": "region",
+                    "name": "Estructura General",
+                    "start_line": 1,
+                    "end_line": 7,
+                    "order_index": 0
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css::10:14:Cabecera",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css",
+                    "file_rel_path": "frontend/public/styles/layout.css",
+                    "header": "Cabecera",
+                    "type": "region",
+                    "name": "Cabecera",
+                    "start_line": 10,
+                    "end_line": 14,
+                    "order_index": 1
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css::16:29:Contenido",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css",
+                    "file_rel_path": "frontend/public/styles/layout.css",
+                    "header": "Contenido",
+                    "type": "region",
+                    "name": "Contenido",
+                    "start_line": 16,
+                    "end_line": 29,
+                    "order_index": 2
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css::31:39:Footer",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css",
+                    "file_rel_path": "frontend/public/styles/layout.css",
+                    "header": "Footer",
+                    "type": "region",
+                    "name": "Footer",
+                    "start_line": 31,
+                    "end_line": 39,
+                    "order_index": 3
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css::41:54:Inputs Numericos",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css",
+                    "file_rel_path": "frontend/public/styles/layout.css",
+                    "header": "Inputs Numericos",
+                    "type": "region",
+                    "name": "Inputs Numericos",
+                    "start_line": 41,
+                    "end_line": 54,
+                    "order_index": 4
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css::10:14:Cabecera",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css",
+                    "file_rel_path": "frontend/public/styles/layout.css",
+                    "header": "Cabecera",
+                    "type": "region",
+                    "name": "Cabecera",
+                    "start_line": 10,
+                    "end_line": 14,
+                    "order_index": 5
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar.css::83:170:Navbar Inferior",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar.css",
+                    "file_rel_path": "frontend/public/styles/navbar.css",
+                    "header": "Navbar Inferior",
+                    "type": "region",
+                    "name": "Navbar Inferior",
+                    "start_line": 83,
+                    "end_line": 170,
+                    "order_index": 6
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css::238:338:Popups",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css",
+                    "file_rel_path": "frontend/public/styles/navbar1.css",
+                    "header": "Popups",
+                    "type": "region",
+                    "name": "Popups",
+                    "start_line": 238,
+                    "end_line": 338,
+                    "order_index": 7
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css::340:443:Notificaciones",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css",
+                    "file_rel_path": "frontend/public/styles/navbar1.css",
+                    "header": "Notificaciones",
+                    "type": "region",
+                    "name": "Notificaciones",
+                    "start_line": 340,
+                    "end_line": 443,
+                    "order_index": 8
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css::445:491:Popup Usuario",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css",
+                    "file_rel_path": "frontend/public/styles/navbar1.css",
+                    "header": "Popup Usuario",
+                    "type": "region",
+                    "name": "Popup Usuario",
+                    "start_line": 445,
+                    "end_line": 491,
+                    "order_index": 9
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar.css::284:336:Modal Logout",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar.css",
+                    "file_rel_path": "frontend/public/styles/navbar.css",
+                    "header": "Modal Logout",
+                    "type": "region",
+                    "name": "Modal Logout",
+                    "start_line": 284,
+                    "end_line": 336,
+                    "order_index": 10
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/pages/Layout.jsx::8:32:Estructura De Layout",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/pages/Layout.jsx",
+                    "file_rel_path": "frontend/src/pages/Layout.jsx",
+                    "header": "Estructura De Layout",
+                    "type": "region",
+                    "name": "Estructura De Layout",
+                    "start_line": 8,
+                    "end_line": 32,
+                    "order_index": 11
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx::14:27:Configuracion De Tabs",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar.jsx",
+                    "header": "Configuracion De Tabs",
+                    "type": "region",
+                    "name": "Configuracion De Tabs",
+                    "start_line": 14,
+                    "end_line": 27,
+                    "order_index": 12
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx::30:37:Estado Y Contexto",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar.jsx",
+                    "header": "Estado Y Contexto",
+                    "type": "region",
+                    "name": "Estado Y Contexto",
+                    "start_line": 30,
+                    "end_line": 37,
+                    "order_index": 13
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx::39:52:Datos De Popup",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar.jsx",
+                    "header": "Datos De Popup",
+                    "type": "region",
+                    "name": "Datos De Popup",
+                    "start_line": 39,
+                    "end_line": 52,
+                    "order_index": 14
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx::54:64:Handlers",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar.jsx",
+                    "header": "Handlers",
+                    "type": "region",
+                    "name": "Handlers",
+                    "start_line": 54,
+                    "end_line": 64,
+                    "order_index": 15
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx::66:74:Feedback Visual",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar.jsx",
+                    "header": "Feedback Visual",
+                    "type": "region",
+                    "name": "Feedback Visual",
+                    "start_line": 66,
+                    "end_line": 74,
+                    "order_index": 16
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css::445:491:Popup Usuario",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css",
+                    "file_rel_path": "frontend/public/styles/navbar1.css",
+                    "header": "Popup Usuario",
+                    "type": "region",
+                    "name": "Popup Usuario",
+                    "start_line": 445,
+                    "end_line": 491,
+                    "order_index": 18
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx::14:18:Utilidades Locales",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar1.jsx",
+                    "header": "Utilidades Locales",
+                    "type": "region",
+                    "name": "Utilidades Locales",
+                    "start_line": 14,
+                    "end_line": 18,
+                    "order_index": 20
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx::20:68:Datos Mock Notificaciones",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar1.jsx",
+                    "header": "Datos Mock Notificaciones",
+                    "type": "region",
+                    "name": "Datos Mock Notificaciones",
+                    "start_line": 20,
+                    "end_line": 68,
+                    "order_index": 21
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx::70:85:Configuracion De Tipos De Notificacion",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar1.jsx",
+                    "header": "Configuracion De Tipos De Notificacion",
+                    "type": "region",
+                    "name": "Configuracion De Tipos De Notificacion",
+                    "start_line": 70,
+                    "end_line": 85,
+                    "order_index": 22
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx::147:161:Normalizacion De Notificaciones",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar1.jsx",
+                    "header": "Normalizacion De Notificaciones",
+                    "type": "region",
+                    "name": "Normalizacion De Notificaciones",
+                    "start_line": 147,
+                    "end_line": 161,
+                    "order_index": 23
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx::179:208:Efectos",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar1.jsx",
+                    "header": "Efectos",
+                    "type": "region",
+                    "name": "Efectos",
+                    "start_line": 179,
+                    "end_line": 208,
+                    "order_index": 24
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx::210:246:Datos Derivados",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/src/components/nav-bar/Navbar1.jsx",
+                    "file_rel_path": "frontend/src/components/nav-bar/Navbar1.jsx",
+                    "header": "Datos Derivados",
+                    "type": "region",
+                    "name": "Datos Derivados",
+                    "start_line": 210,
+                    "end_line": 246,
+                    "order_index": 25
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css::10:14:Cabecera",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/layout.css",
+                    "file_rel_path": "frontend/public/styles/layout.css",
+                    "header": "Cabecera",
+                    "type": "region",
+                    "name": "Cabecera",
+                    "start_line": 10,
+                    "end_line": 14,
+                    "order_index": 26
+                },
+                {
+                    "key": "region::/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css::340:443:Notificaciones",
+                    "file_path": "/Users/ismaelmoraledalopez/Documents/Azure-Irrigation-Web/HidraSmart-Irrigation-System/frontend/public/styles/navbar1.css",
+                    "file_rel_path": "frontend/public/styles/navbar1.css",
+                    "header": "Notificaciones",
+                    "type": "region",
+                    "name": "Notificaciones",
+                    "start_line": 340,
+                    "end_line": 443,
+                    "order_index": 27
+                }
+            ]
+        }
+    }
+}
