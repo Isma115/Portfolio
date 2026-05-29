@@ -854,15 +854,20 @@ body.is-menu-open .top-menu__item {
 .section-content,
 .about-layout {
   --exit-x: 0px;
+  --glitch-shift: -1;
   opacity: 0;
   transform: translateX(-150px);
+  clip-path: inset(0 0 0 0);
+  filter: none;
   transition:
     opacity 800ms ease,
-    transform 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform 780ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity, clip-path, filter;
 }
 
 .section-content:nth-child(even),
 .about-layout:nth-child(even) {
+  --glitch-shift: 1;
   transform: translateX(150px);
 }
 
@@ -870,13 +875,23 @@ body.is-menu-open .top-menu__item {
 .about-layout.is-visible {
   opacity: 1;
   transform: translateX(0);
-  animation: glitch-enter 0.4s ease-out;
+  clip-path: inset(0 0 0 0);
+  filter: none;
+}
+
+.section-content.is-visible.is-glitching,
+.about-layout.is-visible.is-glitching {
+  animation:
+    glitch-enter 460ms steps(1, end),
+    glitch-flicker 220ms steps(1, end) 40ms both;
 }
 
 .section-content.is-exiting,
 .about-layout.is-exiting {
   opacity: 0;
   transform: translateX(var(--exit-x));
+  clip-path: inset(0 0 0 0);
+  filter: none;
   transition:
     opacity 600ms ease,
     transform 700ms cubic-bezier(0.55, 0, 0.1, 1);
@@ -886,26 +901,77 @@ body.is-menu-open .top-menu__item {
 @keyframes glitch-enter {
   0% {
     clip-path: inset(0 0 0 0);
+    opacity: 0.3;
+    transform: translateX(calc(var(--glitch-shift) * 30px)) translateY(-3px) skewX(9deg);
+    filter:
+      blur(1.8px)
+      saturate(1.5)
+      contrast(1.28)
+      hue-rotate(18deg)
+      drop-shadow(calc(var(--glitch-shift) * 14px) 0 rgba(81, 198, 255, 0.5))
+      drop-shadow(calc(var(--glitch-shift) * -14px) 0 rgba(255, 71, 191, 0.46));
   }
-  20% {
-    clip-path: inset(10% 0 20% 0);
-    transform: translateX(-8px);
+  14% {
+    clip-path: inset(66% 0 8% 0);
+    opacity: 0.72;
+    transform: translateX(calc(var(--glitch-shift) * 22px)) translateY(2px) skewX(-7deg);
   }
-  40% {
-    clip-path: inset(30% 0 10% 0);
-    transform: translateX(6px);
+  28% {
+    clip-path: inset(6% 0 64% 0);
+    opacity: 0.48;
+    transform: translateX(calc(var(--glitch-shift) * 16px)) translateY(-1px) skewX(6deg);
   }
-  60% {
-    clip-path: inset(5% 0 15% 0);
-    transform: translateX(-4px);
+  42% {
+    clip-path: inset(34% 0 28% 0);
+    opacity: 0.88;
+    transform: translateX(calc(var(--glitch-shift) * 11px)) translateY(3px) skewX(-4deg);
   }
-  80% {
-    clip-path: inset(15% 0 5% 0);
-    transform: translateX(2px);
+  56% {
+    clip-path: inset(12% 0 50% 0);
+    opacity: 0.62;
+    transform: translateX(calc(var(--glitch-shift) * 7px)) translateY(-2px) skewX(3deg);
+  }
+  72% {
+    clip-path: inset(26% 0 18% 0);
+    opacity: 0.92;
+    transform: translateX(calc(var(--glitch-shift) * 4px)) translateY(1px) skewX(-2deg);
+  }
+  88% {
+    clip-path: inset(8% 0 8% 0);
+    opacity: 0.98;
+    transform: translateX(calc(var(--glitch-shift) * 2px)) translateY(0) skewX(1deg);
   }
   100% {
     clip-path: inset(0 0 0 0);
+    opacity: 1;
     transform: translateX(0);
+    filter:
+      blur(0)
+      saturate(1)
+      contrast(1)
+      hue-rotate(0deg)
+      drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+}
+
+@keyframes glitch-flicker {
+  0% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0.42;
+  }
+  33% {
+    opacity: 0.95;
+  }
+  52% {
+    opacity: 0.36;
+  }
+  71% {
+    opacity: 0.88;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

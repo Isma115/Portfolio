@@ -272,9 +272,16 @@ updateActiveMenu();
 
 // region Componente Home | Funcionalidad | Animacion de secciones al hacer scroll
 const sectionContents = Array.from(document.querySelectorAll(".section-content, .about-layout"));
+const entryVisibilityRatio = 0.22;
+const exitVisibilityRatio = 0.06;
+const exitDebounceMs = 120;
+const glitchCooldownMs = 420;
+const pendingExitTimers = new WeakMap();
+const latestIntersectionRatios = new WeakMap();
+const lastGlitchTimes = new WeakMap();
 
 const observerOptions = {
-  threshold: 0.15,
+  threshold: [0, 0.06, 0.15, 0.22],
   rootMargin: "-50px 0px -50px 0px"
 };
 
@@ -297,22 +304,101 @@ function applyExitDirection(element) {
   element.style.setProperty("--exit-x", `${x}px`);
 }
 
+function clearGlitchState(element) {
+  element.classList.remove("is-glitching");
+  element.style.removeProperty("clip-path");
+  element.style.removeProperty("filter");
+}
+
+function triggerEntryGlitch(element) {
+  clearGlitchState(element);
+  void element.offsetWidth;
+  element.classList.add("is-glitching");
+}
+
+function triggerEntryGlitchWithCooldown(element) {
+  const now = performance.now();
+  const lastGlitchTime = lastGlitchTimes.get(element) || 0;
+
+  if (now - lastGlitchTime < glitchCooldownMs) {
+    return;
+  }
+
+  lastGlitchTimes.set(element, now);
+  triggerEntryGlitch(element);
+}
+
+function cancelPendingExit(element) {
+  const pendingTimer = pendingExitTimers.get(element);
+
+  if (!pendingTimer) {
+    return;
+  }
+
+  window.clearTimeout(pendingTimer);
+  pendingExitTimers.delete(element);
+}
+
+function scheduleExit(element) {
+  if (pendingExitTimers.has(element)) {
+    return;
+  }
+
+  const timer = window.setTimeout(() => {
+    pendingExitTimers.delete(element);
+    const latestRatio = latestIntersectionRatios.get(element) || 0;
+
+    if (latestRatio > exitVisibilityRatio || !element.classList.contains("is-visible")) {
+      return;
+    }
+
+    clearGlitchState(element);
+    applyExitDirection(element);
+    element.classList.add("is-exiting");
+    element.classList.remove("is-visible");
+  }, exitDebounceMs);
+
+  pendingExitTimers.set(element, timer);
+}
+
+function handleGlitchAnimationEvent(event) {
+  if (event.animationName !== "glitch-enter" && event.animationName !== "glitch-flicker") {
+    return;
+  }
+
+  if (event.animationName === "glitch-enter" || event.type === "animationcancel") {
+    clearGlitchState(event.currentTarget);
+  }
+}
+
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
+    latestIntersectionRatios.set(entry.target, entry.intersectionRatio);
+
+    if (entry.intersectionRatio >= entryVisibilityRatio) {
+      cancelPendingExit(entry.target);
+      const wasVisible = entry.target.classList.contains("is-visible");
       entry.target.classList.remove("is-exiting");
-      entry.target.classList.add("is-visible");
-    } else {
-      if (entry.target.classList.contains("is-visible")) {
-        applyExitDirection(entry.target);
-        entry.target.classList.add("is-exiting");
-        entry.target.classList.remove("is-visible");
+
+      if (!wasVisible) {
+        entry.target.classList.add("is-visible");
+        triggerEntryGlitchWithCooldown(entry.target);
       }
+      return;
     }
+
+    if (entry.intersectionRatio <= exitVisibilityRatio && entry.target.classList.contains("is-visible")) {
+      scheduleExit(entry.target);
+      return;
+    }
+
+    cancelPendingExit(entry.target);
   });
 }, observerOptions);
 
 sectionContents.forEach((content) => {
+  content.addEventListener("animationend", handleGlitchAnimationEvent);
+  content.addEventListener("animationcancel", handleGlitchAnimationEvent);
   sectionObserver.observe(content);
 });
 // endregion
