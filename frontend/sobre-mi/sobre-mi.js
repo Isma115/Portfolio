@@ -45,6 +45,7 @@ const eyebrow = document.querySelector("#about-eyebrow");
 const title = document.querySelector("#about-title");
 const description = document.querySelector("#about-description");
 const menuToggle = document.querySelector(".menu-toggle");
+let menuFontPulseTimer = 0;
 
 menuToggle.addEventListener("click", () => {
   const isOpen = document.body.classList.toggle("is-menu-open");
@@ -66,12 +67,35 @@ function setActiveMenu(sectionKey) {
   });
 }
 
-function applySection(sectionKey, animate = true) {
+function pulseActiveMenuButton(sectionKey) {
+  const activeButton = menuButtons.find((button) => button.dataset.topSection === sectionKey);
+
+  window.clearTimeout(menuFontPulseTimer);
+
+  menuButtons.forEach((button) => {
+    button.classList.remove("is-font-pulse");
+  });
+
+  if (!activeButton) {
+    return;
+  }
+
+  activeButton.classList.add("is-font-pulse");
+  menuFontPulseTimer = window.setTimeout(() => {
+    activeButton.classList.remove("is-font-pulse");
+  }, 320);
+}
+
+function applySection(sectionKey, animate = true, pulseMenuFont = false) {
   const oldSectionKey = currentSectionKey;
   const section = sectionContent[sectionKey] || sectionContent.profile;
 
   currentSectionKey = sectionKey;
   setActiveMenu(sectionKey);
+
+  if (pulseMenuFont) {
+    pulseActiveMenuButton(sectionKey);
+  }
 
   if (!animate) {
     eyebrow.textContent = section.eyebrow;
@@ -269,7 +293,7 @@ window.addEventListener("wheel", (event) => {
     if (currentIndex < sectionOrder.length - 1) {
       const nextSection = sectionOrder[currentIndex + 1];
       isTransitioning = true;
-      applySection(nextSection);
+      applySection(nextSection, true, true);
       setTimeout(() => {
         isTransitioning = false;
       }, 950);
@@ -281,7 +305,7 @@ window.addEventListener("wheel", (event) => {
     } else {
       const prevSection = sectionOrder[currentIndex - 1];
       isTransitioning = true;
-      applySection(prevSection);
+      applySection(prevSection, true, true);
       setTimeout(() => {
         isTransitioning = false;
       }, 950);
@@ -311,7 +335,7 @@ window.addEventListener("touchend", (event) => {
     if (currentIndex < sectionOrder.length - 1) {
       const nextSection = sectionOrder[currentIndex + 1];
       isTransitioning = true;
-      applySection(nextSection);
+      applySection(nextSection, true, true);
       setTimeout(() => {
         isTransitioning = false;
       }, 950);
@@ -323,7 +347,7 @@ window.addEventListener("touchend", (event) => {
     } else {
       const prevSection = sectionOrder[currentIndex - 1];
       isTransitioning = true;
-      applySection(prevSection);
+      applySection(prevSection, true, true);
       setTimeout(() => {
         isTransitioning = false;
       }, 950);

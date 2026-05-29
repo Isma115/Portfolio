@@ -191,6 +191,8 @@ if (typewriterEl) {
 const menuToggle = document.querySelector(".menu-toggle");
 const menuButtons = Array.from(document.querySelectorAll(".top-menu__item"));
 const sections = Array.from(document.querySelectorAll("section[id]"));
+let activeMenuSection = null;
+let menuFontPulseTimer = 0;
 
 menuToggle.addEventListener("click", () => {
   const isOpen = document.body.classList.toggle("is-menu-open");
@@ -215,6 +217,23 @@ menuButtons.forEach((button) => {
   });
 });
 
+function pulseActiveMenuButton(activeButton) {
+  window.clearTimeout(menuFontPulseTimer);
+
+  menuButtons.forEach((button) => {
+    button.classList.remove("is-font-pulse");
+  });
+
+  if (!activeButton) {
+    return;
+  }
+
+  activeButton.classList.add("is-font-pulse");
+  menuFontPulseTimer = window.setTimeout(() => {
+    activeButton.classList.remove("is-font-pulse");
+  }, 320);
+}
+
 function updateActiveMenu() {
   const scrollPosition = window.scrollY + window.innerHeight / 3;
   
@@ -229,10 +248,22 @@ function updateActiveMenu() {
     }
   });
   
+  let activeButton = null;
+
   menuButtons.forEach((button) => {
     const isActive = button.dataset.section === currentSection;
     button.classList.toggle("is-active", isActive);
+
+    if (isActive) {
+      activeButton = button;
+    }
   });
+
+  if (activeMenuSection !== null && activeMenuSection !== currentSection) {
+    pulseActiveMenuButton(activeButton);
+  }
+
+  activeMenuSection = currentSection;
 }
 
 window.addEventListener("scroll", updateActiveMenu, { passive: true });
