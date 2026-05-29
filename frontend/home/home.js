@@ -263,6 +263,8 @@ function updateActiveMenu() {
     pulseActiveMenuButton(activeButton);
   }
 
+  document.body.classList.toggle("is-home-active", currentSection === "home");
+  document.body.classList.toggle("is-scrolled-down", window.scrollY > 24);
   activeMenuSection = currentSection;
 }
 
