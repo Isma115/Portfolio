@@ -143,7 +143,7 @@ const particleSymbols = ["+", "x", "{}", "[]", "</>", "@", "#"];
 
 function randomizeParticle(particle) {
   const size = Math.round(11 + Math.random() * 10);
-  const delay = Math.round(Math.random() * 2200);
+  const delay = Math.round(Math.random() * 6800);
   const symbol = particleSymbols[Math.floor(Math.random() * particleSymbols.length)];
 
   particle.style.setProperty("--x", `${Math.round(4 + Math.random() * 92)}%`);
@@ -193,6 +193,8 @@ const menuButtons = Array.from(document.querySelectorAll(".top-menu__item"));
 const sections = Array.from(document.querySelectorAll("section[id]"));
 let activeMenuSection = null;
 let menuFontPulseTimer = 0;
+const menuCloseLayoutLockMs = 320;
+let homeLayoutLockUntil = 0;
 
 menuToggle.addEventListener("click", () => {
   const isOpen = document.body.classList.toggle("is-menu-open");
@@ -205,14 +207,21 @@ menuButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const sectionId = button.dataset.section;
     const targetSection = document.getElementById(sectionId);
-    
-    document.body.classList.remove("is-menu-open");
-    menuToggle.classList.remove("is-open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Abrir menú");
+    const isLeavingHomeLayout = document.body.classList.contains("is-home-active") && sectionId !== "home";
+
+    if (isLeavingHomeLayout) {
+      homeLayoutLockUntil = window.performance.now() + menuCloseLayoutLockMs;
+      document.body.classList.add("is-home-active");
+    }
     
     if (targetSection) {
       targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    if (isLeavingHomeLayout) {
+      window.setTimeout(() => {
+        updateActiveMenu();
+      }, menuCloseLayoutLockMs + 20);
     }
   });
 });
@@ -235,6 +244,7 @@ function pulseActiveMenuButton(activeButton) {
 }
 
 function updateActiveMenu() {
+  const shouldKeepHomeLayout = window.performance.now() < homeLayoutLockUntil;
   const currentScrollY = window.scrollY;
   const scrollPosition = currentScrollY + window.innerHeight / 3;
   
@@ -264,7 +274,7 @@ function updateActiveMenu() {
     pulseActiveMenuButton(activeButton);
   }
 
-  document.body.classList.toggle("is-home-active", currentSection === "home");
+  document.body.classList.toggle("is-home-active", currentSection === "home" || shouldKeepHomeLayout);
   document.body.classList.toggle("is-scrolled-down", currentScrollY > 24);
   activeMenuSection = currentSection;
 }
@@ -278,10 +288,8 @@ const sectionContents = Array.from(document.querySelectorAll(".section-content, 
 const entryVisibilityRatio = 0.22;
 const exitVisibilityRatio = 0.06;
 const exitDebounceMs = 120;
-const glitchCooldownMs = 420;
 const pendingExitTimers = new WeakMap();
 const latestIntersectionRatios = new WeakMap();
-const lastGlitchTimes = new WeakMap();
 
 const observerOptions = {
   threshold: [0, 0.06, 0.15, 0.22],
@@ -307,38 +315,14 @@ function applyExitDirection(element) {
   element.style.setProperty("--exit-x", `${x}px`);
 }
 
-function clearGlitchState(element) {
-  element.classList.remove("is-glitching");
-  element.style.removeProperty("clip-path");
-  element.style.removeProperty("filter");
-}
-
 function clearTitleGlitchState(element) {
   element.classList.remove("is-title-glitching");
-}
-
-function triggerEntryGlitch(element) {
-  clearGlitchState(element);
-  void element.offsetWidth;
-  element.classList.add("is-glitching");
 }
 
 function triggerTitleGlitch(element) {
   clearTitleGlitchState(element);
   void element.offsetWidth;
   element.classList.add("is-title-glitching");
-}
-
-function triggerEntryGlitchWithCooldown(element) {
-  const now = performance.now();
-  const lastGlitchTime = lastGlitchTimes.get(element) || 0;
-
-  if (now - lastGlitchTime < glitchCooldownMs) {
-    return;
-  }
-
-  lastGlitchTimes.set(element, now);
-  triggerEntryGlitch(element);
 }
 
 function cancelPendingExit(element) {
@@ -365,7 +349,6 @@ function scheduleExit(element) {
       return;
     }
 
-    clearGlitchState(element);
     clearTitleGlitchState(element);
     applyExitDirection(element);
     element.classList.add("is-exiting");
@@ -376,16 +359,8 @@ function scheduleExit(element) {
 }
 
 function handleGlitchAnimationEvent(event) {
-  if (
-    event.animationName !== "glitch-enter" &&
-    event.animationName !== "glitch-flicker" &&
-    event.animationName !== "glitch-title-enter"
-  ) {
+  if (event.animationName !== "glitch-flicker" && event.animationName !== "glitch-title-enter") {
     return;
-  }
-
-  if (event.animationName === "glitch-enter" || event.type === "animationcancel") {
-    clearGlitchState(event.currentTarget);
   }
 
   if (event.animationName === "glitch-title-enter" || event.type === "animationcancel") {

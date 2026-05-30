@@ -51,6 +51,7 @@
     <button class="top-menu__item" type="button" data-section="about">Sobre mi</button>
     <button class="top-menu__item" type="button" data-section="projects">Proyectos</button>
     <button class="top-menu__item" type="button" data-section="skills">Tecnologias</button>
+    <button class="top-menu__item" type="button" data-section="experience">Experiencia</button>
     <button class="top-menu__item" type="button" data-section="contact">Contacto</button>
   </nav>
   <!-- endregion -->
@@ -79,7 +80,7 @@
     <section id="about" class="section-about" aria-labelledby="about-title">
       <div class="about-layout no-glitch">
         <div class="about-layout__photo">
-          <img src="./assets/about-template.jpg" alt="Foto de perfil de Ismael Moraleda López">
+          <img src="./assets/about-template.jpg" alt="Imagen placeholder de perfil de Ismael Moraleda López">
         </div>
         <div class="about-layout__text">
           <p class="about-layout__eyebrow">Seccion personal</p>
@@ -188,7 +189,33 @@
       <div class="section-content">
         <p class="section-eyebrow">Trayectoria</p>
         <h2 id="experience-title">Experiencia</h2>
-        <p>Recorrido por responsabilidades, colaboraciones y resultados que han consolidado criterio tecnico y ritmo de entrega.</p>
+        <p class="experience-intro">Plantilla editable para documentar dos experiencias profesionales principales.</p>
+
+        <div class="experience-template" aria-label="Plantilla de experiencia profesional">
+          <article class="experience-card">
+            <header class="experience-card__header">
+              <p class="experience-card__company">Empresa Generica A</p>
+              <p class="experience-card__meta">Rol / Cargo | Mes AAAA - Mes AAAA | Ciudad o Remoto</p>
+            </header>
+            <ul class="experience-card__highlights">
+              <li>[Plantilla] Responsabilidad o proyecto clave 1.</li>
+              <li>[Plantilla] Tecnologia o stack principal utilizado.</li>
+              <li>[Plantilla] Impacto medible: mejora, ahorro, conversion o rendimiento.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <header class="experience-card__header">
+              <p class="experience-card__company">Empresa Generica B</p>
+              <p class="experience-card__meta">Rol / Cargo | Mes AAAA - Actualidad | Ciudad o Remoto</p>
+            </header>
+            <ul class="experience-card__highlights">
+              <li>[Plantilla] Alcance del producto o equipo en el que trabajaste.</li>
+              <li>[Plantilla] Decisiones tecnicas relevantes que lideraste o ejecutaste.</li>
+              <li>[Plantilla] Resultado para negocio o usuarios finales.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
     <!-- endregion -->
@@ -198,7 +225,33 @@
       <div class="section-content">
         <p class="section-eyebrow">Comunicacion</p>
         <h2 id="contact-title">Contacto</h2>
-        <p>Canal directo para hablar de colaboraciones, propuestas y nuevos proyectos con una respuesta clara y enfocada.</p>
+        <p class="contact-intro">Plantilla de contacto con accesos directos para correo, red profesional y canales de desarrollo.</p>
+
+        <div class="contact-template" aria-label="Canales de contacto">
+          <a class="contact-card" href="mailto:tu-correo@ejemplo.com" aria-label="Enviar correo a tu-correo@ejemplo.com">
+            <img class="contact-card__icon" src="https://cdn.simpleicons.org/gmail/D7DBFF" alt="" aria-hidden="true">
+            <span class="contact-card__label">Gmail</span>
+            <span class="contact-card__value">tu-correo@ejemplo.com</span>
+          </a>
+
+          <a class="contact-card" href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil de LinkedIn">
+            <img class="contact-card__icon" src="https://cdn.simpleicons.org/linkedin/D7DBFF" alt="" aria-hidden="true">
+            <span class="contact-card__label">LinkedIn</span>
+            <span class="contact-card__value">linkedin.com/in/tu-usuario</span>
+          </a>
+
+          <a class="contact-card" href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil de GitHub">
+            <img class="contact-card__icon" src="https://cdn.simpleicons.org/github/D7DBFF" alt="" aria-hidden="true">
+            <span class="contact-card__label">GitHub</span>
+            <span class="contact-card__value">github.com/tu-usuario</span>
+          </a>
+
+          <a class="contact-card" href="https://wa.me/34123456789" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp">
+            <img class="contact-card__icon" src="https://cdn.simpleicons.org/whatsapp/D7DBFF" alt="" aria-hidden="true">
+            <span class="contact-card__label">WhatsApp</span>
+            <span class="contact-card__value">+34 123 456 789</span>
+          </a>
+        </div>
       </div>
     </section>
     <!-- endregion -->
