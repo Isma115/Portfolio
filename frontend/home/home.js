@@ -307,7 +307,9 @@ function updateActiveMenu() {
     }
   });
 
-  if (activeMenuSection !== null && activeMenuSection !== currentSection) {
+  const sectionChanged = activeMenuSection !== currentSection;
+
+  if (activeMenuSection !== null && sectionChanged) {
     pulseActiveMenuButton(activeButton);
   }
 

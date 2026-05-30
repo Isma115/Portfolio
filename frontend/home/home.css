@@ -1442,35 +1442,47 @@ body.is-scrolled-down .scroll-indicator__arrow {
 
 @media (max-width: 900px) {
   .menu-toggle {
-    display: none;
+    display: flex;
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    gap: 6px;
+    z-index: 260;
+  }
+
+  .menu-toggle__line {
+    width: 20px;
   }
 
   .portfolio-top-menu,
   body.is-home-active .portfolio-top-menu {
-    top: auto;
-    left: 10px;
-    right: 10px;
-    bottom: max(10px, env(safe-area-inset-bottom));
-    width: auto;
-    min-height: 58px;
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: 0;
+    width: min(78vw, 300px);
+    min-height: 100svh;
+    min-height: 100vh;
     max-height: none;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     justify-content: flex-start;
-    gap: 8px;
-    padding: 8px 10px;
-    border: 1px solid rgba(244, 247, 251, 0.14);
-    border-radius: 10px;
-    background: rgba(4, 9, 14, 0.86);
-    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.42);
+    gap: 6px;
+    padding: 72px 12px calc(18px + env(safe-area-inset-bottom));
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: 1px solid rgba(244, 247, 251, 0.14);
+    border-radius: 0;
+    background: rgba(4, 9, 14, 0.94);
+    box-shadow: -20px 0 42px rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: none;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
+    transform: translateX(calc(100% + 16px));
   }
 
   .portfolio-top-menu::-webkit-scrollbar {
@@ -1480,34 +1492,31 @@ body.is-scrolled-down .scroll-indicator__arrow {
 
   body.is-menu-open .portfolio-top-menu,
   body.is-home-active.is-menu-open .portfolio-top-menu {
-    transform: none;
+    transform: translateX(0);
   }
 
   .top-menu__item,
   body.is-home-active .top-menu__item {
-    flex: 0 0 auto;
-    width: auto;
+    width: 100%;
     min-height: 40px;
-    justify-content: center;
-    padding: 9px 14px;
-    font-size: 0.88rem;
-    text-align: center;
+    justify-content: flex-start;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    text-align: left;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.02);
-    transform: none;
-    animation: none;
-    opacity: 1;
+    background: transparent;
+    transform: translateX(0);
   }
 
   .top-menu__item::after,
   body.is-home-active .top-menu__item::after {
-    left: 12px;
-    right: 12px;
-    top: auto;
-    bottom: 3px;
-    width: auto;
-    height: 2px;
-    transform: scaleX(0);
+    right: 6px;
+    left: auto;
+    top: 50%;
+    bottom: auto;
+    width: 2px;
+    height: 62%;
+    transform: translateY(-50%) scaleY(0);
   }
 
   .top-menu__item:hover::after,
@@ -1516,18 +1525,19 @@ body.is-scrolled-down .scroll-indicator__arrow {
   body.is-home-active .top-menu__item:hover::after,
   body.is-home-active .top-menu__item:focus-visible::after,
   body.is-home-active .top-menu__item.is-active::after {
-    transform: scaleX(1);
+    transform: translateY(-50%) scaleY(1);
   }
 
   .top-menu__item.is-active,
   body.is-home-active .top-menu__item.is-active {
-    background: rgba(255, 255, 255, 0.06);
+    background: transparent;
     text-shadow: none;
   }
 
   body.is-menu-open .top-menu__item,
   body.is-home-active.is-menu-open .top-menu__item {
-    animation: none;
+    animation: menu-item-in 360ms cubic-bezier(0.19, 1, 0.22, 1) both;
+    animation-delay: var(--menu-delay);
   }
 
   .section-home,
@@ -1536,7 +1546,7 @@ body.is-scrolled-down .scroll-indicator__arrow {
   .section-skills,
   .section-experience,
   .section-contact {
-    padding: clamp(70px, 9vh, 96px) clamp(20px, 5vw, 32px) clamp(118px, 16vh, 150px);
+    padding: clamp(70px, 9vh, 96px) clamp(20px, 5vw, 32px) clamp(68px, 10vh, 92px);
   }
 
   .section-home .hero-center {
@@ -1627,13 +1637,21 @@ body.is-scrolled-down .scroll-indicator__arrow {
 
   .portfolio-top-menu,
   body.is-home-active .portfolio-top-menu {
-    left: 12px;
-    right: 12px;
-    bottom: max(10px, env(safe-area-inset-bottom));
-    top: auto;
+    right: 0;
+    left: auto;
+    top: 0;
+    bottom: 0;
+    width: min(82vw, 280px);
     max-height: none;
-    min-height: 56px;
-    padding: 7px 8px;
+    min-height: 100svh;
+    min-height: 100vh;
+    padding: 68px 10px calc(16px + env(safe-area-inset-bottom));
+  }
+
+  .top-menu__item,
+  body.is-home-active .top-menu__item {
+    min-height: 38px;
+    font-size: 0.86rem;
   }
 
   .section-home,
@@ -1642,7 +1660,7 @@ body.is-scrolled-down .scroll-indicator__arrow {
   .section-skills,
   .section-experience,
   .section-contact {
-    padding: clamp(64px, 8vh, 88px) clamp(16px, 4.2vw, 22px) clamp(114px, 16vh, 142px);
+    padding: clamp(64px, 8vh, 88px) clamp(16px, 4.2vw, 22px) clamp(58px, 9vh, 78px);
   }
 
   .section-home .hero-center {
@@ -1679,18 +1697,21 @@ body.is-scrolled-down .scroll-indicator__arrow {
 
   .portfolio-top-menu,
   body.is-home-active .portfolio-top-menu {
-    left: 10px;
-    right: 10px;
-    bottom: max(8px, env(safe-area-inset-bottom));
-    top: auto;
-    min-height: 54px;
-    border-radius: 10px;
+    right: 0;
+    left: auto;
+    top: 0;
+    bottom: 0;
+    width: min(86vw, 266px);
+    min-height: 100svh;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 62px 9px calc(14px + env(safe-area-inset-bottom));
   }
 
   .top-menu__item,
   body.is-home-active .top-menu__item {
     min-height: 36px;
-    padding: 8px 12px;
+    padding: 8px 10px;
     font-size: 0.84rem;
   }
 
@@ -1700,7 +1721,7 @@ body.is-scrolled-down .scroll-indicator__arrow {
   .section-skills,
   .section-experience,
   .section-contact {
-    padding: clamp(56px, 7vh, 76px) 14px clamp(106px, 14vh, 132px);
+    padding: clamp(56px, 7vh, 76px) 14px clamp(52px, 8vh, 70px);
   }
 
   .hero-center__name {
