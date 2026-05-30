@@ -203,6 +203,13 @@ let menuFontPulseTimer = 0;
 const menuCloseLayoutLockMs = 320;
 let homeLayoutLockUntil = 0;
 
+function closeMenu() {
+  document.body.classList.remove("is-menu-open");
+  menuToggle.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Abrir menú");
+}
+
 menuToggle.addEventListener("click", () => {
   const isOpen = document.body.classList.toggle("is-menu-open");
   menuToggle.classList.toggle("is-open", isOpen);
@@ -225,12 +232,35 @@ menuButtons.forEach((button) => {
       targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      closeMenu();
+    }
+
     if (isLeavingHomeLayout) {
       window.setTimeout(() => {
         updateActiveMenu();
       }, menuCloseLayoutLockMs + 20);
     }
   });
+});
+
+document.addEventListener("click", (event) => {
+  if (!document.body.classList.contains("is-menu-open")) {
+    return;
+  }
+
+  const clickedInsideMenu = event.target.closest(".portfolio-top-menu");
+  const clickedToggle = event.target.closest(".menu-toggle");
+
+  if (!clickedInsideMenu && !clickedToggle) {
+    closeMenu();
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (!window.matchMedia("(max-width: 900px)").matches) {
+    closeMenu();
+  }
 });
 
 function pulseActiveMenuButton(activeButton) {
