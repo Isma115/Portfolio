@@ -6,11 +6,11 @@ if ("scrollRestoration" in window.history) {
 window.scrollTo(0, 0);
 // endregion
 
-// region Componente Home | Funcionalidad | Malla gravitatoria reactiva
-const gravityCanvas = document.querySelector("#gravity-mesh");
-const gravityContext = gravityCanvas.getContext("2d");
+// region Componente Home | Funcionalidad | Topografia fluida reactiva
+const topographicCanvas = document.querySelector("#topographic-flow");
+const topographicContext = topographicCanvas?.getContext("2d");
 const backgroundParticles = Array.from(document.querySelectorAll(".background-particles span"));
-const gravityPointer = {
+const topographicPointer = {
   x: window.innerWidth / 2,
   y: window.innerHeight / 2,
   targetX: window.innerWidth / 2,
@@ -18,124 +18,131 @@ const gravityPointer = {
   force: 0,
   targetForce: 0,
 };
-let gravityPixelRatio = 1;
-let gravityAnimationFrame = 0;
-let gravityScrollProgress = 0;
+let topographicPixelRatio = 1;
+let topographicScrollProgress = 0;
 
-function resizeGravityMesh() {
-  gravityPixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-  gravityCanvas.width = Math.round(window.innerWidth * gravityPixelRatio);
-  gravityCanvas.height = Math.round(window.innerHeight * gravityPixelRatio);
-  gravityCanvas.style.width = `${window.innerWidth}px`;
-  gravityCanvas.style.height = `${window.innerHeight}px`;
-  gravityContext.setTransform(gravityPixelRatio, 0, 0, gravityPixelRatio, 0, 0);
+function lerp(start, end, amount) {
+  return start + (end - start) * amount;
 }
 
-function distortGravityPoint(x, y, time) {
-  const unevenX = Math.sin(y * 0.018 + time * 0.00018) * 5 + Math.sin((x + y) * 0.006) * 3;
-  const unevenY = Math.cos(x * 0.015 + time * 0.00016) * 5 + Math.sin((x - y) * 0.007) * 3;
-  const baseX = x + unevenX;
-  const baseY = y + unevenY;
-  const dx = gravityPointer.x - baseX;
-  const dy = gravityPointer.y - baseY;
-  const distance = Math.hypot(dx, dy);
-  const radius = Math.min(window.innerWidth, window.innerHeight) * 0.56;
-  const pull = Math.max(0, 1 - distance / radius) ** 2 * gravityPointer.force;
-  const wave = Math.sin(distance * 0.006 - time * 0.00055) * 3.2 * pull;
-  const gravity = 6 * pull + wave;
-  const angle = Math.atan2(dy, dx);
-  const orbit = Math.sin(time * 0.00045 + distance * 0.004) * 2.2 * pull;
-
-  return {
-    x: baseX + Math.cos(angle) * gravity + Math.cos(angle + Math.PI / 2) * orbit,
-    y: baseY + Math.sin(angle) * gravity + Math.sin(angle + Math.PI / 2) * orbit,
-  };
+function smoothstep(value) {
+  return value * value * (3 - 2 * value);
 }
 
-function drawGravityLine(points, time) {
-  gravityContext.beginPath();
-
-  points.forEach((point, index) => {
-    const warped = distortGravityPoint(point.x, point.y, time);
-
-    if (index === 0) {
-      gravityContext.moveTo(warped.x, warped.y);
-      return;
-    }
-
-    gravityContext.lineTo(warped.x, warped.y);
-  });
-
-  gravityContext.stroke();
+function hash2D(x, y) {
+  const seed = Math.sin(x * 127.1 + y * 311.7) * 43758.5453123;
+  return seed - Math.floor(seed);
 }
 
-function drawGravityMesh(time = 0) {
+function valueNoise2D(x, y) {
+  const x0 = Math.floor(x);
+  const y0 = Math.floor(y);
+  const x1 = x0 + 1;
+  const y1 = y0 + 1;
+  const sx = smoothstep(x - x0);
+  const sy = smoothstep(y - y0);
+
+  const n00 = hash2D(x0, y0);
+  const n10 = hash2D(x1, y0);
+  const n01 = hash2D(x0, y1);
+  const n11 = hash2D(x1, y1);
+
+  const nx0 = lerp(n00, n10, sx);
+  const nx1 = lerp(n01, n11, sx);
+  return lerp(nx0, nx1, sy);
+}
+
+function resizeTopographicFlow() {
+  if (!topographicCanvas || !topographicContext) {
+    return;
+  }
+
+  topographicPixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  topographicCanvas.width = Math.round(window.innerWidth * topographicPixelRatio);
+  topographicCanvas.height = Math.round(window.innerHeight * topographicPixelRatio);
+  topographicCanvas.style.width = `${window.innerWidth}px`;
+  topographicCanvas.style.height = `${window.innerHeight}px`;
+  topographicContext.setTransform(topographicPixelRatio, 0, 0, topographicPixelRatio, 0, 0);
+}
+
+function drawTopographicFlow(time = 0) {
+  if (!topographicContext) {
+    return;
+  }
+
   const width = window.innerWidth;
   const height = window.innerHeight;
-  const step = width < 700 ? 36 : 46;
-  const sample = 16;
-  const padding = step * 2;
-  const scrollPhase = gravityScrollProgress * 2200;
-  const scrollShiftX = (gravityScrollProgress * 38) % step;
-  const scrollShiftY = (gravityScrollProgress * -94) % step;
+  const lineCount = width < 700 ? 34 : 44;
+  const amplitude = width < 700 ? 24 : 34;
+  const sampleStep = width < 700 ? 12 : 14;
+  const sidePadding = 80;
+  const scrollDrift = topographicScrollProgress * 460;
 
-  gravityPointer.x += (gravityPointer.targetX - gravityPointer.x) * 0.08;
-  gravityPointer.y += (gravityPointer.targetY - gravityPointer.y) * 0.08;
-  gravityPointer.force += (gravityPointer.targetForce - gravityPointer.force) * 0.06;
+  topographicPointer.x += (topographicPointer.targetX - topographicPointer.x) * 0.08;
+  topographicPointer.y += (topographicPointer.targetY - topographicPointer.y) * 0.08;
+  topographicPointer.force += (topographicPointer.targetForce - topographicPointer.force) * 0.05;
 
-  gravityContext.clearRect(0, 0, width, height);
-  gravityContext.lineWidth = 1;
-  gravityContext.strokeStyle = "rgba(184, 190, 200, 0.16)";
+  topographicContext.clearRect(0, 0, width, height);
+  topographicContext.lineWidth = 1.05;
 
-  for (let y = -padding + scrollShiftY; y <= height + padding; y += step) {
-    const points = [];
+  for (let index = 0; index < lineCount; index += 1) {
+    const t = index / (lineCount - 1);
+    const baseY = -30 + t * (height + 60);
+    const red = Math.round(122 + t * 52);
+    const green = Math.round(140 + t * 38);
+    const blue = Math.round(170 + t * 34);
+    const alpha = 0.1 + (1 - Math.abs(t - 0.5) * 1.7) * 0.14;
 
-    for (let x = -padding; x <= width + padding; x += sample) {
-      points.push({ x, y });
+    topographicContext.beginPath();
+
+    for (let x = -sidePadding; x <= width + sidePadding; x += sampleStep) {
+      const waveA = Math.sin(x * 0.011 + time * 0.00042 + index * 0.52) * amplitude * 0.44;
+      const waveB = Math.cos(x * 0.0043 - time * 0.0003 + index * 0.35) * amplitude * 0.3;
+      const noise = (valueNoise2D(x * 0.0046 + time * 0.00008, baseY * 0.006 - scrollDrift * 0.0018) - 0.5) * amplitude * 1.3;
+      const dx = x - topographicPointer.x;
+      const dy = baseY - topographicPointer.y;
+      const distance = Math.hypot(dx, dy);
+      const reach = Math.min(width, height) * 0.5;
+      const pull = Math.max(0, 1 - distance / reach) ** 2 * topographicPointer.force;
+      const ripple = Math.sin(distance * 0.038 - time * 0.0026) * 18 * pull;
+      const swirl = Math.sin((x + baseY) * 0.004 + time * 0.0007) * 7 * pull;
+      const y = baseY + waveA + waveB + noise + ripple + swirl;
+
+      if (x === -sidePadding) {
+        topographicContext.moveTo(x, y);
+      } else {
+        topographicContext.lineTo(x, y);
+      }
     }
 
-    drawGravityLine(points, time + scrollPhase);
+    topographicContext.strokeStyle = `rgba(${red}, ${green}, ${blue}, ${Math.max(0.04, alpha)})`;
+    topographicContext.stroke();
   }
 
-  for (let x = -padding + scrollShiftX; x <= width + padding; x += step) {
-    const points = [];
-
-    for (let y = -padding; y <= height + padding; y += sample) {
-      points.push({ x, y });
-    }
-
-    drawGravityLine(points, time + scrollPhase);
-  }
-
-  if (gravityPointer.force > 0.02) {
-    const glow = gravityContext.createRadialGradient(gravityPointer.x, gravityPointer.y, 0, gravityPointer.x, gravityPointer.y, 180);
-    glow.addColorStop(0, `rgba(184, 190, 200, ${0.05 * gravityPointer.force})`);
-    glow.addColorStop(1, "rgba(184, 190, 200, 0)");
-    gravityContext.fillStyle = glow;
-    gravityContext.fillRect(0, 0, width, height);
-  }
-
-  gravityAnimationFrame = window.requestAnimationFrame(drawGravityMesh);
+  window.requestAnimationFrame(drawTopographicFlow);
 }
 
-window.addEventListener("resize", resizeGravityMesh);
-window.addEventListener("pointermove", (event) => {
-  gravityPointer.targetX = event.clientX;
-  gravityPointer.targetY = event.clientY;
-  gravityPointer.targetForce = 0.7;
-});
+if (topographicCanvas && topographicContext) {
+  window.addEventListener("resize", resizeTopographicFlow);
 
-window.addEventListener("pointerleave", () => {
-  gravityPointer.targetForce = 0.07;
-});
+  window.addEventListener("pointermove", (event) => {
+    topographicPointer.targetX = event.clientX;
+    topographicPointer.targetY = event.clientY;
+    topographicPointer.targetForce = 0.72;
+  });
 
-window.addEventListener("scroll", () => {
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  gravityScrollProgress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-}, { passive: true });
+  window.addEventListener("pointerleave", () => {
+    topographicPointer.targetForce = 0.08;
+  });
 
-resizeGravityMesh();
-drawGravityMesh();
+  window.addEventListener("scroll", () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    topographicScrollProgress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  }, { passive: true });
+
+  resizeTopographicFlow();
+  drawTopographicFlow();
+}
 // endregion
 
 // region Componente Home | Funcionalidad | Particulas de fondo aleatorias

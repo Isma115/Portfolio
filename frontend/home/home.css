@@ -8,8 +8,6 @@
   --line: rgba(184, 190, 200, 0.2);
   --warning: #d4d7dd;
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
-  --mesh-y: 0px;
-  --mesh-scale: 1;
   --particle-y: 0px;
 }
 
@@ -53,8 +51,11 @@ body::after {
 }
 
 body::before {
-  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 7px);
-  opacity: 0.3;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(212, 217, 223, 0.08) 0 1px, transparent 1.8px) 0 0 / 22px 22px,
+    radial-gradient(circle at 80% 70%, rgba(127, 135, 146, 0.08) 0 1px, transparent 2px) 11px 11px / 26px 26px;
+  opacity: 0.26;
+  mix-blend-mode: screen;
 }
 
 body::after {
@@ -792,20 +793,18 @@ body.is-home-active.is-menu-open .top-menu__item {
 
 /* endregion */
 
-/* region Componente Home | Estilos | Malla gravitatoria de fondo */
-.gravity-mesh {
+/* region Componente Home | Estilos | Topografia fluida de fondo */
+.topographic-flow {
   position: fixed;
   inset: 0;
   z-index: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.42;
+  opacity: 0.46;
   pointer-events: none;
   mix-blend-mode: screen;
-  filter: drop-shadow(0 0 10px rgba(184, 190, 200, 0.14));
-  transform: translate3d(0, var(--mesh-y), 0) scale(var(--mesh-scale));
-  transform-origin: center;
-  will-change: transform;
+  filter: drop-shadow(0 0 18px rgba(184, 190, 200, 0.16));
+  will-change: opacity;
 }
 
 /* endregion */
