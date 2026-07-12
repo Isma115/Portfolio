@@ -102,10 +102,10 @@ function drawTopographicFlow(time = 0) {
       const dx = x - topographicPointer.x;
       const dy = baseY - topographicPointer.y;
       const distance = Math.hypot(dx, dy);
-      const reach = Math.min(width, height) * 0.5;
-      const pull = Math.max(0, 1 - distance / reach) ** 2 * topographicPointer.force;
-      const ripple = Math.sin(distance * 0.038 - time * 0.0026) * 18 * pull;
-      const swirl = Math.sin((x + baseY) * 0.004 + time * 0.0007) * 7 * pull;
+      const reach = Math.min(width, height) * 0.68;
+      const pull = Math.max(0, 1 - distance / reach) ** 2.4 * topographicPointer.force;
+      const ripple = Math.sin(distance * 0.038 - time * 0.0026) * 9 * pull;
+      const swirl = Math.sin((x + baseY) * 0.004 + time * 0.0007) * 3 * pull;
       const y = baseY + waveA + waveB + noise + ripple + swirl;
 
       if (x === -sidePadding) {
@@ -128,11 +128,11 @@ if (topographicCanvas && topographicContext) {
   window.addEventListener("pointermove", (event) => {
     topographicPointer.targetX = event.clientX;
     topographicPointer.targetY = event.clientY;
-    topographicPointer.targetForce = 0.72;
+    topographicPointer.targetForce = 0.34;
   });
 
   window.addEventListener("pointerleave", () => {
-    topographicPointer.targetForce = 0.08;
+    topographicPointer.targetForce = 0.03;
   });
 
   window.addEventListener("scroll", () => {
@@ -146,11 +146,32 @@ if (topographicCanvas && topographicContext) {
 // endregion
 
 // region Componente Home | Funcionalidad | Particulas de fondo aleatorias
-const particleSymbols = ["+", "x", "{}", "[]", "</>", "@", "#"];
+const particleSymbols = [
+  "+",
+  "x",
+  "{}",
+  "[]",
+  "()",
+  "<>",
+  "</>",
+  "=>",
+  "&&",
+  "||",
+  "::",
+  ";",
+  "#",
+  "@",
+  "01",
+  "101",
+  "0x",
+  "API",
+  "git",
+  "npm",
+];
 
 function randomizeParticle(particle) {
   const size = Math.round(11 + Math.random() * 10);
-  const delay = Math.round(Math.random() * 6800);
+  const delay = Math.round(Math.random() * 16000);
   const symbol = particleSymbols[Math.floor(Math.random() * particleSymbols.length)];
 
   particle.style.setProperty("--x", `${Math.round(4 + Math.random() * 92)}%`);
@@ -167,6 +188,30 @@ backgroundParticles.forEach((particle) => {
     randomizeParticle(particle);
   });
 });
+// endregion
+
+// region Componente Home | Funcionalidad | Color aleatorio de la luz principal
+const homeSection = document.querySelector(".section-home");
+
+function randomizeHomeLightColor() {
+  if (!homeSection) {
+    return;
+  }
+
+  const allowedHueRanges = [
+    { min: 185, max: 235 },
+    { min: 245, max: 295 },
+    { min: 300, max: 335 },
+  ];
+  const selectedRange = allowedHueRanges[Math.floor(Math.random() * allowedHueRanges.length)];
+  const hue = Math.floor(selectedRange.min + Math.random() * (selectedRange.max - selectedRange.min));
+  homeSection.style.setProperty("--section-accent-start", `hsl(${hue} 100% 82%)`);
+  homeSection.style.setProperty("--section-accent-end", `hsl(${hue} 86% 56%)`);
+  homeSection.style.setProperty("--section-accent-light", `hsl(${hue} 100% 90%)`);
+  homeSection.style.setProperty("--section-accent-glow", `hsl(${hue} 86% 56% / 0.32)`);
+}
+
+randomizeHomeLightColor();
 // endregion
 
 // region Componente Home | Funcionalidad | Medicion del ancho real del typewriter
@@ -440,32 +485,102 @@ sectionContents.forEach((content) => {
 // endregion
 
 // region Componente Home | Funcionalidad | Indicador de scroll
-const scrollIndicator = document.querySelector(".scroll-indicator");
+const scrollIndicators = Array.from(document.querySelectorAll(".scroll-indicator"));
+let scrollHideTimer = null;
 
-if (scrollIndicator) {
-  scrollIndicator.addEventListener("click", () => {
-    const aboutSection = document.getElementById("about");
-    
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+window.addEventListener("scroll", () => {
+  document.body.classList.add("is-user-scrolling");
+  window.clearTimeout(scrollHideTimer);
+  scrollHideTimer = window.setTimeout(() => {
+    document.body.classList.remove("is-user-scrolling");
+  }, 450);
+}, { passive: true });
+
+if (scrollIndicators.length) {
+  const scrollIndicatorObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      window.setTimeout(() => {
+        entry.target.classList.add("is-ready");
+      }, 1500);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.3 });
+
+  scrollIndicators.forEach((indicator) => {
+    scrollIndicatorObserver.observe(indicator);
+  });
+
+  scrollIndicators.forEach((indicator) => {
+    indicator.addEventListener("click", () => {
+      const currentSection = indicator.closest("section");
+      const currentSectionIndex = sections.indexOf(currentSection);
+      const nextSection = sections[currentSectionIndex + 1];
+
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
   });
 }
 // endregion
 
 // region Componente Home | Funcionalidad | Estelas de color con tamaño aleatorio
 const colorTrails = document.querySelectorAll(".color-trail");
+const trailPalettes = [
+  ["rgba(59, 130, 246, 0.2)", "rgba(139, 92, 246, 0.24)", "rgba(236, 72, 153, 0.18)"],
+  ["rgba(34, 211, 238, 0.18)", "rgba(16, 185, 129, 0.2)", "rgba(132, 204, 22, 0.14)"],
+  ["rgba(251, 146, 60, 0.18)", "rgba(244, 63, 94, 0.2)", "rgba(217, 70, 239, 0.18)"],
+  ["rgba(56, 189, 248, 0.18)", "rgba(99, 102, 241, 0.24)", "rgba(192, 132, 252, 0.18)"],
+  ["rgba(250, 204, 21, 0.14)", "rgba(245, 158, 11, 0.18)", "rgba(239, 68, 68, 0.16)"],
+  ["rgba(20, 184, 166, 0.18)", "rgba(45, 212, 191, 0.2)", "rgba(59, 130, 246, 0.18)"],
+  ["rgba(244, 114, 182, 0.18)", "rgba(168, 85, 247, 0.22)", "rgba(79, 70, 229, 0.18)"],
+  ["rgba(163, 230, 53, 0.14)", "rgba(14, 165, 233, 0.2)", "rgba(124, 58, 237, 0.2)"],
+];
+const frequentTrailPaletteIndexes = [
+  0, 0, 0, 0,
+  2, 2, 2,
+  3, 3, 3, 3,
+  6, 6, 6, 6,
+  4,
+  5,
+  7,
+  1,
+];
 
 function randomizeTrailSize(trail) {
   const randomHeight = Math.floor(Math.random() * 200) + 150;
   trail.style.setProperty("--trail-height", `${randomHeight}px`);
 }
 
+function randomizeTrailPalette(trail) {
+  const previousPaletteIndex = Number(trail.dataset.paletteIndex);
+  let paletteIndex = frequentTrailPaletteIndexes[
+    Math.floor(Math.random() * frequentTrailPaletteIndexes.length)
+  ];
+
+  while (paletteIndex === previousPaletteIndex && trailPalettes.length > 1) {
+    paletteIndex = frequentTrailPaletteIndexes[
+      Math.floor(Math.random() * frequentTrailPaletteIndexes.length)
+    ];
+  }
+
+  trail.dataset.paletteIndex = paletteIndex;
+  trailPalettes[paletteIndex].forEach((color, colorIndex) => {
+    trail.style.setProperty(`--trail-color-${colorIndex + 1}`, color);
+  });
+}
+
 colorTrails.forEach((trail) => {
   randomizeTrailSize(trail);
+  randomizeTrailPalette(trail);
   
   trail.addEventListener("animationiteration", () => {
     randomizeTrailSize(trail);
+    randomizeTrailPalette(trail);
   });
 });
 // endregion

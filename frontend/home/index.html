@@ -21,13 +21,9 @@
     <span style="--x:6%;--y:14%;--delay:0ms;--size:18px">@</span>
     <span style="--x:18%;--y:72%;--delay:420ms;--size:14px">{}</span>
     <span style="--x:31%;--y:22%;--delay:900ms;--size:20px">#</span>
-    <span style="--x:44%;--y:84%;--delay:1280ms;--size:16px">x</span>
     <span style="--x:57%;--y:12%;--delay:1720ms;--size:13px">&lt;/&gt;</span>
-    <span style="--x:68%;--y:62%;--delay:2160ms;--size:21px">@</span>
     <span style="--x:82%;--y:26%;--delay:2600ms;--size:15px">+</span>
-    <span style="--x:92%;--y:78%;--delay:3060ms;--size:18px">#</span>
     <span style="--x:73%;--y:42%;--delay:4380ms;--size:14px">{}</span>
-    <span style="--x:51%;--y:36%;--delay:680ms;--size:15px">&lt;/&gt;</span>
     <span style="--x:96%;--y:51%;--delay:1960ms;--size:13px">[]</span>
   </div>
   <!-- endregion -->
@@ -70,7 +66,7 @@
           <span class="hero-center__typewriter">Desarrollador FullStack</span>
         </p>
       </div>
-      <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-indicator scroll-indicator--home" aria-hidden="true">
         <span class="scroll-indicator__arrow"></span>
       </div>
     </section>
@@ -83,10 +79,12 @@
           <img src="./assets/about-template.jpg" alt="Imagen placeholder de perfil de Ismael Moraleda López">
         </div>
         <div class="about-layout__text">
-          <p class="about-layout__eyebrow">Seccion personal</p>
           <h2 id="about-title">Sobre mi</h2>
           <p>Soy un perfil orientado a construir interfaces claras, experiencias cuidadas y soluciones tecnicas sostenibles. Me interesa unir criterio visual, estructura de codigo y pequenas interacciones que hagan que cada proyecto se entienda rapido y se use sin friccion.</p>
         </div>
+      </div>
+      <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
+        <span class="scroll-indicator__arrow"></span>
       </div>
     </section>
     <!-- endregion -->
@@ -94,36 +92,38 @@
     <!-- region Componente Home | Seccion | Proyectos -->
     <section id="projects" class="section-projects" aria-labelledby="projects-title">
       <div class="section-content no-glitch">
-        <p class="section-eyebrow">Seccion de trabajo</p>
         <h2 id="projects-title">Proyectos</h2>
         <div class="projects-grid" aria-label="Listado de proyectos de programacion">
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/ismaelmoraledalopez/ecommerce-analytics-dashboard" target="_blank" rel="noopener noreferrer" aria-label="Abrir Dashboard Ecommerce Analytics en GitHub">
             <img class="project-card__image" src="./assets/project-dashboard.jpg" alt="Vista previa de panel analitico para ecommerce">
             <div class="project-card__content">
               <h3 class="project-card__title">Dashboard Ecommerce Analytics</h3>
               <p class="project-card__description">Panel de metricas en tiempo real con filtros por canal, cohortes y alertas de conversion para equipos de marketing y producto.</p>
-              <a class="project-card__link" href="https://github.com/ismaelmoraledalopez/ecommerce-analytics-dashboard" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+              <span class="project-card__link">Ver en GitHub</span>
             </div>
-          </article>
+          </a>
 
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/ismaelmoraledalopez/taskflow-api" target="_blank" rel="noopener noreferrer" aria-label="Abrir TaskFlow API en GitHub">
             <img class="project-card__image" src="./assets/project-api.jpg" alt="Vista previa de API backend para gestion de tareas">
             <div class="project-card__content">
               <h3 class="project-card__title">TaskFlow API</h3>
               <p class="project-card__description">API REST con autenticacion JWT, control de permisos por rol y trazabilidad de cambios para flujos colaborativos de tareas.</p>
-              <a class="project-card__link" href="https://github.com/ismaelmoraledalopez/taskflow-api" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+              <span class="project-card__link">Ver en GitHub</span>
             </div>
-          </article>
+          </a>
 
-          <article class="project-card">
+          <a class="project-card" href="https://github.com/ismaelmoraledalopez/habit-tracker-mobile" target="_blank" rel="noopener noreferrer" aria-label="Abrir Habit Tracker Mobile App en GitHub">
             <img class="project-card__image" src="./assets/project-mobile.jpg" alt="Vista previa de app para seguimiento de habitos y productividad">
             <div class="project-card__content">
               <h3 class="project-card__title">Habit Tracker Mobile App</h3>
               <p class="project-card__description">Aplicacion movil con seguimiento de habitos, estadisticas semanales y recordatorios inteligentes para mejorar consistencia diaria.</p>
-              <a class="project-card__link" href="https://github.com/ismaelmoraledalopez/habit-tracker-mobile" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+              <span class="project-card__link">Ver en GitHub</span>
             </div>
-          </article>
+          </a>
         </div>
+      </div>
+      <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
+        <span class="scroll-indicator__arrow"></span>
       </div>
     </section>
     <!-- endregion -->
@@ -131,7 +131,6 @@
     <!-- region Componente Home | Seccion | Habilidades -->
     <section id="skills" class="section-skills" aria-labelledby="skills-title">
       <div class="section-content">
-        <p class="section-eyebrow">Seccion tecnica</p>
         <h2 id="skills-title">Habilidades</h2>
         <p class="skills-intro">Stack y capacidades aplicadas en proyectos frontend, backend y despliegue.</p>
         <div class="skills-template" aria-label="Listado de habilidades tecnicas">
@@ -181,13 +180,15 @@
           </article>
         </div>
       </div>
+      <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
+        <span class="scroll-indicator__arrow"></span>
+      </div>
     </section>
     <!-- endregion -->
 
     <!-- region Componente Home | Seccion | Experiencia -->
     <section id="experience" class="section-experience" aria-labelledby="experience-title">
       <div class="section-content">
-        <p class="section-eyebrow">Trayectoria</p>
         <h2 id="experience-title">Experiencia</h2>
         <p class="experience-intro">Plantilla editable para documentar dos experiencias profesionales principales.</p>
 
@@ -217,13 +218,15 @@
           </article>
         </div>
       </div>
+      <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
+        <span class="scroll-indicator__arrow"></span>
+      </div>
     </section>
     <!-- endregion -->
 
     <!-- region Componente Home | Seccion | Contacto -->
     <section id="contact" class="section-contact" aria-labelledby="contact-title">
       <div class="section-content">
-        <p class="section-eyebrow">Comunicacion</p>
         <h2 id="contact-title">Contacto</h2>
         <p class="contact-intro">Plantilla de contacto con accesos directos para correo, red profesional y canales de desarrollo.</p>
 
