@@ -93,12 +93,11 @@
     <section id="projects" class="section-projects" aria-labelledby="projects-title">
       <div class="section-content no-glitch">
         <h2 id="projects-title">Proyectos</h2>
-        <div class="projects-grid" aria-label="Listado de proyectos de programacion">
+        <div class="projects-grid" id="projects-carousel" aria-label="Listado de proyectos de programacion">
           <a class="project-card" href="https://github.com/ismaelmoraledalopez/ecommerce-analytics-dashboard" target="_blank" rel="noopener noreferrer" aria-label="Abrir Dashboard Ecommerce Analytics en GitHub">
             <img class="project-card__image" src="./assets/project-dashboard.jpg" alt="Vista previa de panel analitico para ecommerce">
             <div class="project-card__content">
               <h3 class="project-card__title">Dashboard Ecommerce Analytics</h3>
-              <p class="project-card__description">Panel de metricas en tiempo real con filtros por canal, cohortes y alertas de conversion para equipos de marketing y producto.</p>
               <span class="project-card__link">Ver en GitHub</span>
             </div>
           </a>
@@ -107,7 +106,6 @@
             <img class="project-card__image" src="./assets/project-api.jpg" alt="Vista previa de API backend para gestion de tareas">
             <div class="project-card__content">
               <h3 class="project-card__title">TaskFlow API</h3>
-              <p class="project-card__description">API REST con autenticacion JWT, control de permisos por rol y trazabilidad de cambios para flujos colaborativos de tareas.</p>
               <span class="project-card__link">Ver en GitHub</span>
             </div>
           </a>
@@ -116,11 +114,49 @@
             <img class="project-card__image" src="./assets/project-mobile.jpg" alt="Vista previa de app para seguimiento de habitos y productividad">
             <div class="project-card__content">
               <h3 class="project-card__title">Habit Tracker Mobile App</h3>
-              <p class="project-card__description">Aplicacion movil con seguimiento de habitos, estadisticas semanales y recordatorios inteligentes para mejorar consistencia diaria.</p>
+              <span class="project-card__link">Ver en GitHub</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="https://github.com/ismaelmoraledalopez" target="_blank" rel="noopener noreferrer" aria-label="Abrir Design System Workspace en GitHub">
+            <img class="project-card__image" src="./assets/project-dashboard.jpg" alt="Vista previa de sistema de diseno para productos digitales">
+            <div class="project-card__content">
+              <h3 class="project-card__title">Design System Workspace</h3>
+              <span class="project-card__link">Ver en GitHub</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="https://github.com/ismaelmoraledalopez" target="_blank" rel="noopener noreferrer" aria-label="Abrir Local Events Platform en GitHub">
+            <img class="project-card__image" src="./assets/project-api.jpg" alt="Vista previa de plataforma para descubrir y gestionar eventos locales">
+            <div class="project-card__content">
+              <h3 class="project-card__title">Local Events Platform</h3>
+              <span class="project-card__link">Ver en GitHub</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="https://github.com/ismaelmoraledalopez" target="_blank" rel="noopener noreferrer" aria-label="Abrir Focus Timer en GitHub">
+            <img class="project-card__image" src="./assets/project-mobile.jpg" alt="Vista previa de temporizador para sesiones de concentracion">
+            <div class="project-card__content">
+              <h3 class="project-card__title">Focus Timer</h3>
               <span class="project-card__link">Ver en GitHub</span>
             </div>
           </a>
         </div>
+        <div class="projects-carousel-controls" aria-label="Controles del carrusel de proyectos">
+          <button class="projects-carousel-arrow" type="button" data-carousel-direction="previous" aria-label="Mostrar proyecto anterior">
+            <span aria-hidden="true">←</span>
+          </button>
+          <button class="projects-carousel-arrow" type="button" data-carousel-direction="next" aria-label="Mostrar proyecto siguiente">
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <button class="projects-more-button" type="button" aria-expanded="false" aria-controls="projects-carousel">
+          Mostrar más
+        </button>
+        <a class="projects-news-button" href="../novedades/index.html" data-news-link aria-label="Ver las últimas novedades de los proyectos">
+          <span>Novedades</span>
+          <span class="projects-news-button__arrow" aria-hidden="true">↗</span>
+        </a>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
         <span class="scroll-indicator__arrow"></span>

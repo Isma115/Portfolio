@@ -8,6 +8,7 @@ Pagina web estatica para la pestaña Home de un portfolio. La Home funciona como
 - `frontend/home/home.css`: estilos de la vista Home.
 - `frontend/home/home.js`: interaccion del selector de secciones.
 - `frontend/home/assets/`: imagenes SVG representativas de cada seccion.
+- `frontend/novedades/`: página independiente para publicar las actualizaciones de los proyectos.
 - `funcionalidades.md`: mapa de funcionalidades y regiones de codigo.
 
 ## Uso

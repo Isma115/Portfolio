@@ -1,5 +1,31 @@
 # Funcionalidades
 
+## Vista Proyectos: carrusel ampliado
+
+- region Componente Home | Seccion | Proyectos
+- region Componente Home | Estilos | Carrusel 3D de proyectos ampliado
+- region Componente Home | Funcionalidad | Carrusel 3D de proyectos ampliado
+
+## Vista Proyectos: acceso a novedades
+
+- region Estilos Pagina Home: boton de acceso a novedades
+- region Logica Pagina Home: transicion hacia la pagina de novedades
+- region Estilos Pagina Home: salida progresiva hacia novedades
+
+## Vista Novedades: registro de actualizaciones
+
+- region Componentes Pagina Novedades: fondo topografico y ambiente visual
+- region Componentes Pagina Novedades: contenido principal de actualizaciones
+- region Estilos Pagina Novedades: base visual y estructura
+- region Estilos Pagina Novedades: fondo topografico y estelas
+- region Estilos Pagina Novedades: cabecera y acceso de vuelta
+- region Estilos Pagina Novedades: registro de actualizaciones
+- region Estilos Pagina Novedades: entrada y salida de pagina
+- region Estilos Pagina Novedades: adaptacion responsive
+- region Logica Pagina Novedades: topografia fluida de fondo
+- region Logica Pagina Novedades: entrada progresiva de componentes
+- region Logica Pagina Novedades: vuelta hacia proyectos
+
 ## Vista Home: presentacion principal
 
 - region Vista Pagina Home: documento principal

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Últimas actualizaciones de los proyectos de Ismael Moraleda López.">
+  <title>Novedades | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./novedades.css">
+</head>
+
+<body>
+  <!-- region Componentes Pagina Novedades: fondo topografico y ambiente visual -->
+  <canvas class="news-topographic-flow" id="news-topographic-flow" aria-hidden="true"></canvas>
+  <div class="news-background-particles" aria-hidden="true">
+    <span style="--x:8%;--y:18%;--delay:0ms;--size:16px">release</span>
+    <span style="--x:22%;--y:76%;--delay:900ms;--size:13px">v1.0</span>
+    <span style="--x:67%;--y:12%;--delay:1600ms;--size:15px">{ }</span>
+    <span style="--x:89%;--y:34%;--delay:2600ms;--size:13px">git</span>
+  </div>
+  <div class="news-color-trails" aria-hidden="true">
+    <span class="news-color-trail news-color-trail--one"></span>
+    <span class="news-color-trail news-color-trail--two"></span>
+  </div>
+  <!-- endregion -->
+
+  <!-- region Componentes Pagina Novedades: contenido principal de actualizaciones -->
+  <main class="news-page">
+    <header class="news-header">
+      <a class="news-back-link" href="../home/index.html#projects" data-back-to-projects>
+        <span class="news-back-link__arrow" aria-hidden="true">←</span>
+        <span>Volver a proyectos</span>
+      </a>
+
+      <div class="news-hero">
+        <p class="news-hero__eyebrow">Portfolio / Registro de cambios</p>
+        <h1>Novedades</h1>
+        <p class="news-hero__intro">Un espacio para compartir las últimas mejoras, lanzamientos y decisiones que van haciendo evolucionar mis proyectos.</p>
+        <div class="news-hero__status" aria-label="Estado del registro de novedades">
+          <span class="news-hero__status-dot" aria-hidden="true"></span>
+          <span>Actualizaciones en preparación</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="news-feed" aria-labelledby="news-feed-title">
+      <div class="news-feed__heading">
+        <p class="news-feed__index">01</p>
+        <h2 id="news-feed-title">Últimas actualizaciones</h2>
+      </div>
+
+      <article class="news-empty-state">
+        <div class="news-empty-state__visual" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="news-empty-state__content">
+          <p class="news-empty-state__eyebrow">Próxima publicación</p>
+          <h3>El registro empieza con el siguiente cambio.</h3>
+          <p>Las nuevas entradas aparecerán aquí con el proyecto, la fecha, el resumen de la mejora y los enlaces que ayuden a conocerla en detalle.</p>
+        </div>
+      </article>
+
+      <aside class="news-publishing-note" aria-label="Información del registro de novedades">
+        <span class="news-publishing-note__symbol" aria-hidden="true">+</span>
+        <p>Cada novedad tendrá su propio bloque para mantener una cronología clara de la evolución de cada proyecto.</p>
+      </aside>
+    </section>
+  </main>
+  <!-- endregion -->
+
+  <script src="./novedades.js"></script>
+</body>
+
+</html>
