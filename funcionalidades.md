@@ -33,12 +33,14 @@
 - region Vista Pagina Home: particulas de fondo
 - region Vista Pagina Home: estelas de color de fondo
 - region Vista Pagina Home: hero central con nombre y subtitulo
+- region Componente Home | Seccion | Stack y herramientas
 - region Vista Pagina Home: indicador de scroll
 - region Estilos Pagina Home: base visual y layout
 - region Estilos Pagina Home: malla gravitatoria de fondo
 - region Estilos Pagina Home: particulas de fondo
 - region Estilos Pagina Home: estelas de color de fondo
 - region Estilos Pagina Home: hero central con nombre y subtitulo
+- region Componente Home | Estilos | Stack y herramientas
 - region Estilos Pagina Home: indicador de scroll
 - region Estilos Pagina Home: adaptacion responsive
 - region Logica Pagina Home: estado inicial de navegacion

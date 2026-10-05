@@ -9,6 +9,9 @@
   --warning: #d4d7dd;
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
   --particle-y: 0px;
+  --topography-visibility: 0.12;
+  --particles-visibility: 0.08;
+  --trails-visibility: 0.1;
 }
 
 * {
@@ -44,6 +47,12 @@ body {
     radial-gradient(circle at 88% 76%, rgba(72, 72, 86, 0.14), transparent 34%),
     var(--canvas);
   background-size: 100% 100%, 100% 100%, auto;
+}
+
+body.is-home-active {
+  --topography-visibility: 0.46;
+  --particles-visibility: 1;
+  --trails-visibility: 1;
 }
 
 body::before,
@@ -289,6 +298,10 @@ body.is-home-active .portfolio-top-menu {
 
 body.is-home-active.is-menu-open .portfolio-top-menu {
   transform: translate(-50%, 0);
+}
+
+.portfolio-top-menu.is-overlapping-name {
+  visibility: hidden;
 }
 
 body.is-home-active .top-menu__item {
@@ -841,6 +854,12 @@ body.is-home-active.is-menu-open .top-menu__item {
   text-decoration: underline;
 }
 
+/* region Componente Home | Estilos | Stack y herramientas */
+.section-skills .section-content h2 {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
 .skills-intro {
   max-width: 58ch;
   margin: 46px 0 0;
@@ -852,20 +871,62 @@ body.is-home-active.is-menu-open .top-menu__item {
 .skills-template {
   margin-top: 34px;
   display: grid;
+  gap: 14px;
+}
+
+.skills-stack,
+.skills-tools {
+  padding: clamp(18px, 2.4vw, 24px);
+  border: 1px solid var(--section-accent-soft);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(33, 201, 139, 0.1), rgba(8, 12, 18, 0.76) 44%);
+}
+
+.skills-tools {
+  background: rgba(8, 12, 18, 0.64);
+}
+
+.skills-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.skills-section-heading__eyebrow {
+  order: 2;
+  margin: 0;
+  color: var(--section-accent-start);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skills-section-heading h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(1.1rem, 1.9vw, 1.32rem);
+  line-height: 1.2;
+}
+
+.skills-specialties {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
 .skills-group {
-  padding: 14px 16px;
-  border: 1px solid var(--section-accent-soft);
+  padding: 16px;
+  border: 1px solid rgba(161, 255, 206, 0.16);
   border-radius: 8px;
-  background: rgba(8, 12, 18, 0.7);
+  background: rgba(3, 8, 12, 0.66);
 }
 
 .skills-group__title {
   margin: 0 0 10px;
-  color: #ffffff;
+  color: var(--section-accent-light);
   font-size: 0.96rem;
   font-weight: 600;
   line-height: 1.3;
@@ -877,6 +938,11 @@ body.is-home-active.is-menu-open .top-menu__item {
   list-style: none;
   display: grid;
   gap: 8px;
+}
+
+.skills-tools .skills-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 18px;
 }
 
 .skills-list li {
@@ -898,6 +964,7 @@ body.is-home-active.is-menu-open .top-menu__item {
   flex: 0 0 14px;
   opacity: 0.94;
 }
+/* endregion */
 
 /* region Componente Home | Estilos | Seccion Experiencia */
 .experience-intro {
@@ -1143,10 +1210,11 @@ body.is-home-active.is-menu-open .top-menu__item {
   z-index: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.46;
+  opacity: var(--topography-visibility);
   pointer-events: none;
   mix-blend-mode: screen;
   filter: drop-shadow(0 0 18px rgba(184, 190, 200, 0.16));
+  transition: opacity 500ms ease;
   will-change: opacity;
 }
 
@@ -1158,9 +1226,11 @@ body.is-home-active.is-menu-open .top-menu__item {
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  opacity: var(--particles-visibility);
   pointer-events: none;
   transform: translate3d(0, var(--particle-y), 0);
-  will-change: transform;
+  transition: opacity 500ms ease;
+  will-change: transform, opacity;
 }
 
 .background-particles span {
@@ -1226,7 +1296,9 @@ body.is-home-active.is-menu-open .top-menu__item {
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  opacity: var(--trails-visibility);
   pointer-events: none;
+  transition: opacity 500ms ease;
 }
 
 .color-trail {
@@ -2087,7 +2159,7 @@ body.is-navigating-to-news .section-contact {
     margin-right: auto;
   }
 
-  .skills-template,
+  .skills-specialties,
   .contact-template {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
@@ -2153,15 +2225,19 @@ body.is-navigating-to-news .section-contact {
     -webkit-line-clamp: 4;
   }
 
-  .skills-template,
+  .skills-specialties,
   .contact-template {
     grid-template-columns: 1fr;
+  }
+
+  .skills-tools .skills-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 520px) {
-  .topographic-flow {
-    opacity: 0.36;
+  body.is-home-active {
+    --topography-visibility: 0.36;
   }
 
   .background-particles span {
@@ -2226,6 +2302,10 @@ body.is-navigating-to-news .section-contact {
   .contact-intro {
     margin-top: 28px;
     font-size: 0.92rem;
+  }
+
+  .skills-tools .skills-list {
+    grid-template-columns: 1fr;
   }
 
   .projects-grid {

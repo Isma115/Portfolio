@@ -367,6 +367,32 @@ window.addEventListener("scroll", updateActiveMenu, { passive: true });
 updateActiveMenu();
 // endregion
 
+// region Componente Home | Funcionalidad | Ocultar menu superpuesto al nombre
+const topMenu = document.querySelector(".portfolio-top-menu");
+const heroName = document.querySelector(".hero-center__name");
+const desktopMenu = window.matchMedia("(min-width: 901px)");
+
+function updateMenuNameOverlap() {
+  let overlaps = false;
+
+  if (desktopMenu.matches && document.body.classList.contains("is-home-active") &&
+      document.body.classList.contains("is-menu-open")) {
+    const menuRect = topMenu.getBoundingClientRect();
+    const nameRect = heroName.getBoundingClientRect();
+    overlaps = menuRect.left < nameRect.right && menuRect.right > nameRect.left &&
+      menuRect.top < nameRect.bottom && menuRect.bottom > nameRect.top;
+  }
+
+  topMenu.classList.toggle("is-overlapping-name", overlaps);
+  topMenu.inert = overlaps;
+  window.requestAnimationFrame(updateMenuNameOverlap);
+}
+
+if (topMenu && heroName) {
+  updateMenuNameOverlap();
+}
+// endregion
+
 // region Componente Home | Funcionalidad | Animacion de secciones al hacer scroll
 const sectionContents = Array.from(document.querySelectorAll(".section-content, .about-layout"));
 const entryVisibilityRatio = 0.22;

@@ -46,7 +46,7 @@
     <button class="top-menu__item is-active" type="button" data-section="home">Inicio</button>
     <button class="top-menu__item" type="button" data-section="about">Sobre mi</button>
     <button class="top-menu__item" type="button" data-section="projects">Proyectos</button>
-    <button class="top-menu__item" type="button" data-section="skills">Tecnologias</button>
+    <button class="top-menu__item" type="button" data-section="skills">Stack y herramientas</button>
     <button class="top-menu__item" type="button" data-section="experience">Experiencia</button>
     <button class="top-menu__item" type="button" data-section="contact">Contacto</button>
   </nav>
@@ -153,10 +153,6 @@
         <button class="projects-more-button" type="button" aria-expanded="false" aria-controls="projects-carousel">
           Mostrar más
         </button>
-        <a class="projects-news-button" href="../novedades/index.html" data-news-link aria-label="Ver las últimas novedades de los proyectos">
-          <span>Novedades</span>
-          <span class="projects-news-button__arrow" aria-hidden="true">↗</span>
-        </a>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
         <span class="scroll-indicator__arrow"></span>
@@ -164,47 +160,53 @@
     </section>
     <!-- endregion -->
 
-    <!-- region Componente Home | Seccion | Habilidades -->
+    <!-- region Componente Home | Seccion | Stack y herramientas -->
     <section id="skills" class="section-skills" aria-labelledby="skills-title">
       <div class="section-content">
-        <h2 id="skills-title">Habilidades</h2>
-        <p class="skills-intro">Stack y capacidades aplicadas en proyectos frontend, backend y despliegue.</p>
-        <div class="skills-template" aria-label="Listado de habilidades tecnicas">
-          <article class="skills-group">
-            <h3 class="skills-group__title">Lenguajes</h3>
-            <ul class="skills-list">
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/D7DBFF" alt="" aria-hidden="true">JavaScript (ES6+)</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/typescript/D7DBFF" alt="" aria-hidden="true">TypeScript</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/html5/D7DBFF" alt="" aria-hidden="true">HTML5</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/css/D7DBFF" alt="" aria-hidden="true">CSS3</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/sqlite/D7DBFF" alt="" aria-hidden="true">SQL</li>
-            </ul>
-          </article>
+        <h2 id="skills-title">Stack y herramientas</h2>
+        <p class="skills-intro">Especialidades principales para construir productos web y las herramientas que acompañan su diseño, desarrollo y despliegue.</p>
+        <div class="skills-template" aria-label="Stack principal y herramientas de trabajo">
+          <section class="skills-stack" aria-labelledby="main-stack-title">
+            <header class="skills-section-heading">
+              <p class="skills-section-heading__eyebrow">Especialidades</p>
+              <h3 id="main-stack-title">Stack principal</h3>
+            </header>
 
-          <article class="skills-group">
-            <h3 class="skills-group__title">Frontend</h3>
-            <ul class="skills-list">
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/react/D7DBFF" alt="" aria-hidden="true">React</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/nextdotjs/D7DBFF" alt="" aria-hidden="true">Next.js</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/vite/D7DBFF" alt="" aria-hidden="true">Vite</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/tailwindcss/D7DBFF" alt="" aria-hidden="true">Tailwind CSS</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/w3c/D7DBFF" alt="" aria-hidden="true">Accesibilidad (a11y)</li>
-            </ul>
-          </article>
+            <div class="skills-specialties">
+              <article class="skills-group">
+                <h4 class="skills-group__title">Frontend</h4>
+                <ul class="skills-list">
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/D7DBFF" alt="" aria-hidden="true">JavaScript (ES6+)</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/typescript/D7DBFF" alt="" aria-hidden="true">TypeScript</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/react/D7DBFF" alt="" aria-hidden="true">React</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/nextdotjs/D7DBFF" alt="" aria-hidden="true">Next.js</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/html5/D7DBFF" alt="" aria-hidden="true">HTML5</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/css/D7DBFF" alt="" aria-hidden="true">CSS3</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/tailwindcss/D7DBFF" alt="" aria-hidden="true">Tailwind CSS</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/vite/D7DBFF" alt="" aria-hidden="true">Vite</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/w3c/D7DBFF" alt="" aria-hidden="true">Accesibilidad (a11y)</li>
+                </ul>
+              </article>
 
-          <article class="skills-group">
-            <h3 class="skills-group__title">Backend</h3>
-            <ul class="skills-list">
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/nodedotjs/D7DBFF" alt="" aria-hidden="true">Node.js</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/express/D7DBFF" alt="" aria-hidden="true">Express</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/openapiinitiative/D7DBFF" alt="" aria-hidden="true">REST API</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/jsonwebtokens/D7DBFF" alt="" aria-hidden="true">Autenticacion JWT</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/D7DBFF" alt="" aria-hidden="true">PostgreSQL</li>
-            </ul>
-          </article>
+              <article class="skills-group">
+                <h4 class="skills-group__title">Backend y datos</h4>
+                <ul class="skills-list">
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/nodedotjs/D7DBFF" alt="" aria-hidden="true">Node.js</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/express/D7DBFF" alt="" aria-hidden="true">Express</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/openapiinitiative/D7DBFF" alt="" aria-hidden="true">REST API</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/D7DBFF" alt="" aria-hidden="true">PostgreSQL</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/sqlite/D7DBFF" alt="" aria-hidden="true">SQL</li>
+                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/jsonwebtokens/D7DBFF" alt="" aria-hidden="true">Autenticacion JWT</li>
+                </ul>
+              </article>
+            </div>
+          </section>
 
-          <article class="skills-group">
-            <h3 class="skills-group__title">Herramientas</h3>
+          <section class="skills-tools" aria-labelledby="tools-title">
+            <header class="skills-section-heading">
+              <p class="skills-section-heading__eyebrow">Flujo de trabajo</p>
+              <h3 id="tools-title">Herramientas</h3>
+            </header>
             <ul class="skills-list">
               <li><img class="skill-icon" src="https://cdn.simpleicons.org/git/D7DBFF" alt="" aria-hidden="true">Git</li>
               <li><img class="skill-icon" src="https://cdn.simpleicons.org/github/D7DBFF" alt="" aria-hidden="true">GitHub</li>
@@ -213,7 +215,7 @@
               <li><img class="skill-icon" src="https://cdn.simpleicons.org/postman/D7DBFF" alt="" aria-hidden="true">Postman</li>
               <li><img class="skill-icon" src="https://cdn.simpleicons.org/figma/D7DBFF" alt="" aria-hidden="true">Figma</li>
             </ul>
-          </article>
+          </section>
         </div>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
