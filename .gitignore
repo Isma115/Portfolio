@@ -1,0 +1,15 @@
+# Documentos personales y adaptaciones de candidaturas
+/cv-*.docx
+/cv-*.pdf
+/adaptar_oferta.txt
+
+# Archivos generados, revisiones y copias locales
+/.cv-qa/
+/output/
+/tmp/
+/logs/
+/SDD_specs.backup-*/
+
+# Metadatos del sistema
+.DS_Store
+Thumbs.db

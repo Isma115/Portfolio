@@ -66,6 +66,7 @@ function resizeTopographicFlow() {
 }
 
 function drawTopographicFlow(time = 0) {
+  time *= 0.5;
   if (!topographicContext) {
     return;
   }
@@ -510,58 +511,6 @@ sectionContents.forEach((content) => {
 });
 // endregion
 
-// region Componente Home | Funcionalidad | Carrusel 3D de proyectos ampliado
-const projectsGrid = document.querySelector(".projects-grid");
-const projectsMoreButton = document.querySelector(".projects-more-button");
-const projectsCarouselControls = document.querySelector(".projects-carousel-controls");
-const projectsCarouselArrows = Array.from(document.querySelectorAll(".projects-carousel-arrow"));
-const projectCards = projectsGrid ? Array.from(projectsGrid.querySelectorAll(".project-card")) : [];
-const carouselPositions = ["active", "next", "far-next", "hidden", "far-previous", "previous"];
-let activeProjectIndex = 0;
-
-function renderProjectsCarousel() {
-  if (!projectsGrid || !projectCards.length) {
-    return;
-  }
-
-  projectCards.forEach((card, index) => {
-    const relativeIndex = (index - activeProjectIndex + projectCards.length) % projectCards.length;
-    const position = carouselPositions[relativeIndex] || "hidden";
-    const isActive = position === "active";
-
-    card.dataset.carouselPosition = position;
-    card.tabIndex = isActive ? 0 : -1;
-    card.setAttribute("aria-current", isActive ? "true" : "false");
-  });
-
-}
-
-function changeProjectsCard(direction) {
-  if (!projectCards.length) {
-    return;
-  }
-
-  activeProjectIndex = (activeProjectIndex + direction + projectCards.length) % projectCards.length;
-  renderProjectsCarousel();
-}
-
-if (projectsGrid && projectsMoreButton) {
-  projectsMoreButton.addEventListener("click", () => {
-    renderProjectsCarousel();
-    projectsGrid.classList.add("is-carousel");
-    projectsMoreButton.setAttribute("aria-expanded", "true");
-    projectsMoreButton.classList.add("is-hidden");
-    projectsCarouselControls?.classList.add("is-visible");
-  }, { once: true });
-
-  projectsCarouselArrows.forEach((arrow) => {
-    arrow.addEventListener("click", () => {
-      const direction = arrow.dataset.carouselDirection === "previous" ? -1 : 1;
-      changeProjectsCard(direction);
-    });
-  });
-}
-// endregion
 
 // region Logica Pagina Home: transicion hacia la pagina de novedades
 const newsLinks = Array.from(document.querySelectorAll("[data-news-link]"));

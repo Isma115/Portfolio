@@ -10,8 +10,8 @@
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
   --particle-y: 0px;
   --topography-visibility: 0.12;
-  --particles-visibility: 0.08;
-  --trails-visibility: 0.1;
+  --particles-visibility: 1;
+  --trails-visibility: 0.8;
 }
 
 * {
@@ -51,8 +51,6 @@ body {
 
 body.is-home-active {
   --topography-visibility: 0.46;
-  --particles-visibility: 1;
-  --trails-visibility: 1;
 }
 
 body::before,
@@ -463,7 +461,7 @@ body.is-home-active.is-menu-open .top-menu__item {
   position: relative;
   width: max-content;
   max-width: 100%;
-  margin: 0 0 32px;
+  margin: 0 0 64px;
   color: #ffffff;
   font-size: clamp(2.8rem, 8vw, 5.5rem);
   line-height: 0.88;
@@ -493,7 +491,7 @@ body.is-home-active.is-menu-open .top-menu__item {
 .projects-grid {
   margin-top: 68px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 34px;
 }
 
@@ -792,11 +790,13 @@ body.is-home-active.is-menu-open .top-menu__item {
 }
 
 .project-card__image {
-  width: 100%;
+  width: clamp(96px, 12vw, 144px);
   height: auto;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1;
+  margin: 28px auto 12px;
+  border-radius: 24%;
   min-height: 0;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1), filter 460ms ease;
 }
@@ -806,11 +806,80 @@ body.is-home-active.is-menu-open .top-menu__item {
   filter: saturate(1.12) brightness(1.06);
 }
 
+.project-card__image--icon {
+  object-fit: contain;
+}
+
+.projects-grid .project-card__description {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+.project-card__technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--section-accent-light);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.project-card__technologies li {
+  padding: 5px 11px;
+  border: 1px solid var(--section-accent-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.project-card__details {
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.project-card__label {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-card__features {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card__features li {
+  display: grid;
+  gap: 4px;
+  padding-left: 12px;
+  border-left: 2px solid var(--section-accent-soft);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.project-card__features strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.project-card__features span {
+  color: var(--muted);
+}
+
 .project-card__content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 16px 16px;
+  gap: 12px;
+  padding: 18px 24px 24px;
   min-height: 0;
   overflow: visible;
 }
@@ -1308,51 +1377,31 @@ body.is-home-active.is-menu-open .top-menu__item {
   --trail-color-1: rgba(59, 130, 246, 0.2);
   --trail-color-2: rgba(139, 92, 246, 0.24);
   --trail-color-3: rgba(236, 72, 153, 0.18);
+  background:
+    radial-gradient(ellipse at 52% 50%, var(--trail-color-2), transparent 60%),
+    linear-gradient(90deg, transparent 8%, var(--trail-color-1) 35%, var(--trail-color-3) 65%, transparent 92%);
+  border-radius: 50%;
+  mask-image: linear-gradient(180deg, transparent, #000 40%, #000 60%, transparent);
   opacity: 0;
-  filter: blur(80px);
+  filter: blur(42px);
   will-change: transform, opacity;
   left: -30%;
 }
 
 .color-trail--1 {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--trail-color-1),
-    var(--trail-color-2),
-    var(--trail-color-3),
-    transparent
-  );
-  animation: trail-sweep-1 14s ease-in-out infinite;
-  animation-delay: 0s;
+  animation: trail-sweep-1 28s ease-in-out infinite;
+  animation-delay: -3s;
 }
 
 .color-trail--2 {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--trail-color-1),
-    var(--trail-color-2),
-    var(--trail-color-3),
-    transparent
-  );
-  animation: trail-sweep-2 20s ease-in-out infinite;
-  animation-delay: 2s;
+  animation: trail-sweep-2 36s ease-in-out infinite;
+  animation-delay: -8s;
 }
 
 .color-trail--3 {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--trail-color-1),
-    var(--trail-color-2),
-    var(--trail-color-3),
-    transparent
-  );
-  animation: trail-sweep-3 27s ease-in-out infinite;
-  animation-delay: 1s;
+  animation: trail-sweep-3 44s ease-in-out infinite;
+  animation-delay: -12s;
 }
-
 @keyframes trail-sweep-1 {
   0% {
     top: 70%;
@@ -2209,12 +2258,11 @@ body.is-navigating-to-news .section-contact {
 
   .project-card {
     aspect-ratio: auto;
-    grid-template-rows: minmax(178px, 46vw) auto;
+    grid-template-rows: auto 1fr;
   }
 
   .project-card__image {
-    aspect-ratio: auto;
-    height: 100%;
+    margin-top: 22px;
   }
 
   .project-card__content {
@@ -2387,16 +2435,110 @@ body.is-navigating-to-news .section-contact {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 1ms !important;
+/* endregion */
+/* region Estilos Pagina Home: tarjetas de proyectos compactas */
+.section-projects .section-content {
+  max-width: 1040px;
+}
+.projects-grid--showcase {
+  align-items: start;
+  gap: 34px;
+}
+.projects-grid--showcase .project-card {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+.projects-grid--showcase .project-card:hover {
+  background: transparent;
+  box-shadow: none;
+}
+.projects-grid--showcase .project-card__image {
+  width: clamp(96px, 12vw, 144px);
+  margin: 0 auto;
+}
+.projects-grid--showcase .project-card__content {
+  padding: 28px;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  background: rgba(8, 12, 18, 0.88);
+  transition: border-color 220ms ease, background 220ms ease;
+}
+.projects-grid--showcase .project-card:hover .project-card__content {
+  border-color: var(--section-accent-soft);
+  background: rgba(24, 22, 40, 0.94);
+}
+.projects-grid--showcase .project-card__title {
+  font-size: clamp(1.08rem, 1.6vw, 1.28rem);
+}
+.projects-grid--showcase .project-card__description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #b9bdca;
+}
+.projects-grid--showcase .project-card__technologies {
+  gap: 7px;
+  font-size: 0.72rem;
+}
+.projects-grid--showcase .project-card__technologies li {
+  padding: 5px 9px;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #b9bdca;
+}
+.projects-grid--showcase .project-card__details {
+  margin-top: 4px;
+  padding-top: 18px;
+}
+.projects-grid--showcase .project-card__label {
+  cursor: pointer;
+  margin: 0 0 24px;
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--section-accent-light);
+  width: fit-content;
+  padding: 10px 14px;
+  border: 1px solid var(--section-accent-soft);
+  background: rgba(180, 150, 255, 0.07);
+}
+.projects-grid--showcase .project-card__features {
+  margin-top: 20px;
+}
+.projects-grid--showcase .project-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+  padding: 0;
+  font-size: 0.85rem;
+}
+.projects-grid--showcase .project-card__link:hover {
+  text-decoration: underline;
+}
+.projects-grid--showcase summary:focus-visible,
+.projects-grid--showcase .project-card__link:focus-visible {
+  outline: 2px solid var(--section-accent-light);
+  outline-offset: 5px;
+}
+@media (max-width: 1000px) {
+  .projects-grid--showcase .project-card__content {
+    padding: 24px;
   }
 }
-
+@media (max-width: 600px) {
+  .projects-grid--showcase {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .projects-grid--showcase .project-card__image {
+    width: 96px;
+  }
+}
 /* endregion */

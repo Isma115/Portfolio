@@ -1,5 +1,12 @@
 # Funcionalidades
 
+## Vista Proyectos: tarjetas compactas y detalles desplegables
+
+- region Componente Home | Seccion | Proyectos
+- region Estilos Pagina Home: tarjetas de proyectos compactas
+- Resumen y etiquetas visibles; funcionalidades ampliadas mediante `details` y `summary`, accesibles con teclado.
+- Iconos centrados sobre el contenedor de información, con tarjetas rectangulares en dos columnas y una columna en móvil.
+
 ## Vista Proyectos: carrusel ampliado
 
 - region Componente Home | Seccion | Proyectos

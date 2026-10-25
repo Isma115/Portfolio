@@ -76,7 +76,7 @@
     <section id="about" class="section-about" aria-labelledby="about-title">
       <div class="about-layout no-glitch">
         <div class="about-layout__photo">
-          <img src="./assets/about-template.jpg" alt="Imagen placeholder de perfil de Ismael Moraleda López">
+          <img src="./assets/profile.png" alt="Foto de Ismael Moraleda López">
         </div>
         <div class="about-layout__text">
           <h2 id="about-title">Sobre mi</h2>
@@ -93,66 +93,48 @@
     <section id="projects" class="section-projects" aria-labelledby="projects-title">
       <div class="section-content no-glitch">
         <h2 id="projects-title">Proyectos</h2>
-        <div class="projects-grid" id="projects-carousel" aria-label="Listado de proyectos de programacion">
-          <a class="project-card" href="https://github.com/ismaelmoraledalopez/ecommerce-analytics-dashboard" target="_blank" rel="noopener noreferrer" aria-label="Abrir Dashboard Ecommerce Analytics en GitHub">
-            <img class="project-card__image" src="./assets/project-dashboard.jpg" alt="Vista previa de panel analitico para ecommerce">
+        <div class="projects-grid projects-grid--showcase" aria-label="Listado de proyectos de programacion">
+          <article class="project-card project-card--noduvia" aria-labelledby="noduvia-title">
+            <img class="project-card__image project-card__image--icon" src="./assets/tesavion.png" alt="Icono de Noduvia">
             <div class="project-card__content">
-              <h3 class="project-card__title">Dashboard Ecommerce Analytics</h3>
-              <span class="project-card__link">Ver en GitHub</span>
+              <h3 class="project-card__title" id="noduvia-title">Noduvia</h3>
+              <p class="project-card__description">Tu espacio de desarrollo con agentes de IA.</p>
+              <ul class="project-card__technologies" aria-label="Características principales">
+                <li>Fábrica de software</li><li>Documentación viva</li><li>Conocimiento del código</li>
+              </ul>
+              <details class="project-card__details">
+                <summary class="project-card__label">Ver funcionalidad</summary>
+                <ul class="project-card__features">
+                  <li><strong>Spec Driven Development</strong><span>Conecta especificaciones y decisiones con la implementación.</span></li>
+                  <li><strong>Conocimiento del código</strong><span>Documentación en tiempo real y visualización de relaciones y flujos para conservar el conocimiento mientras evoluciona.</span></li>
+                  <li><strong>Git y control móvil</strong><span>Integra Git y una app para interactuar con el agente y controlar el PC.</span></li>
+                </ul>
+              </details>
+              <a class="project-card__link" href="mailto:ismamoralop@gmail.com?subject=Informaci%C3%B3n%20sobre%20Noduvia">Hablemos del proyecto <span aria-hidden="true">↗</span></a>
             </div>
-          </a>
+          </article>
 
-          <a class="project-card" href="https://github.com/ismaelmoraledalopez/taskflow-api" target="_blank" rel="noopener noreferrer" aria-label="Abrir TaskFlow API en GitHub">
-            <img class="project-card__image" src="./assets/project-api.jpg" alt="Vista previa de API backend para gestion de tareas">
+          <article class="project-card" aria-labelledby="trazuvia-title">
+            <img class="project-card__image project-card__image--icon" src="./assets/trazuvia.png" alt="Icono de Trazuvia">
             <div class="project-card__content">
-              <h3 class="project-card__title">TaskFlow API</h3>
-              <span class="project-card__link">Ver en GitHub</span>
+              <h3 class="project-card__title" id="trazuvia-title">Trazuvia</h3>
+              <p class="project-card__description">De la idea a la interfaz, en un lienzo visual.</p>
+              <ul class="project-card__technologies" aria-label="Características principales">
+                <li>Editor visual</li><li>Wireframes</li><li>Exportación a código</li>
+              </ul>
+              <details class="project-card__details">
+                <summary class="project-card__label">Ver funcionalidad</summary>
+                <ul class="project-card__features">
+                  <li><strong>Diseño visual editable</strong><span>Componentes, conectores, capas y grupos, con un panel de propiedades para personalizar cada elemento.</span></li>
+                  <li><strong>De la idea al desarrollo</strong><span>Define estilos CSS reutilizables y exporta diseños a HTML, SVG, PNG y JSON.</span></li>
+                  <li><strong>Guardado e intercambio con IA</strong><span>Guardado automático e intercambio de diseños con herramientas de IA mediante JSON.</span></li>
+                </ul>
+              </details>
+              <a class="project-card__link" href="https://github.com/Isma115/Trazuvia" target="_blank" rel="noopener noreferrer">Ver en Github <span aria-hidden="true">↗</span></a>
             </div>
-          </a>
+          </article>
 
-          <a class="project-card" href="https://github.com/ismaelmoraledalopez/habit-tracker-mobile" target="_blank" rel="noopener noreferrer" aria-label="Abrir Habit Tracker Mobile App en GitHub">
-            <img class="project-card__image" src="./assets/project-mobile.jpg" alt="Vista previa de app para seguimiento de habitos y productividad">
-            <div class="project-card__content">
-              <h3 class="project-card__title">Habit Tracker Mobile App</h3>
-              <span class="project-card__link">Ver en GitHub</span>
-            </div>
-          </a>
-
-          <a class="project-card" href="https://github.com/ismaelmoraledalopez" target="_blank" rel="noopener noreferrer" aria-label="Abrir Design System Workspace en GitHub">
-            <img class="project-card__image" src="./assets/project-dashboard.jpg" alt="Vista previa de sistema de diseno para productos digitales">
-            <div class="project-card__content">
-              <h3 class="project-card__title">Design System Workspace</h3>
-              <span class="project-card__link">Ver en GitHub</span>
-            </div>
-          </a>
-
-          <a class="project-card" href="https://github.com/ismaelmoraledalopez" target="_blank" rel="noopener noreferrer" aria-label="Abrir Local Events Platform en GitHub">
-            <img class="project-card__image" src="./assets/project-api.jpg" alt="Vista previa de plataforma para descubrir y gestionar eventos locales">
-            <div class="project-card__content">
-              <h3 class="project-card__title">Local Events Platform</h3>
-              <span class="project-card__link">Ver en GitHub</span>
-            </div>
-          </a>
-
-          <a class="project-card" href="https://github.com/ismaelmoraledalopez" target="_blank" rel="noopener noreferrer" aria-label="Abrir Focus Timer en GitHub">
-            <img class="project-card__image" src="./assets/project-mobile.jpg" alt="Vista previa de temporizador para sesiones de concentracion">
-            <div class="project-card__content">
-              <h3 class="project-card__title">Focus Timer</h3>
-              <span class="project-card__link">Ver en GitHub</span>
-            </div>
-          </a>
         </div>
-        <div class="projects-carousel-controls" aria-label="Controles del carrusel de proyectos">
-          <button class="projects-carousel-arrow" type="button" data-carousel-direction="previous" aria-label="Mostrar proyecto anterior">
-            <span aria-hidden="true">←</span>
-          </button>
-          <button class="projects-carousel-arrow" type="button" data-carousel-direction="next" aria-label="Mostrar proyecto siguiente">
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-        <button class="projects-more-button" type="button" aria-expanded="false" aria-controls="projects-carousel">
-          Mostrar más
-        </button>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
         <span class="scroll-indicator__arrow"></span>
@@ -266,10 +248,10 @@
         <h2 id="contact-title">Contacto</h2>
 
         <div class="contact-template" aria-label="Canales de contacto">
-          <a class="contact-card" href="mailto:tu-correo@ejemplo.com" aria-label="Enviar correo a tu-correo@ejemplo.com">
+          <a class="contact-card" href="mailto:ismamoralop@gmail.com" aria-label="Enviar correo a Ismael Moraleda López">
             <img class="contact-card__icon" src="https://cdn.simpleicons.org/gmail/D7DBFF" alt="" aria-hidden="true">
             <span class="contact-card__label">Gmail</span>
-            <span class="contact-card__value">tu-correo@ejemplo.com</span>
+            <span class="contact-card__value">ismamoralop@gmail.com</span>
           </a>
 
           <a class="contact-card" href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil de LinkedIn">
