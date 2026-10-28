@@ -68,3 +68,7 @@
 - region Logica Pagina Sobre Mi: entrada de pagina
 - region Logica Pagina Sobre Mi: malla reactiva de fondo
 - region Logica Pagina Sobre Mi: navegacion hacia Home por scroll
+
+## Inicio de la web en Windows
+
+- region Inicio web: abrir la pagina principal (`abrir-web.bat`)

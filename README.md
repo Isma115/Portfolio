@@ -15,3 +15,5 @@ Pagina web estatica para la pestaña Home de un portfolio. La Home funciona como
 
 Abre `frontend/home/index.html` en el navegador.
 # Portfolio
+
+En Windows, haz doble clic en `abrir-web.bat` para abrir la web en el navegador predeterminado.
