@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./home.css">
+  <link rel="stylesheet" href="./styles/secciones.css">
+  <link rel="stylesheet" href="./styles/fondo.css">
+  <link rel="stylesheet" href="./styles/animaciones.css">
+  <link rel="stylesheet" href="./styles/adaptacion.css">
 </head>
 
 <body>
@@ -18,13 +22,30 @@
 
   <!-- region Componente Home | Codigo de Componente | Particulas de fondo -->
   <div class="background-particles" aria-hidden="true">
-    <span style="--x:6%;--y:14%;--delay:0ms;--size:18px">@</span>
-    <span style="--x:18%;--y:72%;--delay:420ms;--size:14px">{}</span>
-    <span style="--x:31%;--y:22%;--delay:900ms;--size:20px">#</span>
-    <span style="--x:57%;--y:12%;--delay:1720ms;--size:13px">&lt;/&gt;</span>
-    <span style="--x:82%;--y:26%;--delay:2600ms;--size:15px">+</span>
-    <span style="--x:73%;--y:42%;--delay:4380ms;--size:14px">{}</span>
-    <span style="--x:96%;--y:51%;--delay:1960ms;--size:13px">[]</span>
+    <span style="--x:5%;--y:7%;--delay:0ms;--size:9px">@</span>
+    <span style="--x:62%;--y:44%;--delay:1680ms;--size:15px">+</span>
+    <span style="--x:28%;--y:81%;--delay:3360ms;--size:21px">()</span>
+    <span style="--x:85%;--y:31%;--delay:5040ms;--size:13px">;</span>
+    <span style="--x:51%;--y:68%;--delay:6720ms;--size:19px">git</span>
+    <span style="--x:17%;--y:18%;--delay:8400ms;--size:11px">[]</span>
+    <span style="--x:74%;--y:55%;--delay:10080ms;--size:17px">@</span>
+  </div>
+  <!-- endregion -->
+
+  <!-- region Componente Home | Codigo de Componente | Fragmentos de codigo de fondo -->
+  <div class="background-code" aria-hidden="true">
+    <pre><code>const greet = (name) =&gt; {
+  return `Hola, ${name}!`;
+};
+console.log(greet("mundo"));</code></pre>
+    <pre><code>def square_numbers(values):
+    return [value ** 2 for value in values]
+
+print(square_numbers([1, 2, 3]))</code></pre>
+    <pre><code>SELECT name, created_at
+FROM projects
+WHERE active = TRUE
+ORDER BY created_at DESC;</code></pre>
   </div>
   <!-- endregion -->
 
@@ -79,8 +100,8 @@
           <img src="./assets/profile.png" alt="Foto de Ismael Moraleda López">
         </div>
         <div class="about-layout__text">
-          <h2 id="about-title">Sobre mi</h2>
-          <p>Soy un perfil orientado a construir interfaces claras, experiencias cuidadas y soluciones tecnicas sostenibles. Me interesa unir criterio visual, estructura de codigo y pequenas interacciones que hagan que cada proyecto se entienda rapido y se use sin friccion.</p>
+          <h2 id="about-title">Sobre mí</h2>
+          <p>Soy un perfil orientado a construir interfaces claras, experiencias cuidadas y soluciones técnicas sostenibles. Me interesa unir criterio visual, estructura de código y pequeñas interacciones que hagan que cada proyecto se entienda rápido y se use sin fricción.</p>
         </div>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
@@ -279,6 +300,9 @@
   <!-- endregion -->
 
   <script src="./home.js"></script>
+  <script src="./scripts/fondo.js"></script>
+  <script src="./scripts/secciones.js"></script>
+  <script src="./scripts/codigo-fondo.js"></script>
 </body>
 
 </html>

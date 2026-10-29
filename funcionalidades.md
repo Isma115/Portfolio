@@ -72,3 +72,16 @@
 ## Inicio de la web en Windows
 
 - region Inicio web: abrir la pagina principal (`abrir-web.bat`)
+
+## Vista Home: Sobre mí
+
+- region Componente Home | Seccion | Sobre mi
+- region Componente Home | Estilos | Seccion Sobre mi
+- region Componente Home | Estilos | Movimiento reducido en Sobre mi
+- region Componente Home | Funcionalidad | Animacion de secciones al hacer scroll
+
+## Vista Home: fragmentos de código de fondo
+
+- region Componente Home | Codigo de Componente | Fragmentos de codigo de fondo
+- region Componente Home | Estilos | Fragmentos de codigo de fondo
+- region Componente Home | Funcionalidad | Escritura de codigo de fondo

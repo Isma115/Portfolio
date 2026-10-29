@@ -1,0 +1,254 @@
+/* region Componente Home | Estilos | Topografia fluida de fondo */
+.topographic-flow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: var(--topography-visibility);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 18px rgba(184, 190, 200, 0.16));
+  transition: opacity 500ms ease;
+  will-change: opacity;
+}
+
+/* endregion */
+
+/* region Componente Home | Estilos | Particulas de fondo */
+.background-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: var(--particles-visibility);
+  pointer-events: none;
+  transform: translate3d(0, var(--particle-y), 0);
+  transition: opacity 500ms ease;
+  will-change: transform, opacity;
+}
+
+.background-particles span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  display: grid;
+  place-items: center;
+  color: #a8e5ec;
+  font-size: var(--size);
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 0 16px currentColor;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+  animation: particle-pop 96s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.background-particles span:nth-child(2n) {
+  color: #ffd591;
+  animation-duration: 112s;
+}
+
+.background-particles span:nth-child(3n) {
+  color: #a7e8bf;
+  animation-duration: 88s;
+}
+
+@keyframes particle-pop {
+
+  0%,
+  96%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(-10deg);
+  }
+
+  35% {
+    opacity: 0.54;
+    transform: translate(-50%, -50%) scale(1.12) rotate(8deg);
+  }
+
+  55% {
+    opacity: 0.34;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  80% {
+    opacity: 0.12;
+    transform: translate(-50%, -50%) scale(0.88) rotate(12deg);
+  }
+}
+
+/* endregion */
+
+/* region Componente Home | Estilos | Fragmentos de codigo de fondo */
+.background-code {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.background-code pre {
+  position: absolute;
+  max-width: min(42ch, 64vw);
+  margin: 0;
+  color: #c3d6db;
+  opacity: 0.18;
+  font: 10px/1.5 ui-monospace, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  transition: opacity 3s ease;
+  animation: background-code-drift 28s ease-in-out infinite alternate;
+}
+
+.background-code pre.is-fading { opacity: 0; }
+.background-code pre:nth-child(1) { top: 12%; left: 4%; }
+.background-code pre:nth-child(2) { top: 48%; right: 4%; animation-delay: -9s; }
+.background-code pre:nth-child(3) { bottom: 10%; left: 7%; animation-delay: -18s; }
+
+@keyframes background-code-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(24px, -28px, 0); }
+}
+
+@media (max-width: 600px) {
+  .background-code pre { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-code pre { animation: none; transition: none; }
+}
+/* endregion */
+
+/* region Componente Home | Estilos | Estelas de color de fondo */
+.color-trails {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  opacity: var(--trails-visibility);
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.color-trail {
+  position: absolute;
+  width: 160%;
+  height: var(--trail-height, 240px);
+  --trail-color-1: rgba(59, 130, 246, 0.2);
+  --trail-color-2: rgba(34, 211, 238, 0.22);
+  --trail-color-3: rgba(20, 184, 166, 0.18);
+  background:
+    radial-gradient(ellipse at 52% 50%, var(--trail-color-2), transparent 60%),
+    linear-gradient(90deg, transparent 8%, var(--trail-color-1) 35%, var(--trail-color-3) 65%, transparent 92%);
+  border-radius: 50%;
+  mask-image: linear-gradient(180deg, transparent, #000 40%, #000 60%, transparent);
+  opacity: 0;
+  filter: blur(42px);
+  will-change: transform, opacity;
+  left: -30%;
+}
+
+.color-trail--1 {
+  animation: trail-sweep-1 28s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.color-trail--2 {
+  animation: trail-sweep-2 36s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+.color-trail--3 {
+  animation: trail-sweep-3 44s ease-in-out infinite;
+  animation-delay: -12s;
+}
+@keyframes trail-sweep-1 {
+  0% {
+    top: 70%;
+    transform: translateX(-100%) rotate(-12deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {
+    top: 20%;
+    opacity: 0.9;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    top: 30%;
+    transform: translateX(100%) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes trail-sweep-2 {
+  0% {
+    top: 10%;
+    transform: translateX(-100%) rotate(6deg);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  45% {
+    top: 60%;
+    opacity: 0.85;
+  }
+
+  92% {
+    opacity: 0;
+  }
+
+  100% {
+    top: 50%;
+    transform: translateX(100%) rotate(-8deg);
+    opacity: 0;
+  }
+}
+
+@keyframes trail-sweep-3 {
+  0% {
+    top: 40%;
+    transform: translateX(-100%) rotate(-4deg);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  55% {
+    top: 75%;
+    opacity: 0.95;
+  }
+
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    top: 65%;
+    transform: translateX(100%) rotate(7deg);
+    opacity: 0;
+  }
+}
+
+/* endregion */
+

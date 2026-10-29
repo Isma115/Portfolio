@@ -2,7 +2,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const vm = require("node:vm");
 
-const source = fs.readFileSync(`${__dirname}/home.js`, "utf8")
+const source = fs.readFileSync(`${__dirname}/home.js`, "utf8").replace(/\r\n/g, "\n")
   .split("// region Componente Home | Funcionalidad | Ocultar menu superpuesto al nombre\n")[1]
   .split("// endregion")[0];
 let hidden;
