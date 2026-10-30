@@ -1,5 +1,5 @@
 // region Componente Home | Funcionalidad | Animacion de secciones al hacer scroll
-const sectionContents = Array.from(document.querySelectorAll(".section-content, .about-layout"));
+const sectionContents = Array.from(document.querySelectorAll(".section-content"));
 const entryVisibilityRatio = 0.22;
 const exitVisibilityRatio = 0.06;
 const exitDebounceMs = 120;
@@ -163,7 +163,7 @@ if (scrollIndicators.length) {
 
       window.setTimeout(() => {
         entry.target.classList.add("is-ready");
-      }, 1500);
+      }, 300);
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.3 });

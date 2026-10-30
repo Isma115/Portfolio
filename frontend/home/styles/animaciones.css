@@ -277,8 +277,7 @@ body.is-scrolled-down .scroll-indicator--home .scroll-indicator__arrow {
 /* endregion */
 
 /* region Componente Home | Estilos | Animacion Slide Lateral con Glitch */
-.section-content,
-.about-layout {
+.section-content {
   --exit-x: 0px;
   --glitch-shift: -1;
   opacity: 0;
@@ -291,30 +290,26 @@ body.is-scrolled-down .scroll-indicator--home .scroll-indicator__arrow {
   will-change: transform, opacity, clip-path, filter;
 }
 
-.section-content:nth-child(even),
-.about-layout:nth-child(even) {
+.section-content:nth-child(even) {
   --glitch-shift: 1;
   transform: translateX(150px);
 }
 
-.section-content.is-visible,
-.about-layout.is-visible {
+.section-content.is-visible {
   opacity: 1;
   transform: translateX(0);
   clip-path: inset(0 0 0 0);
   filter: none;
 }
 
-.section-content.is-visible.is-title-glitching h2,
-.about-layout.is-visible.is-title-glitching .about-layout__text h2 {
+.section-content.is-visible.is-title-glitching h2 {
   animation:
     glitch-title-enter 460ms steps(1, end),
     glitch-flicker 220ms steps(1, end) 40ms both;
   will-change: transform, filter, clip-path, opacity;
 }
 
-.section-content.is-exiting,
-.about-layout.is-exiting {
+.section-content.is-exiting {
   opacity: 0;
   transform: translateX(var(--exit-x));
   clip-path: inset(0 0 0 0);

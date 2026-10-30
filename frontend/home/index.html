@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="./styles/fondo.css">
   <link rel="stylesheet" href="./styles/animaciones.css">
   <link rel="stylesheet" href="./styles/adaptacion.css">
+  <link rel="stylesheet" href="./styles/sobre-mi.css">
+  <link rel="stylesheet" href="./styles/proyectos.css">
 </head>
 
 <body>
@@ -34,18 +36,9 @@
 
   <!-- region Componente Home | Codigo de Componente | Fragmentos de codigo de fondo -->
   <div class="background-code" aria-hidden="true">
-    <pre><code>const greet = (name) =&gt; {
-  return `Hola, ${name}!`;
-};
-console.log(greet("mundo"));</code></pre>
-    <pre><code>def square_numbers(values):
-    return [value ** 2 for value in values]
-
-print(square_numbers([1, 2, 3]))</code></pre>
-    <pre><code>SELECT name, created_at
-FROM projects
-WHERE active = TRUE
-ORDER BY created_at DESC;</code></pre>
+    <pre><code></code></pre>
+    <pre><code></code></pre>
+    <pre><code></code></pre>
   </div>
   <!-- endregion -->
 
@@ -96,12 +89,65 @@ ORDER BY created_at DESC;</code></pre>
     <!-- region Componente Home | Seccion | Sobre mi -->
     <section id="about" class="section-about" aria-labelledby="about-title">
       <div class="about-layout no-glitch">
-        <div class="about-layout__photo">
+        <header class="about-header">
+          <h2 id="about-title">Sobre mí</h2>
+          <p>Conoce un poco más sobre mi perfil</p>
+        </header>
+
+        <div class="about-photo">
           <img src="./assets/profile.png" alt="Foto de Ismael Moraleda López">
         </div>
-        <div class="about-layout__text">
-          <h2 id="about-title">Sobre mí</h2>
-          <p>Soy un perfil orientado a construir interfaces claras, experiencias cuidadas y soluciones técnicas sostenibles. Me interesa unir criterio visual, estructura de código y pequeñas interacciones que hagan que cada proyecto se entienda rápido y se use sin fricción.</p>
+
+        <div class="about-content">
+          <h3>Hola, soy <span>Ismael</span> <span>Moraleda López</span></h3>
+          <div class="about-content__description">
+            <p>Me interesa construir interfaces claras, experiencias cuidadas y soluciones técnicas sostenibles.</p>
+            <p>Me gusta unir criterio visual, estructura de código y pequeñas interacciones para que cada proyecto se entienda y se use con facilidad.</p>
+          </div>
+          <div class="about-skills-window" role="region" aria-label="Tecnologías principales" tabindex="0">
+            <div class="about-skills-track">
+              <ul class="about-skills" aria-label="Tecnologías principales">
+              <li><span aria-hidden="true">JS</span> JavaScript</li>
+              <li><span aria-hidden="true">TS</span> TypeScript</li>
+              <li><span aria-hidden="true">⚛</span> React</li>
+              <li><span aria-hidden="true">⬢</span> Node.js</li>
+              <li><span aria-hidden="true">&lt;/&gt;</span> HTML y CSS</li>
+              <li><span aria-hidden="true">◆</span> Git</li>
+              <li><span aria-hidden="true">PY</span> Python</li>
+              <li><span aria-hidden="true">JV</span> Java</li>
+              <li><span aria-hidden="true">SQL</span> PL/SQL</li>
+              <li><span aria-hidden="true">SW</span> Swift</li>
+              <li><span aria-hidden="true">API</span> FastAPI</li>
+              <li><span aria-hidden="true">FL</span> Flutter</li>
+              <li><span aria-hidden="true">SP</span> Spring</li>
+              <li><span aria-hidden="true">DB</span> Oracle APEX</li>
+              <li><span aria-hidden="true">DK</span> Docker</li>
+              <li><span aria-hidden="true">AZ</span> Azure DevOps</li>
+              </ul>
+              <ul class="about-skills" aria-hidden="true">
+              <li><span aria-hidden="true">JS</span> JavaScript</li>
+              <li><span aria-hidden="true">TS</span> TypeScript</li>
+              <li><span aria-hidden="true">⚛</span> React</li>
+              <li><span aria-hidden="true">⬢</span> Node.js</li>
+              <li><span aria-hidden="true">&lt;/&gt;</span> HTML y CSS</li>
+              <li><span aria-hidden="true">◆</span> Git</li>
+              <li><span aria-hidden="true">PY</span> Python</li>
+              <li><span aria-hidden="true">JV</span> Java</li>
+              <li><span aria-hidden="true">SQL</span> PL/SQL</li>
+              <li><span aria-hidden="true">SW</span> Swift</li>
+              <li><span aria-hidden="true">API</span> FastAPI</li>
+              <li><span aria-hidden="true">FL</span> Flutter</li>
+              <li><span aria-hidden="true">SP</span> Spring</li>
+              <li><span aria-hidden="true">DB</span> Oracle APEX</li>
+              <li><span aria-hidden="true">DK</span> Docker</li>
+              <li><span aria-hidden="true">AZ</span> Azure DevOps</li>
+              </ul>
+            </div>
+          </div>
+          <div class="about-actions">
+            <a href="#projects">Ver proyectos <span aria-hidden="true">→</span></a>
+            <a href="#skills">Ver tecnologías <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
@@ -113,48 +159,40 @@ ORDER BY created_at DESC;</code></pre>
     <!-- region Componente Home | Seccion | Proyectos -->
     <section id="projects" class="section-projects" aria-labelledby="projects-title">
       <div class="section-content no-glitch">
-        <h2 id="projects-title">Proyectos</h2>
-        <div class="projects-grid projects-grid--showcase" aria-label="Listado de proyectos de programacion">
-          <article class="project-card project-card--noduvia" aria-labelledby="noduvia-title">
-            <img class="project-card__image project-card__image--icon" src="./assets/tesavion.png" alt="Icono de Noduvia">
-            <div class="project-card__content">
-              <h3 class="project-card__title" id="noduvia-title">Noduvia</h3>
-              <p class="project-card__description">Tu espacio de desarrollo con agentes de IA.</p>
-              <ul class="project-card__technologies" aria-label="Características principales">
+        <header class="projects-header">
+          <h2 id="projects-title">Proyectos</h2>
+        </header>
+        <div class="projects-carousel" role="region" aria-roledescription="carrusel" aria-label="Proyectos destacados">
+          <div class="projects-track" id="projects-track" tabindex="0" aria-label="Desplaza para ver los proyectos">
+          <article class="project-preview project-preview--noduvia" aria-labelledby="noduvia-title">
+            <div class="project-preview__cover project-preview__cover--noduvia">
+              <img src="./assets/tesavion.png" alt="Icono de Noduvia">
+            </div>
+            <div class="project-preview__content">
+              <h3 class="project-preview__title" id="noduvia-title">Noduvia</h3>
+              <p class="project-preview__description">Tu espacio de desarrollo con agentes de IA.</p>
+              <ul class="project-preview__technologies" aria-label="Características principales">
                 <li>Fábrica de software</li><li>Documentación viva</li><li>Conocimiento del código</li>
               </ul>
-              <details class="project-card__details">
-                <summary class="project-card__label">Ver funcionalidad</summary>
-                <ul class="project-card__features">
-                  <li><strong>Spec Driven Development</strong><span>Conecta especificaciones y decisiones con la implementación.</span></li>
-                  <li><strong>Conocimiento del código</strong><span>Documentación en tiempo real y visualización de relaciones y flujos para conservar el conocimiento mientras evoluciona.</span></li>
-                  <li><strong>Git y control móvil</strong><span>Integra Git y una app para interactuar con el agente y controlar el PC.</span></li>
-                </ul>
-              </details>
-              <a class="project-card__link" href="mailto:ismamoralop@gmail.com?subject=Informaci%C3%B3n%20sobre%20Noduvia">Hablemos del proyecto <span aria-hidden="true">↗</span></a>
+              <a class="project-preview__link" href="mailto:ismamoralop@gmail.com?subject=Informaci%C3%B3n%20sobre%20Noduvia">Hablemos del proyecto <span aria-hidden="true">↗</span></a>
             </div>
           </article>
 
-          <article class="project-card" aria-labelledby="trazuvia-title">
-            <img class="project-card__image project-card__image--icon" src="./assets/trazuvia.png" alt="Icono de Trazuvia">
-            <div class="project-card__content">
-              <h3 class="project-card__title" id="trazuvia-title">Trazuvia</h3>
-              <p class="project-card__description">De la idea a la interfaz, en un lienzo visual.</p>
-              <ul class="project-card__technologies" aria-label="Características principales">
+          <article class="project-preview" aria-labelledby="trazuvia-title">
+            <div class="project-preview__cover project-preview__cover--trazuvia">
+              <img src="./assets/trazuvia.png" alt="Icono de Trazuvia">
+            </div>
+            <div class="project-preview__content">
+              <h3 class="project-preview__title" id="trazuvia-title">Trazuvia</h3>
+              <p class="project-preview__description">De la idea a la interfaz, en un lienzo visual.</p>
+              <ul class="project-preview__technologies" aria-label="Características principales">
                 <li>Editor visual</li><li>Wireframes</li><li>Exportación a código</li>
               </ul>
-              <details class="project-card__details">
-                <summary class="project-card__label">Ver funcionalidad</summary>
-                <ul class="project-card__features">
-                  <li><strong>Diseño visual editable</strong><span>Componentes, conectores, capas y grupos, con un panel de propiedades para personalizar cada elemento.</span></li>
-                  <li><strong>De la idea al desarrollo</strong><span>Define estilos CSS reutilizables y exporta diseños a HTML, SVG, PNG y JSON.</span></li>
-                  <li><strong>Guardado e intercambio con IA</strong><span>Guardado automático e intercambio de diseños con herramientas de IA mediante JSON.</span></li>
-                </ul>
-              </details>
-              <a class="project-card__link" href="https://github.com/Isma115/Trazuvia" target="_blank" rel="noopener noreferrer">Ver en Github <span aria-hidden="true">↗</span></a>
+              <a class="project-preview__link" href="https://github.com/Isma115/Trazuvia" target="_blank" rel="noopener noreferrer">Ver en Github <span aria-hidden="true">↗</span></a>
             </div>
           </article>
 
+          </div>
         </div>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
@@ -302,6 +340,8 @@ ORDER BY created_at DESC;</code></pre>
   <script src="./home.js"></script>
   <script src="./scripts/fondo.js"></script>
   <script src="./scripts/secciones.js"></script>
+  <script src="./scripts/sobre-mi.js"></script>
+  <script src="./scripts/proyectos.js"></script>
   <script src="./scripts/codigo-fondo.js"></script>
 </body>
 

@@ -152,22 +152,6 @@
     height: 18px;
   }
 
-  .about-layout {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .about-layout__photo {
-    width: min(240px, 60vw);
-  }
-
-  .about-layout__text {
-    width: min(620px, 100%);
-  }
-
-  .about-layout__text h2,
   .section-content h2 {
     font-size: clamp(2.2rem, 10vw, 3.3rem);
   }
@@ -341,11 +325,6 @@
     display: none;
   }
 
-  .about-layout__photo {
-    width: min(204px, 60vw);
-  }
-
-  .about-layout__text h2,
   .section-content h2 {
     font-size: clamp(1.94rem, 11vw, 2.76rem);
   }
@@ -552,14 +531,5 @@
 /* region Componente Home | Estilos | Movimiento reducido en Sobre mi */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .about-layout,
-  .about-layout.is-visible,
-  .about-layout.is-exiting {
-    opacity: 1;
-    transform: none;
-    transition: none;
-    animation: none;
-  }
-  .about-layout.is-visible.is-title-glitching .about-layout__text h2 { animation: none; }
 }
 /* endregion */

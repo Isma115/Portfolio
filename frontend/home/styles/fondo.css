@@ -68,17 +68,17 @@
   }
 
   35% {
-    opacity: 0.54;
+    opacity: 0.27;
     transform: translate(-50%, -50%) scale(1.12) rotate(8deg);
   }
 
   55% {
-    opacity: 0.34;
+    opacity: 0.17;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
   }
 
   80% {
-    opacity: 0.12;
+    opacity: 0.06;
     transform: translate(-50%, -50%) scale(0.88) rotate(12deg);
   }
 }
@@ -87,6 +87,7 @@
 
 /* region Componente Home | Estilos | Fragmentos de codigo de fondo */
 .background-code {
+  visibility: hidden;
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -94,12 +95,16 @@
   pointer-events: none;
 }
 
+.background-code.is-ready { visibility: visible; }
+
 .background-code pre {
   position: absolute;
-  max-width: min(42ch, 64vw);
+  max-width: min(42ch, 64vw, calc(100vw - 40px));
+  max-height: max(0px, calc(100vh - 40px));
+  overflow: hidden;
   margin: 0;
   color: #c3d6db;
-  opacity: 0.18;
+  opacity: 0.09;
   font: 10px/1.5 ui-monospace, Consolas, monospace;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -108,9 +113,8 @@
 }
 
 .background-code pre.is-fading { opacity: 0; }
-.background-code pre:nth-child(1) { top: 12%; left: 4%; }
-.background-code pre:nth-child(2) { top: 48%; right: 4%; animation-delay: -9s; }
-.background-code pre:nth-child(3) { bottom: 10%; left: 7%; animation-delay: -18s; }
+.background-code pre:nth-child(2) { animation-delay: -9s; }
+.background-code pre:nth-child(3) { animation-delay: -18s; }
 
 @keyframes background-code-drift {
   from { transform: translate3d(0, 0, 0); }
