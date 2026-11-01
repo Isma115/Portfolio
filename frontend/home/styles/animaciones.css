@@ -130,6 +130,43 @@
 /* endregion */
 
 /* region Componente Home | Estilos | Indicador de scroll */
+.section-up-zone {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 50%;
+  width: 140px;
+  height: 70px;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+}
+.section-up-button {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(158, 230, 238, 0.8);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+.section-up-zone:hover .section-up-button,
+.section-up-button:focus-visible { opacity: 1; }
+.section-up-button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.section-up-button span {
+  width: 22px;
+  height: 22px;
+  border-top: 3px solid currentColor;
+  border-left: 3px solid currentColor;
+  transform: translateY(5px) rotate(45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-up-button { transition: none; }
+}
 .scroll-indicator {
   position: absolute;
   bottom: 36px;
@@ -142,7 +179,7 @@
   opacity: 0;
   transform: translateX(-50%) translateY(14px) scale(0.84);
   cursor: pointer;
-  transition: opacity 900ms ease-out, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 500ms ease-out, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .scroll-indicator.is-ready {
@@ -227,8 +264,8 @@ body.is-user-scrolling .section-scroll-indicator.is-ready {
   display: block;
   width: 22px;
   height: 22px;
-  border-right: 2px solid var(--section-accent-start);
-  border-bottom: 2px solid var(--section-accent-start);
+  border-right: 3px solid var(--section-accent-start);
+  border-bottom: 3px solid var(--section-accent-start);
   transform: rotate(45deg) translateY(-3px);
   animation: scroll-bounce 2s ease-in-out infinite;
   transition: border-color 140ms ease, opacity 160ms ease-out;

@@ -159,20 +159,22 @@ window.addEventListener("scroll", updateActiveMenu, { passive: true });
 updateActiveMenu();
 // endregion
 
-// region Componente Home | Funcionalidad | Ocultar menu superpuesto al nombre
+// region Componente Home | Funcionalidad | Ocultar menu superpuesto al contenido
 const topMenu = document.querySelector(".portfolio-top-menu");
-const heroName = document.querySelector(".hero-center__name");
-const desktopMenu = window.matchMedia("(min-width: 901px)");
+const menuOverlapContent = Array.from(document.querySelectorAll(
+  ".portfolio-container > section :is(h1, h2, h3, h4, p, img, li, a)"
+));
 
 function updateMenuNameOverlap() {
   let overlaps = false;
 
-  if (desktopMenu.matches && document.body.classList.contains("is-home-active") &&
-      document.body.classList.contains("is-menu-open")) {
+  if (document.body.classList.contains("is-menu-open")) {
     const menuRect = topMenu.getBoundingClientRect();
-    const nameRect = heroName.getBoundingClientRect();
-    overlaps = menuRect.left < nameRect.right && menuRect.right > nameRect.left &&
-      menuRect.top < nameRect.bottom && menuRect.bottom > nameRect.top;
+    overlaps = menuOverlapContent.some((element) => {
+      const rect = element.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0 && menuRect.left < rect.right &&
+        menuRect.right > rect.left && menuRect.top < rect.bottom && menuRect.bottom > rect.top;
+    });
   }
 
   topMenu.classList.toggle("is-overlapping-name", overlaps);
@@ -180,7 +182,7 @@ function updateMenuNameOverlap() {
   window.requestAnimationFrame(updateMenuNameOverlap);
 }
 
-if (topMenu && heroName) {
+if (topMenu) {
   updateMenuNameOverlap();
 }
 // endregion

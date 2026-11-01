@@ -8,13 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./home.css">
+  <link rel="stylesheet" href="./home.css?v=3">
   <link rel="stylesheet" href="./styles/secciones.css">
   <link rel="stylesheet" href="./styles/fondo.css">
-  <link rel="stylesheet" href="./styles/animaciones.css">
+  <link rel="stylesheet" href="./styles/animaciones.css?v=3">
   <link rel="stylesheet" href="./styles/adaptacion.css">
   <link rel="stylesheet" href="./styles/sobre-mi.css">
   <link rel="stylesheet" href="./styles/proyectos.css">
+  <link rel="stylesheet" href="../shared/cyberpunk.css?v=29">
 </head>
 
 <body>
@@ -91,7 +92,6 @@
       <div class="about-layout no-glitch">
         <header class="about-header">
           <h2 id="about-title">Sobre mí</h2>
-          <p>Conoce un poco más sobre mi perfil</p>
         </header>
 
         <div class="about-photo">
@@ -216,27 +216,27 @@
               <article class="skills-group">
                 <h4 class="skills-group__title">Frontend</h4>
                 <ul class="skills-list">
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/D7DBFF" alt="" aria-hidden="true">JavaScript (ES6+)</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/typescript/D7DBFF" alt="" aria-hidden="true">TypeScript</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/react/D7DBFF" alt="" aria-hidden="true">React</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/nextdotjs/D7DBFF" alt="" aria-hidden="true">Next.js</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/html5/D7DBFF" alt="" aria-hidden="true">HTML5</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/css/D7DBFF" alt="" aria-hidden="true">CSS3</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/tailwindcss/D7DBFF" alt="" aria-hidden="true">Tailwind CSS</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/vite/D7DBFF" alt="" aria-hidden="true">Vite</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/w3c/D7DBFF" alt="" aria-hidden="true">Accesibilidad (a11y)</li>
+                  <li data-skill="JavaScript (ES6+)"><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/D7DBFF" alt="" aria-hidden="true">JavaScript (ES6+)</li>
+                  <li data-skill="TypeScript"><img class="skill-icon" src="https://cdn.simpleicons.org/typescript/D7DBFF" alt="" aria-hidden="true">TypeScript</li>
+                  <li data-skill="React"><img class="skill-icon" src="https://cdn.simpleicons.org/react/D7DBFF" alt="" aria-hidden="true">React</li>
+                  <li data-skill="Next.js"><img class="skill-icon" src="https://cdn.simpleicons.org/nextdotjs/D7DBFF" alt="" aria-hidden="true">Next.js</li>
+                  <li data-skill="HTML5"><img class="skill-icon" src="https://cdn.simpleicons.org/html5/D7DBFF" alt="" aria-hidden="true">HTML5</li>
+                  <li data-skill="CSS3"><img class="skill-icon" src="https://cdn.simpleicons.org/css/D7DBFF" alt="" aria-hidden="true">CSS3</li>
+                  <li data-skill="Tailwind CSS"><img class="skill-icon" src="https://cdn.simpleicons.org/tailwindcss/D7DBFF" alt="" aria-hidden="true">Tailwind CSS</li>
+                  <li data-skill="Vite"><img class="skill-icon" src="https://cdn.simpleicons.org/vite/D7DBFF" alt="" aria-hidden="true">Vite</li>
+                  <li data-skill="Accesibilidad (a11y)"><img class="skill-icon" src="https://cdn.simpleicons.org/w3c/D7DBFF" alt="" aria-hidden="true">Accesibilidad (a11y)</li>
                 </ul>
               </article>
 
               <article class="skills-group">
                 <h4 class="skills-group__title">Backend y datos</h4>
                 <ul class="skills-list">
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/nodedotjs/D7DBFF" alt="" aria-hidden="true">Node.js</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/express/D7DBFF" alt="" aria-hidden="true">Express</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/openapiinitiative/D7DBFF" alt="" aria-hidden="true">REST API</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/D7DBFF" alt="" aria-hidden="true">PostgreSQL</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/sqlite/D7DBFF" alt="" aria-hidden="true">SQL</li>
-                  <li><img class="skill-icon" src="https://cdn.simpleicons.org/jsonwebtokens/D7DBFF" alt="" aria-hidden="true">Autenticacion JWT</li>
+                  <li data-skill="Node.js"><img class="skill-icon" src="https://cdn.simpleicons.org/nodedotjs/D7DBFF" alt="" aria-hidden="true">Node.js</li>
+                  <li data-skill="Express"><img class="skill-icon" src="https://cdn.simpleicons.org/express/D7DBFF" alt="" aria-hidden="true">Express</li>
+                  <li data-skill="REST API"><img class="skill-icon" src="https://cdn.simpleicons.org/openapiinitiative/D7DBFF" alt="" aria-hidden="true">REST API</li>
+                  <li data-skill="PostgreSQL"><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/D7DBFF" alt="" aria-hidden="true">PostgreSQL</li>
+                  <li data-skill="SQL"><img class="skill-icon" src="https://cdn.simpleicons.org/sqlite/D7DBFF" alt="" aria-hidden="true">SQL</li>
+                  <li data-skill="Autenticacion JWT"><img class="skill-icon" src="https://cdn.simpleicons.org/jsonwebtokens/D7DBFF" alt="" aria-hidden="true">Autenticacion JWT</li>
                 </ul>
               </article>
             </div>
@@ -248,12 +248,12 @@
               <h3 id="tools-title">Herramientas</h3>
             </header>
             <ul class="skills-list">
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/git/D7DBFF" alt="" aria-hidden="true">Git</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/github/D7DBFF" alt="" aria-hidden="true">GitHub</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/docker/D7DBFF" alt="" aria-hidden="true">Docker</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/githubactions/D7DBFF" alt="" aria-hidden="true">CI/CD (GitHub Actions)</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/postman/D7DBFF" alt="" aria-hidden="true">Postman</li>
-              <li><img class="skill-icon" src="https://cdn.simpleicons.org/figma/D7DBFF" alt="" aria-hidden="true">Figma</li>
+              <li data-skill="Git"><img class="skill-icon" src="https://cdn.simpleicons.org/git/D7DBFF" alt="" aria-hidden="true">Git</li>
+              <li data-skill="GitHub"><img class="skill-icon" src="https://cdn.simpleicons.org/github/D7DBFF" alt="" aria-hidden="true">GitHub</li>
+              <li data-skill="Docker"><img class="skill-icon" src="https://cdn.simpleicons.org/docker/D7DBFF" alt="" aria-hidden="true">Docker</li>
+              <li data-skill="CI/CD (GitHub Actions)"><img class="skill-icon" src="https://cdn.simpleicons.org/githubactions/D7DBFF" alt="" aria-hidden="true">CI/CD (GitHub Actions)</li>
+              <li data-skill="Postman"><img class="skill-icon" src="https://cdn.simpleicons.org/postman/D7DBFF" alt="" aria-hidden="true">Postman</li>
+              <li data-skill="Figma"><img class="skill-icon" src="https://cdn.simpleicons.org/figma/D7DBFF" alt="" aria-hidden="true">Figma</li>
             </ul>
           </section>
         </div>
@@ -337,12 +337,13 @@
   </main>
   <!-- endregion -->
 
-  <script src="./home.js"></script>
+  <script src="./home.js?v=2"></script>
   <script src="./scripts/fondo.js"></script>
-  <script src="./scripts/secciones.js"></script>
+  <script src="./scripts/secciones.js?v=6"></script>
   <script src="./scripts/sobre-mi.js"></script>
   <script src="./scripts/proyectos.js"></script>
   <script src="./scripts/codigo-fondo.js"></script>
+  <script src="../shared/hologram.js?v=2"></script>
 </body>
 
 </html>

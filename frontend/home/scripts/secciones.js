@@ -143,7 +143,67 @@ newsLinks.forEach((link) => {
 // endregion
 
 // region Componente Home | Funcionalidad | Indicador de scroll
+// Ajusta suavemente solo cuando el desplazamiento termina cerca de una sección.
+(() => {
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const sections = Array.from(document.querySelectorAll(".portfolio-container > section"));
+  let timer;
+  let frame;
+  let snapping = false;
+
+  function cancelSnap() {
+    window.clearTimeout(timer);
+    window.cancelAnimationFrame(frame);
+    snapping = false;
+  }
+
+  ["wheel", "touchstart", "pointerdown", "keydown"].forEach((event) => {
+    window.addEventListener(event, cancelSnap, { passive: true });
+  });
+
+  window.addEventListener("scroll", () => {
+    if (snapping || motion.matches) return;
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      const start = window.scrollY;
+      const nearest = sections.reduce((best, section) => {
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        return best === null || Math.abs(top - start) < Math.abs(best - start) ? top : best;
+      }, null);
+      if (nearest === null || Math.abs(nearest - start) < 2 || Math.abs(nearest - start) > window.innerHeight * 0.48) return;
+
+      snapping = true;
+      let started;
+      function animate(time) {
+        if (started === undefined) started = time;
+        const progress = Math.min((time - started) / 650, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        window.scrollTo({ top: start + (nearest - start) * ease, behavior: "instant" });
+        if (progress < 1) frame = window.requestAnimationFrame(animate);
+        else snapping = false;
+      }
+      frame = window.requestAnimationFrame(animate);
+    }, 180);
+  }, { passive: true });
+})();
+
 const scrollIndicators = Array.from(document.querySelectorAll(".scroll-indicator"));
+const navigationSections = Array.from(document.querySelectorAll(".portfolio-container > section"));
+navigationSections.slice(1).forEach((section, index) => {
+  const zone = document.createElement("div");
+  zone.className = "section-up-zone";
+  const button = document.createElement("button");
+  button.className = "section-up-button";
+  button.type = "button";
+  button.setAttribute("aria-label", "Ir a la sección anterior");
+  button.innerHTML = '<span aria-hidden="true"></span>';
+  button.addEventListener("click", () => navigationSections[index].scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    block: "start"
+  }));
+  zone.appendChild(button);
+  section.prepend(zone);
+});
 let scrollHideTimer = null;
 
 window.addEventListener("scroll", () => {
@@ -151,7 +211,7 @@ window.addEventListener("scroll", () => {
   window.clearTimeout(scrollHideTimer);
   scrollHideTimer = window.setTimeout(() => {
     document.body.classList.remove("is-user-scrolling");
-  }, 450);
+  }, 200);
 }, { passive: true });
 
 if (scrollIndicators.length) {
@@ -163,7 +223,7 @@ if (scrollIndicators.length) {
 
       window.setTimeout(() => {
         entry.target.classList.add("is-ready");
-      }, 300);
+      }, 100);
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.3 });
