@@ -53,18 +53,21 @@
 }
 
 .hero-center__typewriter {
-  --typewriter-width: 23ch;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
-  width: 0;
+  clip-path: inset(0 100% 0 0);
   border-right: 2px solid var(--muted);
   animation:
     typewriter 1.8s steps(23, end) 0.8s forwards,
-    cursor-blink 0.75s step-end infinite 0.8s,
+    cursor-blink 0.75s step-end 5 0.8s,
     cursor-hide 0.01s linear 4.6s forwards;
 }
 
+@keyframes boot-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @keyframes word-reveal {
   0% {
     opacity: 0;
@@ -72,18 +75,13 @@
     filter: blur(6px);
     text-shadow: 8px 5px 0 rgba(22, 57, 135, 0.65), -6px -4px 0 rgba(210, 43, 56, 0.5);
   }
-
-  40% {
-    text-shadow: 6px 4px 0 rgba(22, 57, 135, 0.65), -5px -3px 0 rgba(210, 43, 56, 0.5);
-  }
-
+  40% { text-shadow: 6px 4px 0 rgba(22, 57, 135, 0.65), -5px -3px 0 rgba(210, 43, 56, 0.5); }
   60% {
     opacity: 1;
     transform: translateY(-4px) skewY(-0.5deg);
     filter: blur(0);
     text-shadow: 3px 2px 0 rgba(22, 57, 135, 0.4), -2px -1px 0 rgba(210, 43, 56, 0.3);
   }
-
   100% {
     opacity: 1;
     transform: translateY(0) skewY(0deg);
@@ -93,6 +91,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-center { animation: none; }
+  .hero-center__typewriter {
+    clip-path: none;
+    border-color: transparent;
+    animation: none;
+  }
   .hero-center__name-word {
     opacity: 1;
     transform: none;
@@ -101,14 +105,10 @@
   }
 }
 
+/* Revelar el texto no modifica su ancho ni recalcula el layout del bloque. */
 @keyframes typewriter {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: var(--typewriter-width);
-  }
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0); }
 }
 
 @keyframes cursor-blink {
@@ -324,7 +324,6 @@ body.is-scrolled-down .scroll-indicator--home .scroll-indicator__arrow {
   transition:
     opacity 1500ms ease,
     transform 1500ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity, clip-path, filter;
 }
 
 .section-content:nth-child(even) {
@@ -479,73 +478,133 @@ body.is-scrolled-down .scroll-indicator--home .scroll-indicator__arrow {
 }
 /* endregion */
 
-/* region Estilos Pagina Home: salida progresiva hacia novedades */
-body.is-navigating-to-news {
-  overflow: hidden;
+
+
+
+/* region Componente Home | Estilos | Entrada escalonada de componentes */
+/* El contenedor entra con un fundido corto y los componentes llegan despues, uno a uno. */
+.section-content .reveal-item {
+  --reveal-from: translateY(36px);
+  --reveal-clip: inset(-60px);
+  opacity: 0;
+  transform: var(--reveal-from);
+  clip-path: var(--reveal-clip);
+  transition:
+    opacity 700ms ease calc(var(--reveal-index, 0) * 60ms + 220ms),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--reveal-index, 0) * 60ms + 220ms),
+    clip-path 900ms cubic-bezier(0.77, 0, 0.18, 1) calc(var(--reveal-index, 0) * 60ms + 220ms),
+    filter 700ms ease calc(var(--reveal-index, 0) * 60ms + 220ms),
+    background-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
-body.is-navigating-to-news .portfolio-container {
-  pointer-events: none;
+.section-content.is-visible .reveal-item {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(-60px);
+  filter: none;
 }
 
-body.is-navigating-to-news .menu-toggle,
-body.is-navigating-to-news .portfolio-top-menu {
-  pointer-events: none;
-  animation: news-ui-exit 280ms ease both;
+/* Al salir, todo se recoge a la vez y rapido para no frenar el scroll */
+.section-content.is-exiting .reveal-item {
+  transition-duration: 300ms;
+  transition-delay: 0ms;
 }
 
-body.is-navigating-to-news .portfolio-container > section {
-  --news-exit-delay: 0ms;
-  animation: news-section-exit 560ms cubic-bezier(0.55, 0, 0.1, 1) var(--news-exit-delay) both;
+/* Stack: las etiquetas se ensamblan con un pequeño rebote */
+[data-reveal="skills"] .skills-list li.reveal-item {
+  --reveal-from: translateY(18px) scale(0.6);
+  transition-timing-function: ease, cubic-bezier(0.34, 1.56, 0.64, 1), ease, ease, ease, ease;
+  transition-delay:
+    calc(var(--reveal-index, 0) * 40ms + 300ms),
+    calc(var(--reveal-index, 0) * 40ms + 300ms),
+    0ms,
+    calc(var(--reveal-index, 0) * 40ms + 300ms),
+    0ms,
+    0ms;
 }
 
-body.is-navigating-to-news .section-home {
-  --news-exit-delay: 0ms;
+/* Titulos: sin desenfoque, se descifran letra a letra (JS) mientras se desplazan */
+[data-reveal="skills"] .skills-section-heading__eyebrow.reveal-item,
+[data-reveal="skills"] .skills-section-heading h3.reveal-item,
+[data-reveal="skills"] .skills-group__title.reveal-item,
+[data-reveal="experience"] .experience-card__meta.reveal-item {
+  --reveal-from: translateX(-20px);
+  filter: none;
 }
 
-body.is-navigating-to-news .section-about {
-  --news-exit-delay: 70ms;
+/* Experiencia: las tarjetas se despliegan como una linea temporal, con barrido lateral */
+[data-reveal="experience"] .experience-card.reveal-item {
+  --reveal-from: translateX(-60px) skewX(-6deg);
+  --reveal-clip: inset(0 100% 0 0);
 }
 
-body.is-navigating-to-news .section-projects {
-  --news-exit-delay: 140ms;
+[data-reveal="experience"] .experience-card.reveal-item:nth-child(even) {
+  --reveal-from: translateX(60px) skewX(6deg);
+  --reveal-clip: inset(0 0 0 100%);
 }
 
-body.is-navigating-to-news .section-skills {
-  --news-exit-delay: 210ms;
+/* Descripciones: se revelan de arriba abajo con una mascara que barre las lineas */
+[data-reveal="experience"] .experience-card__description.reveal-item {
+  filter: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 33%, transparent 66%);
+  mask-image: linear-gradient(180deg, #000 33%, transparent 66%);
+  -webkit-mask-size: 100% 300%;
+  mask-size: 100% 300%;
+  -webkit-mask-position: 0 100%;
+  mask-position: 0 100%;
+  transition:
+    opacity 400ms ease calc(var(--reveal-index, 0) * 90ms + 520ms),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--reveal-index, 0) * 90ms + 520ms),
+    -webkit-mask-position 1300ms cubic-bezier(0.45, 0, 0.2, 1) calc(var(--reveal-index, 0) * 90ms + 520ms),
+    mask-position 1300ms cubic-bezier(0.45, 0, 0.2, 1) calc(var(--reveal-index, 0) * 90ms + 520ms);
 }
 
-body.is-navigating-to-news .section-experience {
-  --news-exit-delay: 280ms;
+[data-reveal="experience"].is-visible .experience-card__description.reveal-item {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
 }
 
-body.is-navigating-to-news .section-contact {
-  --news-exit-delay: 350ms;
+[data-reveal="experience"] .experience-card__logo.reveal-item,
+[data-reveal="experience"] .experience-card__meta.reveal-item {
+  --reveal-from: translateY(14px);
+  transition-delay: calc(var(--reveal-index, 0) * 90ms + 520ms);
 }
 
-@keyframes news-ui-exit {
-  to {
-    opacity: 0;
-    transform: translateY(-16px);
-  }
+/* Contacto: las tarjetas giran en perspectiva desde abajo */
+[data-reveal="contact"] {
+  perspective: 1200px;
 }
 
-@keyframes news-section-exit {
-  0% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translate3d(0, 0, 0) scale(1);
-  }
+[data-reveal="contact"] .contact-card.reveal-item {
+  --reveal-from: translateY(50px) rotateX(-55deg) scale(0.9);
+  transform-origin: 50% 100%;
+  transition-delay:
+    calc(var(--reveal-index, 0) * 110ms + 250ms),
+    calc(var(--reveal-index, 0) * 110ms + 250ms),
+    calc(var(--reveal-index, 0) * 110ms + 250ms),
+    calc(var(--reveal-index, 0) * 110ms + 250ms),
+    0ms,
+    0ms;
+}
 
-  68% {
-    opacity: 0.34;
-  }
+/* Las secciones con entrada escalonada no necesitan el desplazamiento grande del contenedor */
+.section-content[data-reveal] {
+  transform: translateY(24px);
+  transition: opacity 600ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  100% {
-    opacity: 0;
-    filter: blur(5px);
-    transform: translate3d(0, -12vh, 0) scale(0.94);
+.section-content[data-reveal].is-visible {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-content .reveal-item,
+  .section-content[data-reveal] {
+    transform: none;
+    clip-path: none;
+    filter: none;
+    transition: opacity 300ms ease;
   }
 }
 /* endregion */
-

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" fill="none" stroke="#7ba8ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<!-- region Fondo de proyecto: interfaces y diagramas de flujo de Trazuvia -->
+<defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="#7ba8ff" stroke="none" opacity=".3"/></pattern></defs><path fill="url(#grid)" stroke="none" d="M0 0h1000v360H0z"/>
+<rect x="64" y="60" width="250" height="216" rx="4"/><path d="M64 94h250M87 112h61v140H87zM166 112h127v58H166zM166 188h127M166 204h102M166 220h115M166 242h53" opacity=".7"/>
+<g fill="#081327"><rect x="60" y="56" width="8" height="8"/><rect x="310" y="56" width="8" height="8"/><rect x="60" y="272" width="8" height="8"/><rect x="310" y="272" width="8" height="8"/></g>
+<path d="M315 166h52c34 0 34-117 68-117h64" stroke-dasharray="4 6" opacity=".65"/>
+<rect x="755" y="34" width="100" height="36" rx="18"/><path d="M805 70v34m-5-6 5 6 5-6M805 104l52 43-52 43-52-43z"/>
+<path d="M753 147h-62v74m-5-6 5 6 5-6M857 147h62v74m-5-6 5 6 5-6"/>
+<rect x="641" y="221" width="100" height="48" rx="4"/><rect x="869" y="221" width="100" height="48" rx="4"/><path d="M659 239h64M659 251h44M887 239h64M887 251h44" opacity=".65"/>
+<path d="M691 269v38h114m114-38v38H805v18m-5-6 5 6 5-6"/><circle cx="805" cy="336" r="11"/>
+<path d="m362 229 3 37 10-11 15-3zM112 308h202M112 303v10M314 303v10" opacity=".7"/>
+<!-- endregion -->
+</svg>

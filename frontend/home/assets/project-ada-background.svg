@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" fill="none" stroke="#6ff0d8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<!-- region Fondo de proyecto: circuitos y voz de Ada -->
+<path d="M0 80h109l43 43h109M0 272h123l42-42h96M42 171h219M739 123h116l41-43h104M739 230h89l42 42h130M739 171h219" opacity=".65"/>
+<rect x="281" y="91" width="118" height="180" rx="18"/><rect x="301" y="112" width="78" height="138" rx="10" opacity=".45"/>
+<path d="M304 71V51M328 71V39M352 71V51M376 71V39M304 291v20M328 291v32M352 291v20M376 291v32M261 119h20M261 145h20M261 171h20M261 197h20M261 223h20M399 119h20M399 145h20M399 197h20M399 223h20"/>
+<path d="M599 180h17l10-21 12 45 12-73 12 98 12-128 12 151 12-128 12 88 12-54 10 22h22" stroke-width="2"/>
+<circle cx="680" cy="180" r="105" opacity=".22"/><path d="M601 68a137 137 0 0 1 160 13M794 262a137 137 0 0 1-168 45" opacity=".5"/>
+<g fill="#071b1b"><circle cx="109" cy="80" r="4"/><circle cx="42" cy="171" r="4"/><circle cx="123" cy="272" r="4"/><circle cx="896" cy="80" r="4"/><circle cx="958" cy="171" r="4"/><circle cx="870" cy="272" r="4"/></g>
+<!-- endregion -->
+</svg>

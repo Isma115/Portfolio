@@ -24,11 +24,11 @@
 }
 
 .section-about {
-  --section-accent-start: #ffe08a;
-  --section-accent-end: #ff7a45;
-  --section-accent-light: #fff0b8;
-  --section-accent-soft: rgba(255, 167, 70, 0.2);
-  --section-accent-glow: rgba(255, 122, 69, 0.34);
+  --section-accent-start: #6ff0d8;
+  --section-accent-end: #1fa892;
+  --section-accent-light: #c8fff2;
+  --section-accent-soft: rgba(63, 224, 197, 0.2);
+  --section-accent-glow: rgba(31, 168, 146, 0.3);
 }
 
 .section-projects {
@@ -48,11 +48,11 @@
 }
 
 .section-experience {
-  --section-accent-start: #ffe09a;
-  --section-accent-end: #ef764d;
-  --section-accent-light: #ffd1a8;
-  --section-accent-soft: rgba(239, 147, 77, 0.2);
-  --section-accent-glow: rgba(239, 118, 77, 0.3);
+  --section-accent-start: #ff8a8f;
+  --section-accent-end: #e0263f;
+  --section-accent-light: #ffd0d4;
+  --section-accent-soft: rgba(255, 92, 108, 0.18);
+  --section-accent-glow: rgba(224, 38, 63, 0.3);
 }
 
 .section-contact {
@@ -166,62 +166,6 @@
   outline: 2px solid var(--section-accent-light);
   outline-offset: 5px;
 }
-
-/* region Estilos Pagina Home: boton de acceso a novedades */
-.projects-news-button {
-  position: relative;
-  isolation: isolate;
-  width: max-content;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin: 18px auto 0;
-  padding: 11px 15px 11px 17px;
-  border: 1px solid rgba(198, 164, 255, 0.58);
-  color: #ffffff;
-  font-size: 0.92rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  overflow: hidden;
-  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
-}
-
-.projects-news-button::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  content: "";
-  background: linear-gradient(115deg, rgba(117, 84, 196, 0.46), rgba(198, 164, 255, 0.16));
-  transform: translateX(-102%);
-  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.projects-news-button:hover,
-.projects-news-button:focus-visible {
-  border-color: var(--section-accent-light);
-  box-shadow: 0 0 26px rgba(139, 60, 255, 0.26);
-  outline: none;
-  transform: translateY(-2px);
-}
-
-.projects-news-button:hover::before,
-.projects-news-button:focus-visible::before {
-  transform: translateX(0);
-}
-
-.projects-news-button__arrow {
-  color: var(--section-accent-light);
-  font-size: 1.1rem;
-  line-height: 1;
-  transition: transform 220ms ease;
-}
-
-.projects-news-button:hover .projects-news-button__arrow,
-.projects-news-button:focus-visible .projects-news-button__arrow {
-  transform: translate(3px, -3px);
-}
-/* endregion */
 
 /* region Componente Home | Estilos | Carrusel 3D de proyectos ampliado */
 .projects-carousel-controls {
@@ -704,6 +648,22 @@
   gap: 6px;
 }
 
+.experience-card__logo {
+  width: auto;
+  max-width: min(220px, 100%);
+  height: auto;
+  max-height: 52px;
+  object-fit: contain;
+  justify-self: start;
+}
+
+.experience-card__description {
+  margin: 12px 0 0;
+  color: rgba(244, 247, 251, 0.78);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
 .experience-card__company {
   margin: 0;
   color: #ffffff;
@@ -717,35 +677,6 @@
   color: rgba(244, 247, 251, 0.62);
   font-size: 0.88rem;
   line-height: 1.45;
-}
-
-.experience-card__highlights {
-  margin: 12px 0 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 8px;
-}
-
-.experience-card__highlights li {
-  position: relative;
-  padding-left: 14px;
-  color: rgba(244, 247, 251, 0.78);
-  font-size: 0.92rem;
-  line-height: 1.48;
-}
-
-.experience-card__highlights li::before {
-  position: absolute;
-  left: 0;
-  top: 0.52em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  content: "";
-  background: linear-gradient(180deg, var(--section-accent-start), var(--section-accent-end));
-  box-shadow: 0 0 10px var(--section-accent-glow);
-  transform: translateY(-50%);
 }
 /* endregion */
 
@@ -814,4 +745,38 @@
 }
 /* endregion */
 
+/* endregion */
+
+/* region Componente Home | Estilos | Lista de experiencia */
+.experience-card__list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.experience-card__list li {
+  position: relative;
+  padding-left: 26px;
+}
+
+.experience-card__list li + li {
+  margin-top: 10px;
+}
+
+.experience-card__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.82em;
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #7be3f0, rgba(123, 227, 240, 0.15));
+  box-shadow: 0 0 8px rgba(123, 227, 240, 0.55);
+}
+
+.experience-card__list strong {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 0 14px rgba(123, 227, 240, 0.35);
+}
 /* endregion */

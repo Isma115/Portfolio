@@ -7,8 +7,6 @@
   height: 100vh;
   opacity: var(--topography-visibility);
   pointer-events: none;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 18px rgba(184, 190, 200, 0.16));
   transition: opacity 500ms ease;
   will-change: opacity;
 }
@@ -26,6 +24,7 @@
   transform: translate3d(0, var(--particle-y), 0);
   transition: opacity 500ms ease;
   will-change: transform, opacity;
+  contain: strict;
 }
 
 .background-particles span {
@@ -42,7 +41,6 @@
   line-height: 1;
   opacity: 0;
   text-shadow: 0 0 16px currentColor;
-  mix-blend-mode: screen;
   transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
   animation: particle-pop 96s ease-in-out infinite;
   animation-delay: var(--delay);
@@ -93,12 +91,17 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  /* Cada letra escrita solo invalida esta capa, no el documento */
+  contain: strict;
 }
 
 .background-code.is-ready { visibility: visible; }
 
 .background-code pre {
   position: absolute;
+  left: var(--code-x, 8%);
+  top: var(--code-y, 8%);
+  translate: calc(-1 * var(--code-x, 8%)) calc(-1 * var(--code-y, 8%));
   max-width: min(42ch, 64vw, calc(100vw - 40px));
   max-height: max(0px, calc(100vh - 40px));
   overflow: hidden;
@@ -109,6 +112,7 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   transition: opacity 3s ease;
+  contain: layout paint style;
   animation: background-code-drift 28s ease-in-out infinite alternate;
 }
 
@@ -131,51 +135,94 @@
 /* endregion */
 
 /* region Componente Home | Estilos | Estelas de color de fondo */
+/* Colores registrados para que el cambio de paleta entre secciones se funda suavemente */
+@property --trail-color-1 { syntax: "<color>"; inherits: true; initial-value: transparent; }
+@property --trail-color-2 { syntax: "<color>"; inherits: true; initial-value: transparent; }
+@property --trail-color-3 { syntax: "<color>"; inherits: true; initial-value: transparent; }
+@property --trail-core { syntax: "<color>"; inherits: true; initial-value: transparent; }
+
 .color-trails {
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  opacity: var(--trails-visibility);
+  opacity: calc(var(--trails-visibility) * 0.45);
   pointer-events: none;
   transition: opacity 500ms ease;
+  contain: strict;
 }
 
 .color-trail {
   position: absolute;
-  width: 160%;
+  /* La posicion vertical se anima con `translate` (compuesto en GPU) en lugar de `top`,
+     que obligaba a recalcular layout y repintar las capas difuminadas en cada frame */
+  top: 0;
+  width: calc(var(--trail-span, 160) * 1%);
   height: var(--trail-height, 240px);
   --trail-color-1: rgba(59, 130, 246, 0.2);
   --trail-color-2: rgba(34, 211, 238, 0.22);
   --trail-color-3: rgba(20, 184, 166, 0.18);
-  background:
-    radial-gradient(ellipse at 52% 50%, var(--trail-color-2), transparent 60%),
-    linear-gradient(90deg, transparent 8%, var(--trail-color-1) 35%, var(--trail-color-3) 65%, transparent 92%);
-  border-radius: 50%;
-  mask-image: linear-gradient(180deg, transparent, #000 40%, #000 60%, transparent);
+  --trail-core: transparent;
   opacity: 0;
-  filter: blur(42px);
+  transition: --trail-color-1 1800ms ease, --trail-color-2 1800ms ease,
+    --trail-color-3 1800ms ease, --trail-core 1800ms ease;
   will-change: transform, opacity;
-  left: -30%;
+  left: calc(50% - var(--trail-span, 160) * 0.5%);
+}
+
+/* Halo exterior: nube amplia y muy difuminada */
+.color-trail::before {
+  content: "";
+  position: absolute;
+  inset: -25% -5%;
+  background:
+    radial-gradient(ellipse 30% 50% at 72% 50%, var(--trail-color-3), transparent 70%),
+    radial-gradient(ellipse 45% 60% at 45% 50%, var(--trail-color-2), transparent 72%),
+    linear-gradient(90deg, transparent 0%, var(--trail-color-1) 30%, var(--trail-color-2) 60%, var(--trail-color-3) 85%, transparent 100%);
+  border-radius: var(--trail-radius, 50%);
+  -webkit-mask-image: var(--trail-mask, linear-gradient(180deg, transparent, #000 40%, #000 60%, transparent));
+  mask-image: var(--trail-mask, linear-gradient(180deg, transparent, #000 40%, #000 60%, transparent));
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  filter: blur(calc(var(--trail-blur, 42px) * 1.6)) saturate(1.1);
+}
+
+/* Estela interior: haz luminoso con cola que se desvanece */
+.color-trail::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 34%;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse 18% 50% at 82% 50%, var(--trail-core), transparent 75%),
+    linear-gradient(90deg, transparent 0%, var(--trail-color-1) 35%, var(--trail-color-2) 70%, var(--trail-color-3) 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 35%, #000 65%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 35%, #000 65%, transparent);
+  filter: blur(calc(var(--trail-blur, 42px) * 0.7));
+  opacity: 0.5;
 }
 
 .color-trail--1 {
-  animation: trail-sweep-1 28s ease-in-out infinite;
-  animation-delay: -3s;
+  animation: trail-sweep-1 60s ease-in-out infinite;
+  animation-delay: -6s;
 }
 
 .color-trail--2 {
-  animation: trail-sweep-2 36s ease-in-out infinite;
-  animation-delay: -8s;
+  animation: trail-sweep-2 76s ease-in-out infinite;
+  animation-delay: -30s;
 }
 
 .color-trail--3 {
-  animation: trail-sweep-3 44s ease-in-out infinite;
-  animation-delay: -12s;
+  animation: trail-sweep-3 92s ease-in-out infinite;
+  animation-delay: -60s;
 }
 @keyframes trail-sweep-1 {
   0% {
-    top: 70%;
+    translate: 0 70vh;
     transform: translateX(-100%) rotate(-12deg);
     opacity: 0;
   }
@@ -185,7 +232,7 @@
   }
 
   50% {
-    top: 20%;
+    translate: 0 20vh;
     opacity: 0.9;
   }
 
@@ -194,7 +241,7 @@
   }
 
   100% {
-    top: 30%;
+    translate: 0 30vh;
     transform: translateX(100%) rotate(10deg);
     opacity: 0;
   }
@@ -202,7 +249,7 @@
 
 @keyframes trail-sweep-2 {
   0% {
-    top: 10%;
+    translate: 0 10vh;
     transform: translateX(-100%) rotate(6deg);
     opacity: 0;
   }
@@ -212,7 +259,7 @@
   }
 
   45% {
-    top: 60%;
+    translate: 0 60vh;
     opacity: 0.85;
   }
 
@@ -221,7 +268,7 @@
   }
 
   100% {
-    top: 50%;
+    translate: 0 50vh;
     transform: translateX(100%) rotate(-8deg);
     opacity: 0;
   }
@@ -229,7 +276,7 @@
 
 @keyframes trail-sweep-3 {
   0% {
-    top: 40%;
+    translate: 0 40vh;
     transform: translateX(-100%) rotate(-4deg);
     opacity: 0;
   }
@@ -239,7 +286,7 @@
   }
 
   55% {
-    top: 75%;
+    translate: 0 75vh;
     opacity: 0.95;
   }
 
@@ -248,11 +295,231 @@
   }
 
   100% {
-    top: 65%;
+    translate: 0 65vh;
     transform: translateX(100%) rotate(7deg);
+    opacity: 0;
+  }
+}
+
+.color-trail--4,
+.color-trail--5 {
+  display: none;
+}
+
+.color-trail--4 {
+  animation: trail-sweep-4 40s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+.color-trail--5 {
+  animation: trail-sweep-5 52s ease-in-out infinite;
+  animation-delay: -20s;
+}
+
+@keyframes trail-sweep-4 {
+  0% {
+    translate: 0 55vh;
+    transform: translateX(-100%) rotate(-9deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {
+    translate: 0 25vh;
+    opacity: 0.9;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    translate: 0 15vh;
+    transform: translateX(100%) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes trail-sweep-5 {
+  0% {
+    translate: 0 88vh;
+    transform: translateX(100%) rotate(14deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {
+    translate: 0 45vh;
+    opacity: 0.85;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    translate: 0 92vh;
+    transform: translateX(-100%) rotate(-6deg);
     opacity: 0;
   }
 }
 
 /* endregion */
 
+
+
+/* region Componente Home | Estilos | Atmosfera por seccion */
+/* Las ilustraciones se funden al cambiar de seccion, sin las mascaras del antiguo fondo geometrico. */
+.section-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+
+.section-atmosphere__layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1400ms ease, transform 2200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body:not([data-section]) .section-atmosphere__layer[data-for="home"],
+body[data-section="home"] .section-atmosphere__layer[data-for="home"],
+body[data-section="about"] .section-atmosphere__layer[data-for="about"],
+body[data-section="skills"] .section-atmosphere__layer[data-for="skills"],
+body[data-section="experience"] .section-atmosphere__layer[data-for="experience"],
+body[data-section="contact"] .section-atmosphere__layer[data-for="contact"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-atmosphere__layer { transition: opacity 400ms ease; transform: none; }
+}
+/* endregion */
+
+
+/* region Componente Home | Estilos | Ilustraciones de trazo por seccion */
+/* Cada seccion dibuja su propia ilustracion de linea fina al entrar y la mantiene viva con un leve flote.
+   Se anima solo stroke-dashoffset, opacity y transform. Las capas inactivas no ejecutan nada. */
+.section-atmosphere__layer {
+  background: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.section-atmosphere__layer[data-for="home"] { --atm: 134, 247, 255; }
+.section-atmosphere__layer[data-for="about"] { --atm: 111, 240, 216; }
+.section-atmosphere__layer[data-for="skills"] { --atm: 161, 255, 206; }
+.section-atmosphere__layer[data-for="experience"] { --atm: 255, 138, 143; }
+.section-atmosphere__layer[data-for="contact"] { --atm: 255, 193, 228; }
+
+.section-atmosphere__layer svg {
+  position: absolute;
+  width: min(92vmin, 960px);
+  height: min(92vmin, 960px);
+  overflow: visible;
+  filter: drop-shadow(0 0 5px rgba(var(--atm), 0.3));
+  opacity: 0.2;
+}
+
+.section-atmosphere__layer[data-for="home"] svg { right: -6%; top: 52%; margin-top: max(-23vmin, -240px); width: min(52vmin, 540px); height: min(52vmin, 540px); opacity: 0.09; }
+.section-atmosphere__layer[data-for="about"] svg { right: -3%; top: 22%; width: min(58vmin, 610px); height: min(58vmin, 610px); opacity: 0.09; }
+.section-atmosphere__layer[data-for="skills"] svg { right: -4%; top: 20%; width: min(60vmin, 620px); height: min(60vmin, 620px); opacity: 0.09; }
+.section-atmosphere__layer[data-for="experience"] svg { left: -3%; top: 16%; width: min(64vmin, 660px); height: min(64vmin, 660px); opacity: 0.09; }
+.section-atmosphere__layer[data-for="contact"] svg { right: -2%; bottom: 5%; width: min(56vmin, 580px); height: min(56vmin, 580px); opacity: 0.09; }
+
+.section-atmosphere__layer svg path,
+.section-atmosphere__layer svg circle {
+  fill: none;
+  stroke: rgb(var(--atm));
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  /* Mantiene el trazo al salir mientras se desvanece la capa. */
+  stroke-dashoffset: 0;
+}
+
+.section-atmosphere__layer svg .thin { stroke-width: 1; stroke-opacity: 0.75; }
+.section-atmosphere__layer svg .path { stroke-width: 2.4; }
+.section-atmosphere__layer svg .halo { stroke-width: 1; stroke-opacity: 0.35; }
+.section-atmosphere__layer svg .node { fill: rgba(var(--atm), 0.15); }
+
+/* Trazado: se dibuja en cascada segun el indice --i de cada linea */
+body:not([data-section]) .section-atmosphere__layer[data-for="home"] svg :is(path, circle),
+body[data-section="home"] .section-atmosphere__layer[data-for="home"] svg :is(path, circle),
+body[data-section="about"] .section-atmosphere__layer[data-for="about"] svg :is(path, circle),
+body[data-section="skills"] .section-atmosphere__layer[data-for="skills"] svg :is(path, circle),
+body[data-section="experience"] .section-atmosphere__layer[data-for="experience"] svg :is(path, circle),
+body[data-section="contact"] .section-atmosphere__layer[data-for="contact"] svg :is(path, circle) {
+  animation: atm-stroke-draw 1.8s cubic-bezier(0.45, 0, 0.2, 1) calc(var(--i, 0) * 170ms + 250ms) both;
+}
+
+body[data-section="about"] .section-atmosphere__layer[data-for="about"] svg .node,
+body[data-section="experience"] .section-atmosphere__layer[data-for="experience"] svg .node,
+body[data-section="skills"] .section-atmosphere__layer[data-for="skills"] svg .node,
+body[data-section="contact"] .section-atmosphere__layer[data-for="contact"] svg .node {
+  animation: atm-stroke-draw 1.2s ease calc(var(--i, 0) * 170ms + 250ms) both;
+}
+
+/* Flote continuo, muy lento */
+body:not([data-section]) .section-atmosphere__layer[data-for="home"] svg,
+body[data-section="home"] .section-atmosphere__layer[data-for="home"] svg {
+  animation: atm-turn 140s linear infinite;
+}
+
+body[data-section="about"] .section-atmosphere__layer[data-for="about"] svg,
+body[data-section="skills"] .section-atmosphere__layer[data-for="skills"] svg,
+body[data-section="experience"] .section-atmosphere__layer[data-for="experience"] svg,
+body[data-section="contact"] .section-atmosphere__layer[data-for="contact"] svg {
+  animation: atm-float 16s ease-in-out infinite alternate;
+}
+
+/* Trayectorias discontinuas: una vez dibujadas se vuelven guiones que avanzan */
+.section-atmosphere__layer svg .dash { stroke-dasharray: 1; }
+
+@keyframes atm-stroke-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 700px) {
+  .color-trail--3 { display: none; }
+}
+
+body.effects-paused :is(.background-particles span, .background-code pre, .color-trail,
+  .section-atmosphere__layer svg, .section-atmosphere__layer svg path, .section-atmosphere__layer svg circle) {
+  animation-play-state: paused !important;
+}
+@keyframes atm-turn { to { rotate: 360deg; } }
+@keyframes atm-float {
+  from { transform: translate3d(0, -8px, 0) rotate(-0.6deg); }
+  to { transform: translate3d(0, 10px, 0) rotate(0.6deg); }
+}
+
+@media (max-width: 760px) {
+  .section-atmosphere__layer[data-for] svg {
+    width: 72vmin;
+    height: 72vmin;
+    opacity: 0.08;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-atmosphere__layer svg,
+  .section-atmosphere__layer svg :is(path, circle) { animation: none !important; }
+  .section-atmosphere__layer svg :is(path, circle) { stroke-dashoffset: 0; }
+}
+/* endregion */

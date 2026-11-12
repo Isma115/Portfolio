@@ -3,32 +3,6 @@ if ("scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";
 }
 
-window.scrollTo(0, 0);
-// endregion
-
-// region Componente Home | Funcionalidad | Medicion del ancho real del typewriter
-const typewriterEl = document.querySelector(".hero-center__typewriter");
-
-if (typewriterEl) {
-  const originalWidth = typewriterEl.style.width;
-  const originalOverflow = typewriterEl.style.overflow;
-  const originalPosition = typewriterEl.style.position;
-  const originalVisibility = typewriterEl.style.visibility;
-
-  typewriterEl.style.width = "auto";
-  typewriterEl.style.overflow = "visible";
-  typewriterEl.style.position = "absolute";
-  typewriterEl.style.visibility = "hidden";
-
-  const fullWidth = typewriterEl.scrollWidth;
-
-  typewriterEl.style.width = originalWidth;
-  typewriterEl.style.overflow = originalOverflow;
-  typewriterEl.style.position = originalPosition;
-  typewriterEl.style.visibility = originalVisibility;
-
-  typewriterEl.style.setProperty("--typewriter-width", `${fullWidth}px`);
-}
 // endregion
 
 // region Componente Home | Funcionalidad | Menu hamburguesa y navegacion
@@ -36,7 +10,6 @@ const menuToggle = document.querySelector(".menu-toggle");
 const menuButtons = Array.from(document.querySelectorAll(".top-menu__item"));
 const sections = Array.from(document.querySelectorAll("section[id]"));
 let activeMenuSection = null;
-let menuFontPulseTimer = 0;
 const menuCloseLayoutLockMs = 320;
 let homeLayoutLockUntil = 0;
 
@@ -90,32 +63,17 @@ document.addEventListener("click", (event) => {
   const clickedToggle = event.target.closest(".menu-toggle");
 
   if (!clickedInsideMenu && !clickedToggle) {
-    closeMenu();
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      closeMenu();
+    }
   }
 });
 
 window.addEventListener("resize", () => {
-  if (!window.matchMedia("(max-width: 900px)").matches) {
+  if (window.matchMedia("(max-width: 900px)").matches) {
     closeMenu();
   }
 });
-
-function pulseActiveMenuButton(activeButton) {
-  window.clearTimeout(menuFontPulseTimer);
-
-  menuButtons.forEach((button) => {
-    button.classList.remove("is-font-pulse");
-  });
-
-  if (!activeButton) {
-    return;
-  }
-
-  activeButton.classList.add("is-font-pulse");
-  menuFontPulseTimer = window.setTimeout(() => {
-    activeButton.classList.remove("is-font-pulse");
-  }, 320);
-}
 
 function updateActiveMenu() {
   const shouldKeepHomeLayout = window.performance.now() < homeLayoutLockUntil;
@@ -133,30 +91,31 @@ function updateActiveMenu() {
     }
   });
   
-  let activeButton = null;
-
   menuButtons.forEach((button) => {
-    const isActive = button.dataset.section === currentSection;
-    button.classList.toggle("is-active", isActive);
-
-    if (isActive) {
-      activeButton = button;
-    }
+    button.classList.toggle("is-active", button.dataset.section === currentSection);
   });
-
-  const sectionChanged = activeMenuSection !== currentSection;
-
-  if (activeMenuSection !== null && sectionChanged) {
-    pulseActiveMenuButton(activeButton);
-  }
 
   document.body.classList.toggle("is-home-active", currentSection === "home" || shouldKeepHomeLayout);
   document.body.classList.toggle("is-scrolled-down", currentScrollY > 24);
+  // Solo se escribe al cambiar: cada escritura dispara observadores y recalculo de estilos
+  if (document.body.dataset.section !== currentSection) {
+    document.body.dataset.section = currentSection;
+  }
   activeMenuSection = currentSection;
 }
 
-window.addEventListener("scroll", updateActiveMenu, { passive: true });
-updateActiveMenu();
+let activeMenuFrame = 0;
+window.addEventListener("scroll", () => {
+  if (activeMenuFrame) return;
+  activeMenuFrame = window.requestAnimationFrame(() => {
+    activeMenuFrame = 0;
+    updateActiveMenu();
+  });
+}, { passive: true });
+// La portada arranca arriba: no hace falta medir todas las secciones antes del primer pintado.
+document.body.classList.add("is-home-active");
+document.body.dataset.section = "home";
+activeMenuSection = "home";
 // endregion
 
 // region Componente Home | Funcionalidad | Ocultar menu superpuesto al contenido
@@ -168,7 +127,7 @@ const menuOverlapContent = Array.from(document.querySelectorAll(
 function updateMenuNameOverlap() {
   let overlaps = false;
 
-  if (document.body.classList.contains("is-menu-open")) {
+  if (window.matchMedia("(min-width: 901px)").matches && document.body.classList.contains("is-menu-open")) {
     const menuRect = topMenu.getBoundingClientRect();
     overlaps = menuOverlapContent.some((element) => {
       const rect = element.getBoundingClientRect();
@@ -178,11 +137,34 @@ function updateMenuNameOverlap() {
   }
 
   topMenu.classList.toggle("is-overlapping-name", overlaps);
-  topMenu.inert = overlaps;
-  window.requestAnimationFrame(updateMenuNameOverlap);
+}
+
+// Se recalcula solo cuando algo puede cambiar el solapamiento (no en cada frame)
+let menuOverlapFrame = 0;
+function scheduleMenuNameOverlap() {
+  if (menuOverlapFrame) return;
+  menuOverlapFrame = window.requestAnimationFrame(() => {
+    menuOverlapFrame = 0;
+    updateMenuNameOverlap();
+  });
 }
 
 if (topMenu) {
+  window.addEventListener("scroll", () => {
+    if (document.body.classList.contains("is-menu-open")) scheduleMenuNameOverlap();
+  }, { passive: true });
+  window.addEventListener("resize", scheduleMenuNameOverlap);
+  // Solo interesa cuando el menu se abre o se cierra, no cualquier cambio de clase del body
+  let wasMenuOpen = document.body.classList.contains("is-menu-open");
+  new MutationObserver(() => {
+    const isMenuOpen = document.body.classList.contains("is-menu-open");
+    if (isMenuOpen === wasMenuOpen) return;
+    wasMenuOpen = isMenuOpen;
+    scheduleMenuNameOverlap();
+    // La apertura del menu tiene transicion: se vuelve a medir cuando termina
+    window.setTimeout(scheduleMenuNameOverlap, 480);
+  }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  topMenu.addEventListener("transitionend", scheduleMenuNameOverlap);
   updateMenuNameOverlap();
 }
 // endregion

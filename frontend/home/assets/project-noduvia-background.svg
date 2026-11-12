@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" fill="none" stroke="#c6a4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<!-- region Fondo de proyecto: agentes y fabrica de software de Noduvia -->
+<path d="M82 100h67l27 27v119H82zM149 100v27h27M100 153h58M100 172h43M100 191h58M100 210h32" opacity=".75"/>
+<path d="M176 173h43v-86h46M219 173v95h46M335 87h49v86h232V87h49M335 268h49v-95M616 173v95h49M735 87h51v86h51M735 268h51v-95" opacity=".6"/>
+<g fill="#120d23"><path d="m300 48 35 20v39l-35 20-35-20V68zm0 181 35 20v39l-35 20-35-20v-39zM700 48l35 20v39l-35 20-35-20V68zm0 181 35 20v39l-35 20-35-20v-39z"/></g>
+<circle cx="300" cy="81" r="8"/><path d="M284 104c0-16 32-16 32 0M292 265l7 7 13-15"/>
+<path d="m693 76-9 11 9 11m14-22 9 11-9 11M690 255h20v23h-20zM696 261h8M696 268h8"/>
+<rect x="837" y="128" width="105" height="89" rx="5"/><path d="M837 149h105m-85 15 12 12-12 12m25 0h31"/>
+<path d="M880 73V47h-60M880 252v38h-60M105 281v32h775M119 307l6 6-6 6M861 307l6 6-6 6" opacity=".5"/>
+<g fill="#c6a4ff" stroke="none"><circle cx="384" cy="173" r="3"/><circle cx="616" cy="173" r="3"/><circle cx="219" cy="173" r="3"/><circle cx="786" cy="173" r="3"/></g>
+<path d="M402 48h64M534 48h64M411 42v12M589 42v12M402 286h64M534 286h64" stroke-dasharray="3 7" opacity=".4"/>
+<!-- endregion -->
+</svg>

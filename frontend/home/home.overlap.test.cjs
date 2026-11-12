@@ -1,52 +1,37 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const vm = require("node:vm");
-
-const source = fs.readFileSync(`${__dirname}/home.js`, "utf8").replace(/\r\n/g, "\n")
-  .split("// region Componente Home | Funcionalidad | Ocultar menu superpuesto al nombre\n")[1]
-  .split("// endregion")[0];
-let hidden;
-let nextFrame;
+const source = fs.readFileSync(`${__dirname}/home.js`, "utf8");
+const start = source.indexOf("function updateMenuNameOverlap()");
+const end = source.indexOf("// Se recalcula solo", start);
+assert.ok(start >= 0 && end > start);
 let desktop = true;
-const states = new Set(["is-home-active", "is-menu-open"]);
-const menuRect = { left: 100, right: 500, top: 20, bottom: 60 };
-const nameRect = { left: 50, right: 550, top: 200, bottom: 300 };
-const menu = {
-  getBoundingClientRect: () => menuRect,
-  classList: { toggle: (_, value) => { hidden = value; } },
-};
-vm.runInNewContext(source, {
-  document: {
-    querySelector: (selector) => selector === ".portfolio-top-menu"
-      ? menu : { getBoundingClientRect: () => nameRect },
-    body: { classList: { contains: (state) => states.has(state) } },
+let open = true;
+let hidden;
+let reads = 0;
+const menu = { left: 100, right: 500, top: 20, bottom: 60 };
+const content = { left: 50, right: 550, top: 40, bottom: 100, width: 500, height: 60 };
+const context = vm.createContext({
+  document: { body: { classList: { contains: () => open } } },
+  window: { matchMedia: () => ({ matches: desktop }) },
+  topMenu: {
+    getBoundingClientRect: () => { reads++; return menu; },
+    classList: { toggle: (_, value) => { hidden = value; } },
   },
-  window: {
-    matchMedia: () => ({ get matches() { return desktop; } }),
-    requestAnimationFrame: (callback) => { nextFrame = callback; },
-  },
+  menuOverlapContent: [{ getBoundingClientRect: () => content }],
 });
+vm.runInContext(source.slice(start, end), context);
 function check(expected) {
-  nextFrame();
+  vm.runInContext("updateMenuNameOverlap()", context);
   assert.equal(hidden, expected);
-  assert.equal(menu.inert, expected);
 }
-check(false);
-nameRect.top = 40;
 check(true);
-nameRect.bottom = 20;
-check(false);
-nameRect.bottom = 100;
-check(true);
+content.top = 100; check(false);
+content.top = 40;
 desktop = false;
+const previousReads = reads;
 check(false);
+assert.equal(reads, previousReads, "The mobile drawer must remain visible without geometry reads");
 desktop = true;
-states.delete("is-home-active");
-check(false);
-states.add("is-home-active");
-states.delete("is-menu-open");
-check(false);
-states.add("is-menu-open");
-nameRect.left = 500;
-check(false);
-console.log("Menu overlap checks passed");
+open = false; check(false);
+console.log("Menu: desktop overlap, mobile drawer and closed state passed.");

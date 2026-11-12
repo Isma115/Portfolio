@@ -1,24 +1,36 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Portfolio | Home</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./home.css?v=3">
-  <link rel="stylesheet" href="./styles/secciones.css">
-  <link rel="stylesheet" href="./styles/fondo.css">
-  <link rel="stylesheet" href="./styles/animaciones.css?v=3">
+  <title>Ismael Moraleda López | Desarrollador Fullstack</title>
+  <meta name="description" content="Portfolio de Ismael Moraleda López, desarrollador fullstack especializado en aplicaciones, automatización e inteligencia artificial.">
+  <!-- region Componente Home | Funcionalidad | Inicio de la introduccion -->
+  <script>
+    document.documentElement.classList.add("is-loading");
+    window.portfolioIntroFallback = window.setTimeout(() => document.documentElement.classList.remove("is-loading", "intro-running"), 8000);
+  </script>
+  <!-- endregion -->
+  <link rel="preload" href="../shared/fonts/chakra-petch-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../shared/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./home.css?v=6">
+  <link rel="stylesheet" href="./styles/secciones.css?v=4">
+  <link rel="stylesheet" href="./styles/fondo.css?v=25">
+  <link rel="stylesheet" href="./styles/animaciones.css?v=10">
+  <link rel="stylesheet" href="./styles/inicio.css?v=3">
   <link rel="stylesheet" href="./styles/adaptacion.css">
-  <link rel="stylesheet" href="./styles/sobre-mi.css">
-  <link rel="stylesheet" href="./styles/proyectos.css">
-  <link rel="stylesheet" href="../shared/cyberpunk.css?v=29">
+  <link rel="stylesheet" href="./styles/sobre-mi.css?v=17">
+  <link rel="stylesheet" href="./styles/proyectos.css?v=4">
+  <link rel="stylesheet" href="../shared/cyberpunk.css?v=69">
 </head>
 
 <body>
+  <!-- region Componente Home | Codigo de Componente | Introduccion de carga -->
+  <div class="intro" role="status" aria-label="Cargando portfolio">
+    <span class="intro__cursor" aria-hidden="true"></span>
+  </div>
+  <div class="intro-scene" aria-hidden="true">
   <!-- region Componente Home | Codigo de Componente | Topografia fluida de fondo -->
   <canvas class="topographic-flow" id="topographic-flow" aria-hidden="true"></canvas>
   <!-- endregion -->
@@ -43,11 +55,26 @@
   </div>
   <!-- endregion -->
 
+  <!-- region Componente Home | Codigo de Componente | Atmosfera por seccion -->
+  <div class="section-atmosphere" aria-hidden="true">
+    <span class="section-atmosphere__layer" data-for="home"><svg viewBox="0 0 1000 1000" aria-hidden="true" focusable="false"><path pathLength="1" style="--i:0" d="M590.0,500.0 L595.1,506.1 L599.0,512.8 L600.9,519.7 L600.7,526.6 L598.5,533.0 L594.6,538.7 L589.6,543.8 L584.0,548.3 L578.4,552.4 L572.8,556.2 L567.3,559.8 L561.7,563.1 L556.0,565.9 L550.0,568.2 L543.8,569.8 L537.6,570.9 L531.4,571.6 L525.5,572.3 L519.8,573.2 L514.3,574.5 L508.7,576.2 L503.0,577.9 L497.0,579.3 L490.9,579.8 L484.8,579.3 L479.0,577.7 L473.5,575.0 L468.4,571.9 L463.5,568.8 L458.5,566.1 L453.0,564.1 L446.8,562.7 L439.7,561.6 L432.2,560.2 L424.6,558.2 L417.5,555.1 L411.5,550.9 L407.1,545.4 L404.4,539.2 L403.2,532.4 L403.3,525.5 L404.3,518.7 L405.9,512.2 L407.8,505.9 L410.0,500.0 L412.7,494.4 L415.9,489.1 L419.6,484.3 L423.6,479.9 L427.6,475.8 L431.2,471.8 L433.9,467.7 L435.8,463.1 L436.9,457.8 L437.5,451.8 L438.3,445.2 L439.8,438.5 L442.4,432.2 L446.3,426.8 L451.5,422.7 L457.6,420.0 L464.2,418.4 L470.9,417.5 L477.5,417.0 L483.9,416.2 L490.3,415.2 L496.7,413.8 L503.3,412.4 L510.1,411.5 L517.0,411.4 L523.7,412.5 L530.1,414.8 L536.0,418.1 L541.3,422.1 L546.2,426.4 L550.6,430.9 L554.8,435.4 L558.7,440.0 L562.2,444.7 L565.1,449.7 L567.3,455.0 L568.6,460.5 L569.4,466.1 L569.9,471.4 L570.7,476.3 L572.3,480.9 L575.1,485.3 L579.3,489.7 L584.5,494.6 Z"/><path pathLength="1" style="--i:1" d="M675.4,500.0 L678.4,511.5 L677.5,522.9 L672.9,533.8 L665.5,543.7 L656.5,552.4 L647.0,560.2 L637.9,567.5 L629.6,574.5 L622.1,581.6 L614.9,588.7 L607.5,595.5 L599.6,601.7 L590.9,607.0 L581.6,611.2 L571.9,614.5 L562.1,617.2 L552.6,619.7 L543.3,622.5 L534.0,625.6 L524.7,628.7 L515.0,631.5 L505.1,633.4 L494.9,633.9 L484.8,632.9 L475.0,630.7 L465.4,627.8 L455.9,624.9 L446.1,622.7 L435.5,621.6 L423.9,621.3 L411.1,621.2 L397.6,620.5 L384.2,618.3 L371.9,613.8 L361.8,606.7 L354.5,597.2 L350.4,586.0 L349.2,573.8 L350.1,561.4 L352.3,549.5 L355.0,538.3 L357.5,527.9 L359.7,518.1 L361.7,508.9 L363.7,500.0 L366.1,491.4 L368.7,483.0 L371.6,474.9 L374.1,466.8 L376.1,458.5 L377.1,449.7 L377.4,440.0 L377.4,429.5 L378.0,418.5 L379.9,407.3 L383.9,396.8 L390.1,387.7 L398.6,380.6 L408.7,375.4 L419.6,372.0 L430.8,369.5 L441.7,367.3 L452.1,364.5 L462.3,360.8 L472.5,356.5 L483.1,352.0 L494.2,348.4 L505.8,346.4 L517.5,346.7 L528.8,349.6 L539.3,354.9 L548.8,361.8 L557.2,369.7 L564.8,377.7 L571.8,385.5 L578.5,392.9 L584.9,400.0 L591.0,407.0 L596.6,414.2 L601.6,421.6 L606.2,429.0 L610.7,436.4 L615.7,443.4 L621.9,450.1 L629.6,456.6 L638.9,463.4 L649.3,470.8 L659.7,479.4 L668.8,489.1 Z"/><path pathLength="1" style="--i:2" d="M749.7,500.0 L742.9,515.6 L732.7,530.1 L720.7,543.2 L708.7,555.1 L698.0,566.3 L689.1,577.5 L681.8,588.9 L675.3,600.8 L668.6,612.7 L660.6,623.9 L650.8,634.0 L639.2,642.2 L626.3,648.7 L612.8,653.8 L599.2,658.1 L586.0,662.2 L573.2,666.8 L560.7,671.8 L548.0,677.0 L534.8,681.7 L521.2,685.5 L507.1,687.8 L492.8,688.8 L478.4,688.9 L463.8,688.8 L448.7,689.2 L432.8,690.3 L415.7,692.0 L397.4,693.5 L378.6,693.5 L360.2,690.7 L343.4,684.3 L329.8,673.9 L320.1,659.8 L314.8,643.0 L313.2,624.8 L314.4,606.7 L316.8,589.6 L319.0,574.1 L319.9,560.3 L319.3,547.7 L317.3,535.7 L314.6,524.0 L311.9,512.1 L310.0,500.0 L308.9,487.7 L308.5,475.2 L308.4,462.5 L308.2,449.4 L307.8,435.6 L307.5,421.2 L308.1,406.1 L310.4,391.0 L315.3,376.5 L323.2,363.5 L334.0,352.6 L347.1,343.8 L361.5,336.9 L376.2,331.1 L390.4,325.4 L404.0,318.9 L417.1,311.3 L430.4,302.8 L444.3,294.4 L459.2,287.3 L475.2,283.1 L491.7,282.6 L508.1,286.3 L523.6,293.8 L537.6,303.9 L550.0,315.4 L561.2,326.8 L571.5,337.2 L581.6,346.0 L592.0,353.4 L602.7,359.9 L613.7,366.1 L624.8,372.5 L635.8,379.4 L646.9,386.6 L658.3,394.2 L670.6,401.9 L684.0,410.0 L698.5,418.7 L713.5,428.5 L727.9,439.9 L739.9,453.1 L748.2,467.9 L751.6,483.8 Z"/><path pathLength="1" style="--i:3" d="M792.0,500.0 L779.6,518.0 L767.8,534.6 L758.0,550.5 L751.0,566.2 L746.3,582.5 L742.4,599.3 L737.8,616.3 L730.9,632.7 L720.8,647.6 L707.3,660.0 L691.2,669.9 L673.7,677.5 L656.1,683.8 L639.2,689.8 L623.4,696.7 L608.6,704.8 L594.1,714.2 L579.2,724.2 L563.4,734.1 L546.5,742.8 L528.6,750.0 L509.7,755.7 L490.1,760.2 L469.8,764.1 L448.7,767.7 L426.6,770.9 L403.6,772.8 L380.4,772.3 L357.9,768.0 L337.6,758.8 L320.8,744.4 L308.5,725.5 L301.1,703.3 L297.7,679.7 L297.1,656.6 L297.2,635.6 L296.1,617.2 L292.5,601.5 L285.9,587.7 L276.8,574.7 L266.5,561.6 L256.3,547.6 L247.8,532.6 L241.5,516.6 L237.6,500.0 L235.6,483.0 L234.7,465.7 L234.3,448.0 L234.2,429.9 L234.9,411.2 L237.1,392.3 L241.9,373.7 L249.8,356.1 L261.0,340.2 L275.0,326.3 L290.8,314.2 L307.4,303.2 L323.8,292.5 L339.6,281.2 L355.1,269.1 L370.9,256.4 L387.7,244.3 L406.2,234.5 L426.4,228.5 L447.8,227.7 L469.4,232.4 L490.2,241.9 L509.3,254.7 L526.4,268.8 L541.8,281.9 L556.2,292.5 L570.7,299.9 L585.9,304.4 L602.4,306.9 L620.1,308.6 L638.7,310.9 L657.5,314.5 L676.3,319.9 L694.8,326.9 L713.3,335.4 L731.7,345.1 L750.2,356.1 L768.3,368.7 L785.0,383.3 L798.7,400.0 L808.1,418.7 L812.0,439.0 L810.0,459.9 L802.8,480.5 Z"/><path pathLength="1" style="--i:4" d="M824.9,500.0 L818.5,520.5 L815.1,540.7 L814.0,561.4 L813.4,582.7 L811.3,604.2 L805.7,625.2 L795.3,644.4 L780.1,661.0 L761.1,674.5 L740.1,685.3 L719.1,694.6 L699.6,704.0 L682.4,714.8 L667.3,728.2 L653.2,744.2 L638.9,762.1 L623.2,780.6 L605.3,798.1 L584.9,813.4 L562.5,825.9 L538.3,835.4 L513.0,842.2 L486.8,847.0 L460.0,849.8 L432.9,850.2 L405.8,847.4 L379.8,840.3 L356.0,827.9 L335.6,810.1 L319.6,787.4 L308.2,761.6 L300.6,734.8 L295.3,709.2 L290.0,686.6 L282.7,667.7 L271.9,652.5 L257.2,639.6 L239.4,627.5 L220.2,614.6 L202.0,599.8 L186.6,582.7 L175.3,563.5 L168.5,542.9 L165.2,521.5 L164.2,500.0 L164.2,478.4 L164.1,456.6 L164.1,434.3 L164.6,411.5 L166.8,388.4 L171.9,365.6 L180.5,343.7 L192.7,323.3 L207.8,304.7 L224.7,287.5 L242.4,271.2 L260.3,255.1 L278.3,238.9 L297.0,223.1 L317.1,208.6 L339.4,197.0 L363.9,190.1 L390.1,188.9 L417.0,193.9 L443.3,204.0 L467.7,217.2 L489.8,230.9 L509.8,242.4 L528.6,249.7 L547.5,252.0 L567.8,249.8 L590.1,244.7 L614.6,239.0 L640.6,234.7 L667.2,233.6 L693.3,236.3 L718.3,243.0 L741.8,252.9 L764.0,265.4 L785.0,280.0 L804.8,296.3 L822.7,314.5 L837.9,334.7 L849.0,357.0 L855.0,381.1 L855.5,406.2 L851.0,431.4 L843.0,455.6 L833.6,478.5 Z"/><path pathLength="1" style="--i:5" d="M878.2,500.0 L880.3,524.5 L882.4,549.4 L882.2,574.7 L877.6,599.6 L867.2,623.0 L851.1,643.8 L830.6,661.7 L808.1,677.1 L786.1,691.2 L766.7,705.9 L750.9,722.9 L738.4,743.6 L727.6,768.1 L716.6,795.4 L703.2,823.8 L686.0,850.9 L664.4,874.4 L638.8,893.0 L610.1,906.1 L579.4,914.1 L547.7,917.8 L515.9,918.0 L484.2,915.1 L453.3,909.0 L423.5,899.0 L395.7,884.7 L370.9,865.6 L349.6,842.5 L332.1,816.7 L317.8,790.4 L305.1,765.8 L292.1,744.8 L276.7,728.1 L257.6,715.4 L234.3,705.1 L208.0,695.2 L180.8,683.5 L155.4,668.6 L134.2,649.8 L118.8,627.6 L109.4,603.0 L105.0,577.2 L103.5,551.3 L102.8,525.6 L101.2,500.0 L98.1,474.1 L94.1,447.5 L90.7,420.0 L89.8,391.8 L92.9,363.7 L101.0,336.6 L113.8,311.1 L130.5,287.6 L149.9,266.0 L170.7,245.8 L192.5,226.8 L215.3,209.1 L239.6,193.3 L265.9,180.7 L294.5,172.6 L325.0,169.9 L356.3,172.8 L387.1,180.3 L416.0,189.9 L442.3,199.0 L466.2,204.5 L488.8,204.5 L511.5,198.1 L535.8,186.4 L562.9,171.8 L592.9,157.2 L625.1,145.9 L658.1,140.1 L690.3,141.0 L720.6,148.5 L748.2,161.5 L773.2,178.3 L796.1,197.4 L817.3,218.1 L837.0,239.8 L854.7,262.9 L869.6,287.5 L880.5,313.9 L886.9,341.5 L888.7,369.8 L886.9,397.9 L883.3,425.1 L879.7,450.9 L877.8,475.7 Z"/><path pathLength="1" style="--i:6" d="M941.5,500.0 L942.7,528.5 L939.5,556.8 L930.7,584.2 L916.2,609.8 L897.6,633.1 L877.4,654.6 L858.4,675.3 L842.9,697.1 L832.1,722.0 L825.2,751.1 L820.3,784.6 L814.4,821.3 L804.7,858.8 L788.9,894.1 L766.1,924.1 L736.9,946.9 L702.7,961.5 L665.5,968.5 L627.2,969.4 L589.3,965.8 L552.5,959.3 L517.1,950.8 L483.3,940.2 L451.2,927.1 L421.2,911.0 L393.8,892.0 L369.0,871.1 L346.4,849.7 L325.2,829.8 L303.5,813.1 L279.8,800.3 L252.8,791.1 L222.2,783.8 L189.2,776.2 L155.8,765.7 L124.8,750.8 L98.9,730.6 L79.7,705.6 L67.3,677.3 L60.3,647.2 L56.2,617.1 L52.2,587.6 L46.0,558.7 L36.8,529.8 L25.3,500.0 L13.4,468.7 L4.2,435.9 L0.2,402.3 L3.3,369.0 L13.9,337.2 L31.4,308.1 L53.9,281.8 L79.6,258.3 L107.0,237.3 L135.0,218.3 L163.8,201.3 L193.7,187.0 L224.9,176.1 L257.5,169.2 L290.7,166.5 L323.4,166.8 L354.3,168.3 L382.8,168.3 L408.9,164.0 L433.6,153.6 L458.5,136.8 L485.4,114.8 L515.5,90.7 L549.3,68.3 L586.0,51.3 L624.0,42.6 L661.3,43.4 L696.2,53.3 L727.7,70.4 L755.9,92.2 L781.5,116.1 L805.4,140.4 L828.5,164.3 L851.0,188.2 L872.2,212.7 L890.9,238.7 L906.0,266.6 L916.8,296.1 L923.4,326.6 L926.8,357.1 L928.8,386.9 L930.9,415.7 L934.0,443.9 L937.9,471.8 Z"/></svg></span>
+    <span class="section-atmosphere__layer" data-for="about"><svg viewBox="0 0 1000 1000" aria-hidden="true" focusable="false"><path pathLength="1" style="--i:0.0" d="M150,220 L330,120" class="thin"/><path pathLength="1" style="--i:0.5" d="M330,120 L520,260" class="thin"/><path pathLength="1" style="--i:1.0" d="M520,260 L720,150" class="thin"/><path pathLength="1" style="--i:1.5" d="M720,150 L860,330" class="thin"/><path pathLength="1" style="--i:2.0" d="M520,260 L640,450" class="thin"/><path pathLength="1" style="--i:2.5" d="M860,330 L640,450" class="thin"/><path pathLength="1" style="--i:3.0" d="M640,450 L400,430" class="thin"/><path pathLength="1" style="--i:3.5" d="M520,260 L400,430" class="thin"/><path pathLength="1" style="--i:4.0" d="M400,430 L210,520" class="thin"/><path pathLength="1" style="--i:4.5" d="M150,220 L210,520" class="thin"/><path pathLength="1" style="--i:5.0" d="M400,430 L330,700" class="thin"/><path pathLength="1" style="--i:5.5" d="M210,520 L330,700" class="thin"/><path pathLength="1" style="--i:6.0" d="M330,700 L560,640" class="thin"/><path pathLength="1" style="--i:6.5" d="M640,450 L560,640" class="thin"/><path pathLength="1" style="--i:7.0" d="M560,640 L780,640" class="thin"/><path pathLength="1" style="--i:7.5" d="M640,450 L780,640" class="thin"/><path pathLength="1" style="--i:8.0" d="M780,640 L700,860" class="thin"/><path pathLength="1" style="--i:8.5" d="M560,640 L470,880" class="thin"/><path pathLength="1" style="--i:9.0" d="M700,860 L470,880" class="thin"/><path pathLength="1" style="--i:9.5" d="M330,700 L180,830" class="thin"/><path pathLength="1" style="--i:10.0" d="M470,880 L180,830" class="thin"/><path pathLength="1" style="--i:10.5" d="M210,520 L180,830" class="thin"/><circle pathLength="1" style="--i:3.0" cx="150" cy="220" r="9" class="node"/><circle pathLength="1" style="--i:3.4" cx="150" cy="220" r="22" class="halo"/><circle pathLength="1" style="--i:3.6" cx="330" cy="120" r="9" class="node"/><circle pathLength="1" style="--i:4.0" cx="330" cy="120" r="22" class="halo"/><circle pathLength="1" style="--i:4.2" cx="520" cy="260" r="9" class="node"/><circle pathLength="1" style="--i:4.6" cx="520" cy="260" r="22" class="halo"/><circle pathLength="1" style="--i:4.8" cx="720" cy="150" r="9" class="node"/><circle pathLength="1" style="--i:5.199999999999999" cx="720" cy="150" r="22" class="halo"/><circle pathLength="1" style="--i:5.4" cx="860" cy="330" r="9" class="node"/><circle pathLength="1" style="--i:5.8" cx="860" cy="330" r="22" class="halo"/><circle pathLength="1" style="--i:6.0" cx="640" cy="450" r="9" class="node"/><circle pathLength="1" style="--i:6.4" cx="640" cy="450" r="22" class="halo"/><circle pathLength="1" style="--i:6.6" cx="400" cy="430" r="9" class="node"/><circle pathLength="1" style="--i:7.0" cx="400" cy="430" r="22" class="halo"/><circle pathLength="1" style="--i:7.2" cx="210" cy="520" r="9" class="node"/><circle pathLength="1" style="--i:7.6" cx="210" cy="520" r="22" class="halo"/><circle pathLength="1" style="--i:7.8" cx="330" cy="700" r="9" class="node"/><circle pathLength="1" style="--i:8.2" cx="330" cy="700" r="22" class="halo"/><circle pathLength="1" style="--i:8.399999999999999" cx="560" cy="640" r="9" class="node"/><circle pathLength="1" style="--i:8.799999999999999" cx="560" cy="640" r="22" class="halo"/><circle pathLength="1" style="--i:9.0" cx="780" cy="640" r="9" class="node"/><circle pathLength="1" style="--i:9.4" cx="780" cy="640" r="22" class="halo"/><circle pathLength="1" style="--i:9.6" cx="700" cy="860" r="9" class="node"/><circle pathLength="1" style="--i:10.0" cx="700" cy="860" r="22" class="halo"/><circle pathLength="1" style="--i:10.2" cx="470" cy="880" r="9" class="node"/><circle pathLength="1" style="--i:10.6" cx="470" cy="880" r="22" class="halo"/><circle pathLength="1" style="--i:10.8" cx="180" cy="830" r="9" class="node"/><circle pathLength="1" style="--i:11.2" cx="180" cy="830" r="22" class="halo"/></svg></span>
+    <span class="section-atmosphere__layer" data-for="skills"><svg viewBox="0 0 1000 1000" aria-hidden="true" focusable="false"><path pathLength="1" style="--i:0.0" d="M572.7,542.0 L500.0,584.0 L427.3,542.0 L427.3,458.0 L500.0,416.0 L572.7,458.0 Z"/><path pathLength="1" style="--i:1.2" d="M538.1,522.0 L500.0,544.0 L461.9,522.0 L461.9,478.0 L500.0,456.0 L538.1,478.0 Z" class="thin"/><path pathLength="1" style="--i:1.1400000000000001" d="M420.3,542.0 L347.6,584.0 L274.8,542.0 L274.8,458.0 L347.6,416.0 L420.3,458.0 Z"/><path pathLength="1" style="--i:1.1800000000000002" d="M496.5,674.0 L423.8,716.0 L351.0,674.0 L351.0,590.0 L423.8,548.0 L496.5,590.0 Z"/><path pathLength="1" style="--i:1.2200000000000002" d="M496.5,410.0 L423.8,452.0 L351.0,410.0 L351.0,326.0 L423.8,284.0 L496.5,326.0 Z"/><path pathLength="1" style="--i:2.42" d="M461.9,390.0 L423.8,412.0 L385.7,390.0 L385.7,346.0 L423.8,324.0 L461.9,346.0 Z" class="thin"/><path pathLength="1" style="--i:1.26" d="M649.0,674.0 L576.2,716.0 L503.5,674.0 L503.5,590.0 L576.2,548.0 L649.0,590.0 Z"/><path pathLength="1" style="--i:1.3" d="M649.0,410.0 L576.2,452.0 L503.5,410.0 L503.5,326.0 L576.2,284.0 L649.0,326.0 Z"/><path pathLength="1" style="--i:1.34" d="M725.2,542.0 L652.4,584.0 L579.7,542.0 L579.7,458.0 L652.4,416.0 L725.2,458.0 Z"/><path pathLength="1" style="--i:2.54" d="M690.5,522.0 L652.4,544.0 L614.3,522.0 L614.3,478.0 L652.4,456.0 L690.5,478.0 Z" class="thin"/><path pathLength="1" style="--i:2.4800000000000004" d="M267.9,542.0 L195.2,584.0 L122.4,542.0 L122.4,458.0 L195.2,416.0 L267.9,458.0 Z"/><path pathLength="1" style="--i:2.52" d="M344.1,674.0 L271.4,716.0 L198.6,674.0 L198.6,590.0 L271.4,548.0 L344.1,590.0 Z"/><path pathLength="1" style="--i:2.56" d="M420.3,806.0 L347.6,848.0 L274.8,806.0 L274.8,722.0 L347.6,680.0 L420.3,722.0 Z"/><path pathLength="1" style="--i:3.7600000000000002" d="M385.7,786.0 L347.6,808.0 L309.5,786.0 L309.5,742.0 L347.6,720.0 L385.7,742.0 Z" class="thin"/><path pathLength="1" style="--i:2.6" d="M344.1,410.0 L271.4,452.0 L198.6,410.0 L198.6,326.0 L271.4,284.0 L344.1,326.0 Z"/><path pathLength="1" style="--i:2.64" d="M572.7,806.0 L500.0,848.0 L427.3,806.0 L427.3,722.0 L500.0,680.0 L572.7,722.0 Z"/><path pathLength="1" style="--i:2.68" d="M420.3,278.0 L347.6,320.0 L274.8,278.0 L274.8,194.0 L347.6,152.0 L420.3,194.0 Z"/><path pathLength="1" style="--i:3.8800000000000003" d="M385.7,258.0 L347.6,280.0 L309.5,258.0 L309.5,214.0 L347.6,192.0 L385.7,214.0 Z" class="thin"/><path pathLength="1" style="--i:2.72" d="M725.2,806.0 L652.4,848.0 L579.7,806.0 L579.7,722.0 L652.4,680.0 L725.2,722.0 Z"/><path pathLength="1" style="--i:2.7600000000000002" d="M572.7,278.0 L500.0,320.0 L427.3,278.0 L427.3,194.0 L500.0,152.0 L572.7,194.0 Z"/><path pathLength="1" style="--i:2.8000000000000003" d="M801.4,674.0 L728.6,716.0 L655.9,674.0 L655.9,590.0 L728.6,548.0 L801.4,590.0 Z"/><path pathLength="1" style="--i:4.0" d="M766.7,654.0 L728.6,676.0 L690.5,654.0 L690.5,610.0 L728.6,588.0 L766.7,610.0 Z" class="thin"/><path pathLength="1" style="--i:2.8400000000000003" d="M725.2,278.0 L652.4,320.0 L579.7,278.0 L579.7,194.0 L652.4,152.0 L725.2,194.0 Z"/><path pathLength="1" style="--i:2.8800000000000003" d="M801.4,410.0 L728.6,452.0 L655.9,410.0 L655.9,326.0 L728.6,284.0 L801.4,326.0 Z"/><path pathLength="1" style="--i:2.92" d="M877.6,542.0 L804.8,584.0 L732.1,542.0 L732.1,458.0 L804.8,416.0 L877.6,458.0 Z"/><path pathLength="1" style="--i:4.12" d="M842.9,522.0 L804.8,544.0 L766.7,522.0 L766.7,478.0 L804.8,456.0 L842.9,478.0 Z" class="thin"/><circle pathLength="1" style="--i:5" cx="500" cy="500" r="14" class="node"/></svg></span>
+    <span class="section-atmosphere__layer" data-for="experience"><svg viewBox="0 0 1000 1000" aria-hidden="true" focusable="false"><path pathLength="1" style="--i:0" d="M120,900 C300,830 180,690 420,650 S720,590 640,420 S470,270 830,110" class="path"/><path pathLength="1" style="--i:0.4" d="M120,900 C300,830 180,690 420,650 S720,590 640,420 S470,270 830,110" class="thin dash"/><circle pathLength="1" style="--i:1.6" cx="120" cy="900" r="16" class="node"/><circle pathLength="1" style="--i:1.9" cx="120" cy="900" r="38" class="halo"/><circle pathLength="1" style="--i:2.8" cx="420" cy="650" r="16" class="node"/><circle pathLength="1" style="--i:3.0999999999999996" cx="420" cy="650" r="38" class="halo"/><circle pathLength="1" style="--i:4.0" cx="640" cy="420" r="16" class="node"/><circle pathLength="1" style="--i:4.3" cx="640" cy="420" r="38" class="halo"/><circle pathLength="1" style="--i:5.199999999999999" cx="830" cy="110" r="16" class="node"/><circle pathLength="1" style="--i:5.5" cx="830" cy="110" r="38" class="halo"/><path pathLength="1" style="--i:3.2" d="M470,690 L470,760 M470,760 h120 M590,740 v40" class="thin"/><path pathLength="1" style="--i:5.0" d="M690,380 L760,330 M760,330 h110" class="thin"/></svg></span>
+    <span class="section-atmosphere__layer" data-for="contact"><svg viewBox="0 0 1000 1000" aria-hidden="true" focusable="false"><path pathLength="1" style="--i:0" d="M70,900 C230,640 330,820 470,610 S600,420 700,420" class="thin dash"/><path pathLength="1" style="--i:1.5" d="M130,500 L880,150 L650,860 L500,600 Z"/><path pathLength="1" style="--i:2.4" d="M880,150 L500,600" class="thin"/><path pathLength="1" style="--i:2.8" d="M500,600 L430,800 L585,700" class="thin"/><path pathLength="1" style="--i:3.0" d="M130,500 L500,600" class="thin"/><circle pathLength="1" style="--i:3.6" cx="880" cy="150" r="10" class="node"/></svg></span>
+  </div>
+  <!-- endregion -->
+
   <!-- region Componente Home | Codigo de Componente | Estelas de color de fondo -->
   <div class="color-trails" aria-hidden="true">
     <span class="color-trail color-trail--1"></span>
     <span class="color-trail color-trail--2"></span>
     <span class="color-trail color-trail--3"></span>
+    <span class="color-trail color-trail--4"></span>
+    <span class="color-trail color-trail--5"></span>
+  </div>
+  <!-- endregion -->
+
   </div>
   <!-- endregion -->
 
@@ -60,8 +87,8 @@
   <nav class="portfolio-top-menu" aria-label="Secciones del portfolio">
     <button class="top-menu__item is-active" type="button" data-section="home">Inicio</button>
     <button class="top-menu__item" type="button" data-section="about">Sobre mi</button>
-    <button class="top-menu__item" type="button" data-section="projects">Proyectos</button>
     <button class="top-menu__item" type="button" data-section="skills">Stack y herramientas</button>
+    <button class="top-menu__item" type="button" data-section="projects">Proyectos</button>
     <button class="top-menu__item" type="button" data-section="experience">Experiencia</button>
     <button class="top-menu__item" type="button" data-section="contact">Contacto</button>
   </nav>
@@ -78,7 +105,7 @@
           <span class="hero-center__name-word" style="--word-delay:360ms">López</span>
         </h1>
         <p class="hero-center__subtitle">
-          <span class="hero-center__typewriter">Desarrollador FullStack</span>
+          <span class="hero-center__typewriter">Desarrollador Fullstack</span>
         </p>
       </div>
       <div class="scroll-indicator scroll-indicator--home" aria-hidden="true">
@@ -94,104 +121,31 @@
           <h2 id="about-title">Sobre mí</h2>
         </header>
 
-        <div class="about-photo">
-          <img src="./assets/profile.png" alt="Foto de Ismael Moraleda López">
-        </div>
-
         <div class="about-content">
-          <h3>Hola, soy <span>Ismael</span> <span>Moraleda López</span></h3>
-          <div class="about-content__description">
-            <p>Me interesa construir interfaces claras, experiencias cuidadas y soluciones técnicas sostenibles.</p>
-            <p>Me gusta unir criterio visual, estructura de código y pequeñas interacciones para que cada proyecto se entienda y se use con facilidad.</p>
+          <div class="about-window-bar" aria-hidden="true">
+            <span class="about-window-dots"><i></i><i></i><i></i></span>
+            <svg class="about-window-navigation" width="34" height="14" viewBox="0 0 34 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 2 3 7l5 5M3 7h11M26 2l5 5-5 5M20 7h11"/></svg>
+            <span class="about-window-address">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><circle cx="8" cy="8" r="6"/><ellipse cx="8" cy="8" rx="2.5" ry="6"/><path d="M2 8h12"/></svg>
+              portfolio / sobre mí
+            </span>
+            <svg class="about-window-menu" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"><path d="M2 3h10M2 7h10M2 11h10"/></svg>
           </div>
-          <div class="about-skills-window" role="region" aria-label="Tecnologías principales" tabindex="0">
-            <div class="about-skills-track">
-              <ul class="about-skills" aria-label="Tecnologías principales">
-              <li><span aria-hidden="true">JS</span> JavaScript</li>
-              <li><span aria-hidden="true">TS</span> TypeScript</li>
-              <li><span aria-hidden="true">⚛</span> React</li>
-              <li><span aria-hidden="true">⬢</span> Node.js</li>
-              <li><span aria-hidden="true">&lt;/&gt;</span> HTML y CSS</li>
-              <li><span aria-hidden="true">◆</span> Git</li>
-              <li><span aria-hidden="true">PY</span> Python</li>
-              <li><span aria-hidden="true">JV</span> Java</li>
-              <li><span aria-hidden="true">SQL</span> PL/SQL</li>
-              <li><span aria-hidden="true">SW</span> Swift</li>
-              <li><span aria-hidden="true">API</span> FastAPI</li>
-              <li><span aria-hidden="true">FL</span> Flutter</li>
-              <li><span aria-hidden="true">SP</span> Spring</li>
-              <li><span aria-hidden="true">DB</span> Oracle APEX</li>
-              <li><span aria-hidden="true">DK</span> Docker</li>
-              <li><span aria-hidden="true">AZ</span> Azure DevOps</li>
-              </ul>
-              <ul class="about-skills" aria-hidden="true">
-              <li><span aria-hidden="true">JS</span> JavaScript</li>
-              <li><span aria-hidden="true">TS</span> TypeScript</li>
-              <li><span aria-hidden="true">⚛</span> React</li>
-              <li><span aria-hidden="true">⬢</span> Node.js</li>
-              <li><span aria-hidden="true">&lt;/&gt;</span> HTML y CSS</li>
-              <li><span aria-hidden="true">◆</span> Git</li>
-              <li><span aria-hidden="true">PY</span> Python</li>
-              <li><span aria-hidden="true">JV</span> Java</li>
-              <li><span aria-hidden="true">SQL</span> PL/SQL</li>
-              <li><span aria-hidden="true">SW</span> Swift</li>
-              <li><span aria-hidden="true">API</span> FastAPI</li>
-              <li><span aria-hidden="true">FL</span> Flutter</li>
-              <li><span aria-hidden="true">SP</span> Spring</li>
-              <li><span aria-hidden="true">DB</span> Oracle APEX</li>
-              <li><span aria-hidden="true">DK</span> Docker</li>
-              <li><span aria-hidden="true">AZ</span> Azure DevOps</li>
-              </ul>
-            </div>
+          <div class="about-photo">
+            <img src="./assets/profile-transparent.png" width="1269" height="1239" decoding="async" alt="Foto de Ismael Moraleda López">
+            <svg class="about-photo__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="m5 17 5-5 4 4 3-3 2 4"/>
+            </svg>
+          </div>
+          <h3>Soy <span>Ismael</span> <span>Moraleda López</span></h3>
+          <div class="about-content__description">
+            <p>Desarrollador Fullstack, graduado en Desarrollo de Aplicaciones Multiplataforma y con formación en Inteligencia Artificial y Big Data. Construyo aplicaciones, servicios y soluciones modulares para resolver problemas reales. Me interesa la automatización y la IA aplicada: IA generativa, Machine Learning y Deep Learning. Formación: Especialización en Inteligencia Artificial y Big Data (IES Maestre de Calatrava) y Grado Superior en Desarrollo de Aplicaciones Multiplataforma (IES Juan Bosco). Inglés B1.</p>
           </div>
           <div class="about-actions">
             <a href="#projects">Ver proyectos <span aria-hidden="true">→</span></a>
             <a href="#skills">Ver tecnologías <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
-        <span class="scroll-indicator__arrow"></span>
-      </div>
-    </section>
-    <!-- endregion -->
-
-    <!-- region Componente Home | Seccion | Proyectos -->
-    <section id="projects" class="section-projects" aria-labelledby="projects-title">
-      <div class="section-content no-glitch">
-        <header class="projects-header">
-          <h2 id="projects-title">Proyectos</h2>
-        </header>
-        <div class="projects-carousel" role="region" aria-roledescription="carrusel" aria-label="Proyectos destacados">
-          <div class="projects-track" id="projects-track" tabindex="0" aria-label="Desplaza para ver los proyectos">
-          <article class="project-preview project-preview--noduvia" aria-labelledby="noduvia-title">
-            <div class="project-preview__cover project-preview__cover--noduvia">
-              <img src="./assets/tesavion.png" alt="Icono de Noduvia">
-            </div>
-            <div class="project-preview__content">
-              <h3 class="project-preview__title" id="noduvia-title">Noduvia</h3>
-              <p class="project-preview__description">Tu espacio de desarrollo con agentes de IA.</p>
-              <ul class="project-preview__technologies" aria-label="Características principales">
-                <li>Fábrica de software</li><li>Documentación viva</li><li>Conocimiento del código</li>
-              </ul>
-              <a class="project-preview__link" href="mailto:ismamoralop@gmail.com?subject=Informaci%C3%B3n%20sobre%20Noduvia">Hablemos del proyecto <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-
-          <article class="project-preview" aria-labelledby="trazuvia-title">
-            <div class="project-preview__cover project-preview__cover--trazuvia">
-              <img src="./assets/trazuvia.png" alt="Icono de Trazuvia">
-            </div>
-            <div class="project-preview__content">
-              <h3 class="project-preview__title" id="trazuvia-title">Trazuvia</h3>
-              <p class="project-preview__description">De la idea a la interfaz, en un lienzo visual.</p>
-              <ul class="project-preview__technologies" aria-label="Características principales">
-                <li>Editor visual</li><li>Wireframes</li><li>Exportación a código</li>
-              </ul>
-              <a class="project-preview__link" href="https://github.com/Isma115/Trazuvia" target="_blank" rel="noopener noreferrer">Ver en Github <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-
+            <a href="#contact">Contactar <span aria-hidden="true">✉</span></a>
           </div>
         </div>
       </div>
@@ -214,29 +168,41 @@
 
             <div class="skills-specialties">
               <article class="skills-group">
-                <h4 class="skills-group__title">Frontend</h4>
+                <h4 class="skills-group__title">Frontend y móvil</h4>
                 <ul class="skills-list">
-                  <li data-skill="JavaScript (ES6+)"><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/D7DBFF" alt="" aria-hidden="true">JavaScript (ES6+)</li>
-                  <li data-skill="TypeScript"><img class="skill-icon" src="https://cdn.simpleicons.org/typescript/D7DBFF" alt="" aria-hidden="true">TypeScript</li>
-                  <li data-skill="React"><img class="skill-icon" src="https://cdn.simpleicons.org/react/D7DBFF" alt="" aria-hidden="true">React</li>
-                  <li data-skill="Next.js"><img class="skill-icon" src="https://cdn.simpleicons.org/nextdotjs/D7DBFF" alt="" aria-hidden="true">Next.js</li>
-                  <li data-skill="HTML5"><img class="skill-icon" src="https://cdn.simpleicons.org/html5/D7DBFF" alt="" aria-hidden="true">HTML5</li>
-                  <li data-skill="CSS3"><img class="skill-icon" src="https://cdn.simpleicons.org/css/D7DBFF" alt="" aria-hidden="true">CSS3</li>
-                  <li data-skill="Tailwind CSS"><img class="skill-icon" src="https://cdn.simpleicons.org/tailwindcss/D7DBFF" alt="" aria-hidden="true">Tailwind CSS</li>
-                  <li data-skill="Vite"><img class="skill-icon" src="https://cdn.simpleicons.org/vite/D7DBFF" alt="" aria-hidden="true">Vite</li>
-                  <li data-skill="Accesibilidad (a11y)"><img class="skill-icon" src="https://cdn.simpleicons.org/w3c/D7DBFF" alt="" aria-hidden="true">Accesibilidad (a11y)</li>
+                  <li data-skill="JavaScript"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/javascript.svg" alt="" aria-hidden="true">JavaScript</li>
+                  <li data-skill="React.js"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/react.svg" alt="" aria-hidden="true">React.js</li>
+                  <li data-skill="Flutter"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/flutter.svg" alt="" aria-hidden="true">Flutter</li>
+                  <li data-skill="Android"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/android.svg" alt="" aria-hidden="true">Android</li>
+                  <li data-skill="iOS"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/apple.svg" alt="" aria-hidden="true">iOS</li>
+                  <li data-skill="Swift"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/swift.svg" alt="" aria-hidden="true">Swift</li>
+                  <li data-skill="HTML5"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/html5.svg" alt="" aria-hidden="true">HTML5</li>
+                  <li data-skill="CSS3"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/css.svg" alt="" aria-hidden="true">CSS3</li>
                 </ul>
               </article>
 
               <article class="skills-group">
-                <h4 class="skills-group__title">Backend y datos</h4>
+                <h4 class="skills-group__title">Backend y servicios</h4>
                 <ul class="skills-list">
-                  <li data-skill="Node.js"><img class="skill-icon" src="https://cdn.simpleicons.org/nodedotjs/D7DBFF" alt="" aria-hidden="true">Node.js</li>
-                  <li data-skill="Express"><img class="skill-icon" src="https://cdn.simpleicons.org/express/D7DBFF" alt="" aria-hidden="true">Express</li>
-                  <li data-skill="REST API"><img class="skill-icon" src="https://cdn.simpleicons.org/openapiinitiative/D7DBFF" alt="" aria-hidden="true">REST API</li>
-                  <li data-skill="PostgreSQL"><img class="skill-icon" src="https://cdn.simpleicons.org/postgresql/D7DBFF" alt="" aria-hidden="true">PostgreSQL</li>
-                  <li data-skill="SQL"><img class="skill-icon" src="https://cdn.simpleicons.org/sqlite/D7DBFF" alt="" aria-hidden="true">SQL</li>
-                  <li data-skill="Autenticacion JWT"><img class="skill-icon" src="https://cdn.simpleicons.org/jsonwebtokens/D7DBFF" alt="" aria-hidden="true">Autenticacion JWT</li>
+                  <li data-skill="Node.js"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/nodedotjs.svg" alt="" aria-hidden="true">Node.js</li>
+                  <li data-skill="FastAPI"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/fastapi.svg" alt="" aria-hidden="true">FastAPI</li>
+                  <li data-skill="Spring"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/spring.svg" alt="" aria-hidden="true">Spring</li>
+                  <li data-skill="Java"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/java.svg" alt="" aria-hidden="true">Java</li>
+                  <li data-skill="Python"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/python.svg" alt="" aria-hidden="true">Python</li>
+                  <li data-skill="REST API"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/openapiinitiative.svg" alt="" aria-hidden="true">REST API</li>
+                  <li data-skill="SQL"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/sqlite.svg" alt="" aria-hidden="true">SQL</li>
+                  <li data-skill="PL/SQL"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/oracle.svg" alt="" aria-hidden="true">PL/SQL</li>
+                </ul>
+              </article>
+
+              <article class="skills-group skills-group--wide">
+                <h4 class="skills-group__title">IA y datos</h4>
+                <ul class="skills-list">
+                  <li data-skill="Machine Learning"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/scikitlearn.svg" alt="" aria-hidden="true">Machine Learning</li>
+                  <li data-skill="Deep Learning"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/pytorch.svg" alt="" aria-hidden="true">Deep Learning</li>
+                  <li data-skill="Modelos de lenguaje (LLM)"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/ollama.svg" alt="" aria-hidden="true">LLM</li>
+                  <li data-skill="Big Data"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/apachespark.svg" alt="" aria-hidden="true">Big Data</li>
+                  <li data-skill="Visión artificial"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/opencv.svg" alt="" aria-hidden="true">Visión artificial</li>
                 </ul>
               </article>
             </div>
@@ -244,18 +210,89 @@
 
           <section class="skills-tools" aria-labelledby="tools-title">
             <header class="skills-section-heading">
-              <p class="skills-section-heading__eyebrow">Flujo de trabajo</p>
+              <p class="skills-section-heading__eyebrow">Desarrollo y DevOps</p>
               <h3 id="tools-title">Herramientas</h3>
             </header>
             <ul class="skills-list">
-              <li data-skill="Git"><img class="skill-icon" src="https://cdn.simpleicons.org/git/D7DBFF" alt="" aria-hidden="true">Git</li>
-              <li data-skill="GitHub"><img class="skill-icon" src="https://cdn.simpleicons.org/github/D7DBFF" alt="" aria-hidden="true">GitHub</li>
-              <li data-skill="Docker"><img class="skill-icon" src="https://cdn.simpleicons.org/docker/D7DBFF" alt="" aria-hidden="true">Docker</li>
-              <li data-skill="CI/CD (GitHub Actions)"><img class="skill-icon" src="https://cdn.simpleicons.org/githubactions/D7DBFF" alt="" aria-hidden="true">CI/CD (GitHub Actions)</li>
-              <li data-skill="Postman"><img class="skill-icon" src="https://cdn.simpleicons.org/postman/D7DBFF" alt="" aria-hidden="true">Postman</li>
-              <li data-skill="Figma"><img class="skill-icon" src="https://cdn.simpleicons.org/figma/D7DBFF" alt="" aria-hidden="true">Figma</li>
+              <li data-skill="Git"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/git.svg" alt="" aria-hidden="true">Git</li>
+              <li data-skill="GitHub"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/github.svg" alt="" aria-hidden="true">GitHub</li>
+              <li data-skill="Docker"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/docker.svg" alt="" aria-hidden="true">Docker</li>
+              <li data-skill="Azure DevOps"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/azuredevops.svg" alt="" aria-hidden="true">Azure DevOps</li>
+              <li data-skill="CI/CD (GitHub Actions)"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/githubactions.svg" alt="" aria-hidden="true">CI/CD</li>
+              <li data-skill="Android Studio"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/android.svg" alt="" aria-hidden="true">Android Studio</li>
             </ul>
+
+            <div class="skills-tools__ai" role="group" aria-labelledby="ai-tools-title">
+              <h4 class="skills-group__title" id="ai-tools-title">Herramientas IA</h4>
+              <ul class="skills-list">
+                <li data-skill="Claude"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/claude.svg" alt="" aria-hidden="true">Claude</li>
+                <li data-skill="Pi"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/pi.svg" alt="" aria-hidden="true">Pi</li>
+                <li data-skill="OpenCode"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/opencode.svg" alt="" aria-hidden="true">OpenCode</li>
+                <li data-skill="Hermes"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/hermes.png" alt="" aria-hidden="true">Hermes</li>
+                <li data-skill="Codex"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/openai.svg" alt="" aria-hidden="true">Codex</li>
+                <li data-skill="Obsidian"><img class="skill-icon" loading="eager" decoding="async" src="../shared/icons/obsidian.svg" alt="" aria-hidden="true">Obsidian</li>
+              </ul>
+            </div>
           </section>
+        </div>
+      </div>
+      <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
+        <span class="scroll-indicator__arrow"></span>
+      </div>
+    </section>
+    <!-- endregion -->
+
+    <!-- region Componente Home | Seccion | Proyectos -->
+    <section id="projects" class="section-projects" aria-labelledby="projects-title">
+      <div class="section-content no-glitch">
+        <header class="projects-header">
+          <h2 id="projects-title">Proyectos</h2>
+        </header>
+        <div class="projects-carousel" role="region" aria-roledescription="carrusel" aria-label="Proyectos destacados">
+          <div class="projects-track" id="projects-track" tabindex="0" aria-label="Desplaza para ver los proyectos">
+          <article class="project-preview project-preview--noduvia" aria-labelledby="noduvia-title">
+            <div class="project-preview__cover project-preview__cover--noduvia">
+              <img src="./assets/tesavion.webp" loading="eager" decoding="async" alt="Icono de Noduvia">
+            </div>
+            <div class="project-preview__content">
+              <h3 class="project-preview__title" id="noduvia-title">Noduvia</h3>
+              <p class="project-preview__description">Entorno integrado para conectar especificaciones, decisiones e implementación con Spec Driven Development.</p>
+              <ul class="project-preview__technologies" aria-label="Características principales">
+                <li>Documentación viva</li><li>Grafo de conocimiento</li><li>Git y app móvil</li>
+              </ul>
+              <a class="project-preview__link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ismamoralop%40gmail.com&amp;su=Informaci%C3%B3n+sobre+Noduvia" target="_blank" rel="noopener noreferrer">Hablemos del proyecto <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-preview" aria-labelledby="trazuvia-title">
+            <div class="project-preview__cover project-preview__cover--trazuvia">
+              <img src="./assets/trazuvia.webp" loading="eager" decoding="async" alt="Icono de Trazuvia">
+            </div>
+            <div class="project-preview__content">
+              <h3 class="project-preview__title" id="trazuvia-title">Trazuvia</h3>
+              <p class="project-preview__description">Editor visual para diseñar interfaces, wireframes y flujos mediante componentes, conectores, capas y grupos.</p>
+              <ul class="project-preview__technologies" aria-label="Características principales">
+                <li>Componentes y conectores</li><li>Exportación HTML/SVG/PNG/JSON</li><li>Guardado automático</li>
+              </ul>
+              <a class="project-preview__link" href="https://github.com/Isma115/Trazuvia" target="_blank" rel="noopener noreferrer">Ver en Github <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-preview" aria-labelledby="ada-title">
+            <div class="project-preview__cover project-preview__cover--ada">
+              <img src="./assets/projects.svg" loading="eager" decoding="async" alt="Ilustración de Proyecto Ada">
+            </div>
+            <div class="project-preview__content">
+              <h3 class="project-preview__title" id="ada-title">Proyecto Ada</h3>
+              <p class="project-preview__description">Asistente virtual modular basado en un modelo de lenguaje local para automatizar tareas y flujos cognitivos.</p>
+              <ul class="project-preview__technologies" aria-label="Características principales">
+                <li>LLM local</li><li>Control del ordenador</li><li>Voz y visión</li>
+              </ul>
+              <a class="project-preview__link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ismamoralop%40gmail.com&amp;su=Informaci%C3%B3n+sobre+Proyecto+Ada" target="_blank" rel="noopener noreferrer">Hablemos del proyecto <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          </div>
         </div>
       </div>
       <div class="scroll-indicator section-scroll-indicator" aria-hidden="true">
@@ -269,28 +306,36 @@
       <div class="section-content">
         <h2 id="experience-title">Experiencia</h2>
 
-        <div class="experience-template" aria-label="Plantilla de experiencia profesional">
-          <article class="experience-card">
+        <div class="experience-template" aria-label="Experiencia profesional">
+          <article class="experience-card experience-card--hidralab">
             <header class="experience-card__header">
-              <p class="experience-card__company">Empresa Generica A</p>
-              <p class="experience-card__meta">Rol / Cargo | Mes AAAA - Mes AAAA | Ciudad o Remoto</p>
+              <img class="experience-card__logo experience-card__logo--hidralab" loading="eager" decoding="async" src="./assets/hidralab-logo.svg" alt="HIDRALAB" width="193" height="44">
+              <p class="experience-card__meta">
+                Programador Full Stack<br>
+                Ene 2025 – Oct 2026<br>
+                Híbrido · Jornada completa
+              </p>
             </header>
-            <ul class="experience-card__highlights">
-              <li>[Plantilla] Responsabilidad o proyecto clave 1.</li>
-              <li>[Plantilla] Tecnologia o stack principal utilizado.</li>
-              <li>[Plantilla] Impacto medible: mejora, ahorro, conversion o rendimiento.</li>
+            <ul class="experience-card__description experience-card__list">
+              <li>Desarrollo <strong>Full Stack</strong> de aplicaciones para proyectos de <strong>ingeniería hidráulica</strong>, centrados en redes de abastecimiento y gestión de infraestructuras de riego, dentro de soluciones para la distribución y el control del agua.</li>
+              <li>Implementación de <strong>interfaces web</strong> para consultar y gestionar la información de las infraestructuras, conectadas con los servicios del servidor y con las bases de datos, y coordinación de las distintas capas para que funcionen como una única solución.</li>
+              <li>Participación en <strong>todo el ciclo de desarrollo</strong>: análisis de necesidades, implementación, pruebas, corrección de errores, despliegue y puesta en funcionamiento de las soluciones web y de servidor, con mejoras y mantenimiento posteriores.</li>
+              <li>Ampliación de las <strong>aplicaciones móviles</strong> existentes con nuevas funcionalidades, complementando las soluciones web de gestión de infraestructuras hidráulicas para ofrecer acceso desde distintos dispositivos.</li>
             </ul>
           </article>
 
-          <article class="experience-card">
+          <article class="experience-card experience-card--myeg">
             <header class="experience-card__header">
-              <p class="experience-card__company">Empresa Generica B</p>
-              <p class="experience-card__meta">Rol / Cargo | Mes AAAA - Actualidad | Ciudad o Remoto</p>
+              <img class="experience-card__logo experience-card__logo--myeg" loading="eager" decoding="async" src="./assets/myeg-logo.png" alt="MYEG Soluciones Informáticas" width="125" height="48">
+              <p class="experience-card__meta">
+                Desarrollador de Aplicaciones<br>
+                Mar – Jul 2023<br>
+                Presencial · Prácticas
+              </p>
             </header>
-            <ul class="experience-card__highlights">
-              <li>[Plantilla] Alcance del producto o equipo en el que trabajaste.</li>
-              <li>[Plantilla] Decisiones tecnicas relevantes que lideraste o ejecutaste.</li>
-              <li>[Plantilla] Resultado para negocio o usuarios finales.</li>
+            <ul class="experience-card__description experience-card__list">
+              <li>Desarrollo y despliegue de <strong>aplicaciones web</strong> para soluciones de gestión y software empresarial, desde la implementación de la lógica de negocio hasta su puesta en producción.</li>
+              <li>Participación en la implementación y el mantenimiento de aplicaciones en una empresa de digitalización de negocios, programas de gestión y <strong>ERP</strong>, colaborando con el equipo en la incorporación de mejoras y la resolución de incidencias.</li>
             </ul>
           </article>
         </div>
@@ -307,28 +352,32 @@
         <h2 id="contact-title">Contacto</h2>
 
         <div class="contact-template" aria-label="Canales de contacto">
-          <a class="contact-card" href="mailto:ismamoralop@gmail.com" aria-label="Enviar correo a Ismael Moraleda López">
-            <img class="contact-card__icon" src="https://cdn.simpleicons.org/gmail/D7DBFF" alt="" aria-hidden="true">
+          <a class="contact-card contact-card--gmail" href="mailto:ismamoralop@gmail.com" aria-label="Enviar correo a Ismael Moraleda López">
+            <span class="contact-card__lights" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+            <img class="contact-card__icon" loading="eager" decoding="async" src="../shared/icons/gmail.svg" alt="" aria-hidden="true">
             <span class="contact-card__label">Gmail</span>
             <span class="contact-card__value">ismamoralop@gmail.com</span>
           </a>
 
-          <a class="contact-card" href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil de LinkedIn">
-            <img class="contact-card__icon" src="https://cdn.simpleicons.org/linkedin/D7DBFF" alt="" aria-hidden="true">
+          <a class="contact-card contact-card--linkedin" href="https://www.linkedin.com/in/ismamoralop" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil de LinkedIn">
+            <span class="contact-card__lights" aria-hidden="true"><span></span><span></span></span>
+            <img class="contact-card__icon" loading="eager" decoding="async" src="../shared/icons/linkedin.svg" alt="" aria-hidden="true">
             <span class="contact-card__label">LinkedIn</span>
-            <span class="contact-card__value">linkedin.com/in/tu-usuario</span>
+            <span class="contact-card__value">linkedin.com/in/ismamoralop</span>
           </a>
 
-          <a class="contact-card" href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil de GitHub">
-            <img class="contact-card__icon" src="https://cdn.simpleicons.org/github/D7DBFF" alt="" aria-hidden="true">
+          <a class="contact-card contact-card--github" href="https://github.com/Isma115" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil de GitHub">
+            <span class="contact-card__lights" aria-hidden="true"><span></span><span></span></span>
+            <img class="contact-card__icon" loading="eager" decoding="async" src="../shared/icons/github.svg" alt="" aria-hidden="true">
             <span class="contact-card__label">GitHub</span>
-            <span class="contact-card__value">github.com/tu-usuario</span>
+            <span class="contact-card__value">github.com/Isma115</span>
           </a>
 
-          <a class="contact-card" href="https://wa.me/34123456789" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp">
-            <img class="contact-card__icon" src="https://cdn.simpleicons.org/whatsapp/D7DBFF" alt="" aria-hidden="true">
+          <a class="contact-card contact-card--whatsapp" href="https://wa.me/REDACTED-PHONE" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp">
+            <span class="contact-card__lights" aria-hidden="true"><span></span><span></span></span>
+            <img class="contact-card__icon" loading="eager" decoding="async" src="../shared/icons/whatsapp.svg" alt="" aria-hidden="true">
             <span class="contact-card__label">WhatsApp</span>
-            <span class="contact-card__value">+34 123 456 789</span>
+            <span class="contact-card__value">REDACTED-PHONE</span>
           </a>
         </div>
       </div>
@@ -337,13 +386,15 @@
   </main>
   <!-- endregion -->
 
-  <script src="./home.js?v=2"></script>
-  <script src="./scripts/fondo.js"></script>
-  <script src="./scripts/secciones.js?v=6"></script>
-  <script src="./scripts/sobre-mi.js"></script>
+  <script src="./scripts/inicio.js?v=3"></script>
+  <script src="./home.js?v=10"></script>
+  <script src="./scripts/fondo.js?v=11"></script>
+  <script src="./scripts/secciones.js?v=14"></script>
+  <script src="./scripts/sobre-mi.js?v=3"></script>
   <script src="./scripts/proyectos.js"></script>
-  <script src="./scripts/codigo-fondo.js"></script>
-  <script src="../shared/hologram.js?v=2"></script>
+  <script src="./scripts/codigo-fondo.js?v=5"></script>
+  <script src="../shared/hologram.js?v=3"></script>
 </body>
 
 </html>
+

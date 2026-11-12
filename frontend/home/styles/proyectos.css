@@ -41,7 +41,7 @@
   flex-direction: column;
   text-align: left;
   background: rgba(15, 28, 43, 0.42);
-  backdrop-filter: blur(8px);
+  /* El recorte de .section-content limita el fondo que puede difuminarse. */
 }
 .projects-carousel.is-enhanced .project-preview {
   flex: 0 0 var(--slide-width);
@@ -70,9 +70,48 @@
 .project-preview__description { margin: 0; color: #c8d1dd; line-height: 1.6; }
 .project-preview__technologies { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .project-preview__technologies li { padding: 7px 10px; background: rgba(65, 120, 147, 0.15); color: #c9d7e5; font-size: 0.78rem; }
-.project-preview__link { align-self: flex-start; margin-top: auto; padding: 10px 0 3px; color: #b4e8f4; text-decoration: none; }
-.project-preview__link:hover { text-decoration: underline; }
+/* Mismo lenguaje visual que los botones de Sobre mi (.about-actions a). */
+.project-preview__link {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 20px;
+  min-height: 48px;
+  margin-top: auto;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 0;
+  /* Sin backdrop-filter: no tenia efecto visible dentro de .section-content (backdrop root) */
+  background: rgba(15, 49, 71, 0.22);
+  color: #e5edf5;
+  font: 600 0.78rem/1.2 ui-monospace, Consolas, monospace;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.project-preview__link::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(8, 30, 80, 0.78), rgba(16, 55, 112, 0.6));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 650ms ease;
+  pointer-events: none;
+  content: "";
+}
+.project-preview__link:hover::before,
+.project-preview__link:focus-visible::before {
+  transform: scaleX(1);
+}
 .project-preview__link:focus-visible { outline: 2px solid #63dbe8; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .project-preview__link::before { transition: none; }
+}
 @media (max-width: 650px) {
   .projects-header { margin-bottom: 30px; }
   .projects-track { grid-template-columns: 1fr; --slide-width: 100%; }

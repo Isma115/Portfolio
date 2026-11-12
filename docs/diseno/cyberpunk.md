@@ -1,6 +1,6 @@
 ﻿# Identidad visual ciberpunk
 
-Home y Novedades comparten `frontend/shared/cyberpunk.css`, cargado después de los estilos propios. Esta hoja define el acabado común sin concentrar los estilos funcionales de cada sección.
+Home carga `frontend/shared/cyberpunk.css` después de sus estilos propios. Esta hoja define el acabado común sin concentrar los estilos funcionales de cada sección.
 
 La portada presenta el nombre en tres líneas, alineado a la izquierda, con una gráfica diagonal y un acento segmentado. Conserva la aparición independiente de cada palabra y las sombras temporales azul oscuro y rojo. Los títulos utilizan Chakra Petch, alojada localmente en `frontend/shared/fonts` junto con su licencia SIL OFL, para que la nueva tipografía no dependa de una conexión externa.
 

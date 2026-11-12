@@ -20,14 +20,8 @@ const backgroundCodeBlocks = Array.from(document.querySelectorAll(".background-c
 }));
 
 function positionBackgroundCode(item) {
-  const visibleText = item.code.textContent;
-  item.code.textContent = item.text;
-  const bounds = item.block.getBoundingClientRect();
-  const availableX = Math.max(0, window.innerWidth - bounds.width - 40);
-  const availableY = Math.max(0, window.innerHeight - bounds.height - 40);
-  item.block.style.left = `${8 + Math.random() * availableX}px`;
-  item.block.style.top = `${32 + Math.random() * availableY}px`;
-  item.code.textContent = visibleText;
+  item.block.style.setProperty("--code-x", `${8 + Math.random() * 84}%`);
+  item.block.style.setProperty("--code-y", `${8 + Math.random() * 84}%`);
 }
 
 function chooseBackgroundCode(item) {
@@ -41,38 +35,37 @@ function chooseBackgroundCode(item) {
 function startBackgroundCode() {
   backgroundCodeBlocks.forEach((item, index) => {
     window.clearTimeout(item.timer);
+    if (document.hidden) return;
     item.block.classList.remove("is-fading");
     if (item.sampleIndex < 0) chooseBackgroundCode(item);
     if (backgroundCodeMotion.matches) {
       item.code.textContent = item.text;
       return;
     }
-
     item.code.textContent = "";
     let position = 0;
     function typeCharacter() {
       position += 1;
-      item.code.textContent = item.text.slice(0, position);
-      if (position < item.text.length) {
-        item.timer = window.setTimeout(typeCharacter, 75);
-      } else {
+      const textNode = item.code.firstChild;
+      if (position === 1 || !textNode) item.code.textContent = item.text.slice(0, position);
+      else textNode.appendData(item.text[position - 1]);
+      if (position < item.text.length) item.timer = window.setTimeout(typeCharacter, 75);
+      else item.timer = window.setTimeout(() => {
+        item.block.classList.add("is-fading");
         item.timer = window.setTimeout(() => {
-          item.block.classList.add("is-fading");
-          item.timer = window.setTimeout(() => {
-            chooseBackgroundCode(item);
-            item.block.classList.remove("is-fading");
-            position = 0;
-            item.code.textContent = "";
-            typeCharacter();
-          }, 3000);
-        }, 2500);
-      }
+          chooseBackgroundCode(item);
+          item.block.classList.remove("is-fading");
+          position = 0;
+          item.code.textContent = "";
+          typeCharacter();
+        }, 3000);
+      }, 2500);
     }
     item.timer = window.setTimeout(typeCharacter, index * 900);
   });
 }
-
 backgroundCodeMotion.addEventListener("change", startBackgroundCode);
+document.addEventListener("visibilitychange", startBackgroundCode);
 window.addEventListener("resize", () => backgroundCodeBlocks.forEach(positionBackgroundCode));
 startBackgroundCode();
 backgroundCodeLayer.classList.add("is-ready");

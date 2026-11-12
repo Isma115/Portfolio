@@ -2,32 +2,18 @@
 
 ## Vista Proyectos: carrusel
 
+- «Hablemos del proyecto» abre Gmail en una pestaña nueva con destinatario y asunto del proyecto predefinidos.
+
 - region Componente Home | Seccion | Proyectos
 - region Componente Home | Estilos | Carrusel de proyectos
 - region Componente Home | Funcionalidad | Carrusel de proyectos
-- Carrusel desplazable para Noduvia y Trazuvia, descripciones y enlaces existentes. Sin JavaScript se muestran ambas tarjetas.
-
-## Vista Proyectos: acceso a novedades
-
-- region Estilos Pagina Home: boton de acceso a novedades
-- region Logica Pagina Home: transicion hacia la pagina de novedades
-- region Estilos Pagina Home: salida progresiva hacia novedades
-
-## Vista Novedades: registro de actualizaciones
-
-- region Componentes Pagina Novedades: fondo topografico y ambiente visual
-- region Componentes Pagina Novedades: contenido principal de actualizaciones
-- region Estilos Pagina Novedades: base visual y estructura
-- region Estilos Pagina Novedades: fondo topografico y estelas
-- region Estilos Pagina Novedades: cabecera y acceso de vuelta
-- region Estilos Pagina Novedades: registro de actualizaciones
-- region Estilos Pagina Novedades: entrada y salida de pagina
-- region Estilos Pagina Novedades: adaptacion responsive
-- region Logica Pagina Novedades: topografia fluida de fondo
-- region Logica Pagina Novedades: entrada progresiva de componentes
-- region Logica Pagina Novedades: vuelta hacia proyectos
+- Carrusel desplazable para Noduvia, Trazuvia y Ada, con descripciones y enlaces existentes. Sin JavaScript se muestran todas las tarjetas. Fondos SVG estáticos propios: agentes y fábrica de software, interfaces y diagramas de flujo, y circuitos con voz, respectivamente.
 
 ## Vista Home: presentacion principal
+
+- Precarga de fuentes WOFF2 y revelado del subtítulo con recorte, sin medición de ancho ni cambios de layout por cada letra.
+
+- Entrada original del nombre con desplazamiento, desenfoque y sombras, iniciada después de la introducción.
 
 - region Vista Pagina Home: documento principal
 - region Vista Pagina Home: malla gravitatoria de fondo
@@ -69,6 +55,10 @@
 
 ## Vista Home: Sobre mí
 
+- Retrato ligeramente vertical con doble borde e icono decorativo de imagen. La tira redundante de lenguajes se elimina de esta sección.
+
+- Texto dentro de una ventana de interfaz con barra superior y trazos verde agua; retrato en un recuadro dentro del contenido, arriba a la izquierda (un cuarto del ancho), con texto a su derecha y debajo, y adaptación a móvil en `frontend/home/styles/sobre-mi.css`.
+
 - region Componente Home | Seccion | Sobre mi
 - region Componente Home | Estilos | Seccion Sobre mi
 - region Componente Home | Estilos | Entrada independiente Sobre mi
@@ -79,6 +69,25 @@
 
 ## Vista Home: fragmentos de código de fondo
 
+- Escritura por letras, cambio de fragmento y fundido recuperados, con posiciones relativas sin medir el layout.
+
 - region Componente Home | Codigo de Componente | Fragmentos de codigo de fondo
 - region Componente Home | Estilos | Fragmentos de codigo de fondo
 - region Componente Home | Funcionalidad | Escritura de codigo de fondo
+
+## Vista Home: dibujos de fondo por sección
+
+- Movimiento de luces, partículas e ilustraciones recuperado; canvas limitado a 1280 px y pausado solo al ocultar la pestaña o reducir movimiento.
+
+- region Componente Home | Codigo de Componente | Atmosfera por seccion
+- region Componente Home | Estilos | Atmosfera por seccion
+- region Componente Home | Estilos | Ilustraciones de trazo por seccion
+- El dibujo de Proyectos se reutiliza en las portadas de los iconos desde `frontend/home/assets/projects-background.svg`, con estilos en `frontend/shared/cyberpunk.css`.
+
+## Vista Home: introducción de carga
+
+- region Componente Home | Funcionalidad | Inicio de la introduccion
+- region Componente Home | Codigo de Componente | Introduccion de carga
+- region Componente Home | Estilos | Introduccion de carga
+- region Componente Home | Funcionalidad | Introduccion de carga
+- Pantalla de fondo liso con un único cursor parpadeante durante al menos 2 segundos, mientras se cargan la página, las fuentes y las imágenes de todas las secciones detrás. Se espera a la decodificación de las imágenes y las secciones se renderizan desde el inicio. El contenido aparece después; salida de seguridad a los 8 segundos y sin bloqueo si JavaScript está desactivado.
