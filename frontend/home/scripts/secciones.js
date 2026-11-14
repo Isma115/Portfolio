@@ -117,6 +117,13 @@ navigationSections.slice(1).forEach((section, index) => {
   zone.appendChild(button);
   section.prepend(zone);
 });
+// Marca las secciones fuera de pantalla para pausar sus animaciones infinitas (ver animaciones.css)
+if ("IntersectionObserver" in window) {
+  const offscreenObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.target.classList.toggle("is-offscreen", !entry.isIntersecting));
+  });
+  navigationSections.forEach((section) => offscreenObserver.observe(section));
+}
 let scrollHideTimer = null;
 
 window.addEventListener("scroll", () => {

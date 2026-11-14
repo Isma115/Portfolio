@@ -388,13 +388,29 @@ function randomizeTrailPalette(trail) {
   applyTrailPalette(trail, palettes[paletteIndex]);
 }
 
-// Al cambiar de seccion, las estelas visibles se funden hacia la nueva gama sin reiniciarse
-new MutationObserver(() => {
+// Al cambiar de seccion, la capa de estelas se funde, adopta la nueva gama sin reiniciarse y reaparece.
+// Los colores se cambian una sola vez (un repintado) en lugar de animarse frame a frame.
+const colorTrailsLayer = document.querySelector(".color-trails");
+const trailsMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let trailPaletteTimer = 0;
+
+function applySectionPalettes() {
   const palettes = currentSectionPalettes();
   colorTrails.forEach((trail) => {
     const index = Number(trail.dataset.paletteIndex) % palettes.length;
     applyTrailPalette(trail, palettes[index]);
   });
+  colorTrailsLayer?.classList.remove("is-palette-switching");
+}
+
+new MutationObserver(() => {
+  window.clearTimeout(trailPaletteTimer);
+  if (!colorTrailsLayer || trailsMotion.matches || document.hidden) {
+    applySectionPalettes();
+    return;
+  }
+  colorTrailsLayer.classList.add("is-palette-switching");
+  trailPaletteTimer = window.setTimeout(applySectionPalettes, 600);
 }).observe(document.body, { attributes: true, attributeFilter: ["data-section"] });
 
 colorTrails.forEach((trail) => {

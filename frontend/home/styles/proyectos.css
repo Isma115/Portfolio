@@ -40,7 +40,8 @@
   min-width: 0;
   flex-direction: column;
   text-align: left;
-  background: rgba(15, 28, 43, 0.42);
+  background: rgba(15, 28, 43, 0.3);
+  backdrop-filter: blur(14px) saturate(135%);
   /* El recorte de .section-content limita el fondo que puede difuminarse. */
 }
 .projects-carousel.is-enhanced .project-preview {
@@ -70,6 +71,8 @@
 .project-preview__description { margin: 0; color: #c8d1dd; line-height: 1.6; }
 .project-preview__technologies { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .project-preview__technologies li { padding: 7px 10px; background: rgba(65, 120, 147, 0.15); color: #c9d7e5; font-size: 0.78rem; }
+.project-preview--noduvia .project-preview__technologies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.project-preview--noduvia .project-preview__technologies li { padding: 7px 6px; overflow-wrap: anywhere; }
 /* Mismo lenguaje visual que los botones de Sobre mi (.about-actions a). */
 .project-preview__link {
   position: relative;

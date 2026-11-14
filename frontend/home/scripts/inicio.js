@@ -4,7 +4,7 @@
     // Dos frames permiten ver el estado ampliado antes de empezar el zoom.
     window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
       document.documentElement.classList.add("intro-running");
-      window.setTimeout(resolve, 2000);
+      window.setTimeout(resolve, 1250);
     }));
   });
   const pageLoaded = document.readyState === "complete"

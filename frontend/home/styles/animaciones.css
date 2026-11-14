@@ -64,6 +64,41 @@
     cursor-hide 0.01s linear 4.6s forwards;
 }
 
+/* Enlaces de contacto pequeños bajo el subtítulo de la portada */
+.hero-contact {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin: 28px 0 0;
+}
+
+.hero-contact__link {
+  display: inline-flex;
+  padding: 6px;
+  border-radius: 6px;
+  opacity: 0.7;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.hero-contact__link img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.hero-contact__link:hover,
+.hero-contact__link:focus-visible {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.hero-contact__link:focus-visible {
+  outline: 2px solid #63dbe8;
+  outline-offset: 4px;
+}
+
 @keyframes boot-in {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
@@ -135,34 +170,36 @@
   z-index: 5;
   top: 0;
   left: 50%;
-  width: 140px;
-  height: 70px;
+  width: min(240px, 100%);
+  height: 100px;
   transform: translateX(-50%);
   display: grid;
-  place-items: center;
+  place-items: start center;
+  padding-top: 0;
 }
 .section-up-button {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
+  width: 34px;
+  height: 34px;
   padding: 0;
   border: 0;
   background: transparent;
-  color: rgba(158, 230, 238, 0.8);
+  color: #ffffff;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 250ms ease;
+  transition: opacity 350ms ease-out;
 }
 .section-up-zone:hover .section-up-button,
 .section-up-button:focus-visible { opacity: 1; }
 .section-up-button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .section-up-button span {
-  width: 22px;
-  height: 22px;
-  border-top: 3px solid currentColor;
-  border-left: 3px solid currentColor;
-  transform: translateY(5px) rotate(45deg);
+  width: 16px;
+  height: 16px;
+  border-top: 2.5px solid currentColor;
+  border-left: 2.5px solid currentColor;
+  transform: translateY(3px) rotate(45deg);
+  filter: drop-shadow(0 0 3px #ffffff) drop-shadow(0 0 10px var(--section-accent-light));
 }
 @media (prefers-reduced-motion: reduce) {
   .section-up-button { transition: none; }
@@ -180,6 +217,10 @@
   transform: translateX(-50%) translateY(14px) scale(0.84);
   cursor: pointer;
   transition: opacity 500ms ease-out, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-indicator--home {
+  bottom: 20px;
 }
 
 .scroll-indicator.is-ready {
@@ -257,15 +298,16 @@ body.is-user-scrolling .section-scroll-indicator.is-ready {
 }
 
 .scroll-indicator:hover .scroll-indicator__arrow {
-  border-color: rgba(184, 190, 200, 0.8);
+  border-color: color-mix(in srgb, var(--section-accent-start) 55%, white 45%);
 }
 
 .scroll-indicator__arrow {
   display: block;
-  width: 22px;
-  height: 22px;
-  border-right: 3px solid var(--section-accent-start);
-  border-bottom: 3px solid var(--section-accent-start);
+  width: 16px;
+  height: 16px;
+  border-right: 2.5px solid var(--section-accent-start);
+  border-bottom: 2.5px solid var(--section-accent-start);
+  filter: drop-shadow(0 0 2px var(--section-accent-start));
   transform: rotate(45deg) translateY(-3px);
   animation: scroll-bounce 2s ease-in-out infinite;
   transition: border-color 140ms ease, opacity 160ms ease-out;
@@ -273,6 +315,14 @@ body.is-user-scrolling .section-scroll-indicator.is-ready {
 
 body.is-scrolled-down .scroll-indicator--home .scroll-indicator__arrow {
   opacity: 0;
+}
+
+/* Las flechas que no se ven (seccion fuera de pantalla o flecha de portada ya oculta) se pausan:
+   una animacion infinita recalcula estilos en cada frame aunque no este a la vista. */
+.portfolio-container > section.is-offscreen .scroll-indicator__arrow,
+.portfolio-container > section.is-offscreen .scroll-indicator::before,
+body.is-scrolled-down .scroll-indicator--home .scroll-indicator__arrow {
+  animation-play-state: paused;
 }
 
 @keyframes scroll-indicator-fade {

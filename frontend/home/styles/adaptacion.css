@@ -148,8 +148,8 @@
   }
 
   .scroll-indicator__arrow {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   .section-content h2 {
@@ -199,9 +199,12 @@
     margin-right: auto;
   }
 
-  .skills-specialties,
-  .contact-template {
+  .skills-specialties {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .contact-template {
     gap: 12px;
   }
 

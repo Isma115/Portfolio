@@ -50,17 +50,6 @@
   pointer-events: none;
   content: "";
 }
-.about-photo__icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-  width: 16px;
-  height: 16px;
-  color: var(--about-cyan);
-  opacity: 0.45;
-  pointer-events: none;
-}
 .about-photo img {
   display: block;
   width: 100%;
@@ -73,46 +62,14 @@
 }
 .about-content {
   min-width: 0;
-  padding: 0 clamp(20px, 2.5vw, 36px) 30px;
+  padding: clamp(28px, 3vw, 40px) clamp(20px, 2.5vw, 36px) 30px;
   border: 1px solid rgba(111, 240, 216, 0.55);
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(12, 34, 37, 0.84), rgba(5, 14, 23, 0.9));
+  background: linear-gradient(135deg, rgba(12, 34, 37, 0.42), rgba(5, 14, 23, 0.46));
+  backdrop-filter: blur(14px) saturate(135%);
   box-shadow: 0 0 18px rgba(63, 224, 197, 0.09), inset 0 0 12px rgba(63, 224, 197, 0.025), 0 24px 64px rgba(0, 0, 0, 0.2);
   text-align: left;
 }
-.about-window-bar {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 48px;
-  margin: 0 calc(-1 * clamp(20px, 2.5vw, 36px)) 28px;
-  padding: 0 20px;
-  border-bottom: 1px solid rgba(111, 240, 216, 0.4);
-  color: #91b9b4;
-  font: 0.72rem/1 ui-monospace, Consolas, monospace;
-}
-.about-window-dots { display: flex; gap: 7px; }
-.about-window-dots i {
-  width: 8px;
-  height: 8px;
-  border: 1px solid rgba(111, 240, 216, 0.6);
-  border-radius: 50%;
-}
-.about-window-navigation, .about-window-menu { flex: none; }
-.about-window-address {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-width: 0;
-  padding: 8px 10px;
-  border: 1px solid rgba(111, 240, 216, 0.28);
-  border-radius: 4px;
-  background: rgba(111, 240, 216, 0.035);
-  font-family: inherit;
-}
-.about-window-address svg { flex: none; }
 .about-content h3 {
   margin: 0;
   color: #f8f9fc;
@@ -262,8 +219,6 @@
 }
 @media (max-width: 520px) {
   .about-photo { width: 28%; min-width: 82px; margin-right: 16px; }
-  .about-window-bar { gap: 10px; padding-inline: 14px; }
-  .about-window-navigation { display: none; }
   .about-header h2 { font-size: clamp(2.4rem, 11vw, 3rem); }
   .about-header p { font-size: 0.8rem; }
   .about-actions a { flex: 1 1 180px; }

@@ -14,11 +14,11 @@ La página sigue siendo HTML estático y puede abrirse directamente desde el sis
 - `scripts/sobre-mi.js`: entrada independiente de los elementos de Sobre mí.
 - `scripts/proyectos.js`: activación del carrusel de proyectos.
 - `scripts/codigo-fondo.js`: escritura progresiva y fundido de fragmentos decorativos, posicionados sin medir geometría.
-- `scripts/inicio.js` y `styles/inicio.css`: introducción de fondo liso y cursor parpadeante antes de revelar el contenido.
+- `scripts/inicio.js` y `styles/inicio.css`: introducción con el fondo animado, zoom hacia afuera y cursor parpadeante antes de revelar el contenido.
 
 Los archivos JavaScript se cargan como scripts clásicos; las secciones consultan directamente su propio DOM. El orden de las hojas conserva la cascada necesaria.
 
-El canvas decorativo limita el ancho interno a 1280 px y usa 20 fps en móvil y 30 en escritorio. Las luces, partículas, ilustraciones y la escritura de código vuelven a animarse; al ocultar la pestaña se pausan y se respeta movimiento reducido. Las animaciones originales de la portada comienzan después de una introducción mínima de 2 segundos, sincronizada con la carga de página y fuentes, con salida de seguridad a los 8 segundos. Se mantienen la fuente WOFF2 precargada y el subtítulo sin mediciones de ancho.
+El canvas decorativo limita el ancho interno a 1280 px y usa 20 fps en móvil y 30 en escritorio. Las luces, partículas, ilustraciones y la escritura de código vuelven a animarse; al ocultar la pestaña se pausan y se respeta movimiento reducido. Las animaciones originales de la portada comienzan después de una introducción mínima de 1,25 segundos, sincronizada con la carga de página y fuentes, con salida de seguridad a los 8 segundos. Se mantienen la fuente WOFF2 precargada y el subtítulo sin mediciones de ancho.
 
 Las pruebas de estos cambios se ejecutan con `node --test frontend/home/scripts/fondo.test.cjs frontend/home/scripts/codigo-fondo.test.cjs`.
 

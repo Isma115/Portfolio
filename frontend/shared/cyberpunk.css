@@ -25,8 +25,10 @@
   --canvas: #04090f;
   --trails-visibility: 0.8;
 }
-@property --ambient-primary { syntax: "<color>"; inherits: true; initial-value: rgba(0, 153, 187, 0.13); }
-@property --ambient-secondary { syntax: "<color>"; inherits: true; initial-value: rgba(30, 80, 186, 0.14); }
+/* inherits:false: solo el fondo del body usa estos colores; heredarlos obligaba a recalcular
+   los estilos de toda la pagina en cada frame de la transicion entre secciones. */
+@property --ambient-primary { syntax: "<color>"; inherits: false; initial-value: rgba(0, 153, 187, 0.13); }
+@property --ambient-secondary { syntax: "<color>"; inherits: false; initial-value: rgba(30, 80, 186, 0.14); }
 body {
   background: radial-gradient(ellipse at 0% 8%, var(--ambient-primary), transparent 36%),
     radial-gradient(ellipse at 100% 72%, var(--ambient-secondary), transparent 40%), #04090f;
@@ -180,6 +182,7 @@ body.is-menu-open .top-menu__item, body.is-home-active.is-menu-open .top-menu__i
 .top-menu__item.is-active { color: var(--cyber-cyan); text-shadow: 0 0 14px rgba(101, 229, 237, 0.2); }
 .top-menu__item:hover, .top-menu__item:focus-visible { color: #b2f5f7; }
 @media (min-width: 901px) {
+  .section-up-zone { top: 80px; }
   .portfolio-top-menu, body.is-home-active .portfolio-top-menu {
     right: 0;
     left: 0;
@@ -428,7 +431,6 @@ body.is-menu-open .top-menu__item, body.is-home-active.is-menu-open .top-menu__i
 }
 .contact-card--linkedin { --contact-accent: 10, 132, 220; }
 .contact-card--github { --contact-accent: 160, 170, 185; }
-.contact-card--whatsapp { --contact-accent: 37, 211, 102; }
 .contact-card:is(:hover, :focus-visible) {
   box-shadow: inset 0 0 0 1px rgba(var(--contact-accent), 0.45), 0 8px 28px rgba(var(--contact-accent), 0.22);
 }
@@ -583,4 +585,3 @@ body.is-menu-open .top-menu__item, body.is-home-active.is-menu-open .top-menu__i
   .top-menu__item { transition: none; }
 }
 /* endregion */
-

@@ -135,12 +135,6 @@
 /* endregion */
 
 /* region Componente Home | Estilos | Estelas de color de fondo */
-/* Colores registrados para que el cambio de paleta entre secciones se funda suavemente */
-@property --trail-color-1 { syntax: "<color>"; inherits: true; initial-value: transparent; }
-@property --trail-color-2 { syntax: "<color>"; inherits: true; initial-value: transparent; }
-@property --trail-color-3 { syntax: "<color>"; inherits: true; initial-value: transparent; }
-@property --trail-core { syntax: "<color>"; inherits: true; initial-value: transparent; }
-
 .color-trails {
   position: fixed;
   inset: 0;
@@ -148,8 +142,16 @@
   overflow: hidden;
   opacity: calc(var(--trails-visibility) * 0.45);
   pointer-events: none;
-  transition: opacity 500ms ease;
+  transition: opacity 900ms ease;
   contain: strict;
+}
+
+/* Cambio de paleta entre secciones: la capa se funde (opacidad, compuesta en GPU), se cambian
+   los colores una sola vez y vuelve a aparecer. Animar los colores directamente obligaba a
+   repintar las estelas difuminadas en cada frame durante casi dos segundos. */
+.color-trails.is-palette-switching {
+  opacity: 0;
+  transition-duration: 600ms;
 }
 
 .color-trail {
@@ -164,8 +166,6 @@
   --trail-color-3: rgba(20, 184, 166, 0.18);
   --trail-core: transparent;
   opacity: 0;
-  transition: --trail-color-1 1800ms ease, --trail-color-2 1800ms ease,
-    --trail-color-3 1800ms ease, --trail-core 1800ms ease;
   will-change: transform, opacity;
   left: calc(50% - var(--trail-span, 160) * 0.5%);
 }

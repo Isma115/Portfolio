@@ -33,7 +33,7 @@ async function scenario({ failedFont = false, loaded = false, failedImage = fals
   assert.equal(elapsed, undefined);
   frames.shift()();
   assert.ok(classes.has("intro-running"));
-  assert.equal(elapsed, 2000);
+  assert.equal(elapsed, 1250);
   assert.ok(classes.has("is-loading"));
   delayDone(); await flush();
   assert.ok(classes.has("is-loading"), "The delay alone must not expose unloaded fonts");

@@ -90,4 +90,4 @@
 - region Componente Home | Codigo de Componente | Introduccion de carga
 - region Componente Home | Estilos | Introduccion de carga
 - region Componente Home | Funcionalidad | Introduccion de carga
-- Pantalla de fondo liso con un único cursor parpadeante durante al menos 2 segundos, mientras se cargan la página, las fuentes y las imágenes de todas las secciones detrás. Se espera a la decodificación de las imágenes y las secciones se renderizan desde el inicio. El contenido aparece después; salida de seguridad a los 8 segundos y sin bloqueo si JavaScript está desactivado.
+- Fondo animado con zoom hacia afuera y un cursor parpadeante durante al menos 1,25 segundos, mientras se cargan la página, las fuentes y las imágenes de todas las secciones detrás. Se espera a la decodificación de las imágenes y las secciones se renderizan desde el inicio. El contenido aparece después; salida de seguridad a los 8 segundos y sin bloqueo si JavaScript está desactivado.
