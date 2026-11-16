@@ -8,9 +8,8 @@
 .about-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 28px clamp(28px, 4vw, 56px);
-  align-items: center;
-  width: min(1240px, 100%);
+  gap: 28px;
+  width: min(1100px, 100%);
 }
 
 .about-header { grid-column: 1 / -1; text-align: left; }
@@ -21,55 +20,38 @@
   line-height: 1;
   text-transform: uppercase;
 }
-.about-header p {
-  margin: 10px 0 0;
-  color: #9baac0;
-  font: 0.95rem/1.5 ui-monospace, Consolas, monospace;
-  letter-spacing: 0.05em;
+
+/* Tarjeta única: foto a la izquierda, texto y acciones a la derecha */
+.about-content {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: 0 clamp(28px, 4vw, 56px);
+  align-items: start;
+  min-width: 0;
+  padding: clamp(28px, 3.5vw, 48px);
+  border: 1px solid rgba(111, 240, 216, 0.4);
+  border-radius: 8px;
+  background: rgba(5, 14, 23, 0.55);
+  text-align: left;
 }
 
 .about-photo {
   position: relative;
-  float: left;
-  width: 25%;
-  max-width: 240px;
+  grid-row: 1 / span 3;
   aspect-ratio: 9 / 10;
-  margin: 0 clamp(18px, 2.5vw, 32px) 18px 0;
   overflow: hidden;
-  border: 1px solid rgba(111, 240, 216, 0.45);
+  border: 1px solid rgba(111, 240, 216, 0.5);
   border-radius: 8px;
-  background: transparent;
-  box-shadow: -5px -4px 24px rgba(72, 212, 234, 0.1), 5px 5px 24px rgba(75, 138, 255, 0.15);
-}
-.about-photo::before {
-  position: absolute;
-  inset: 6px;
-  z-index: 1;
-  border: 1px solid rgba(111, 240, 216, 0.12);
-  border-radius: 3px;
-  pointer-events: none;
-  content: "";
 }
 .about-photo img {
   display: block;
   width: 100%;
   height: 100%;
-  position: absolute;
-  inset: 0;
   object-fit: cover;
   object-position: center 30%;
-  filter: brightness(0.77);
+  filter: brightness(0.85);
 }
-.about-content {
-  min-width: 0;
-  padding: clamp(28px, 3vw, 40px) clamp(20px, 2.5vw, 36px) 30px;
-  border: 1px solid rgba(111, 240, 216, 0.55);
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(12, 34, 37, 0.42), rgba(5, 14, 23, 0.46));
-  backdrop-filter: blur(14px) saturate(135%);
-  box-shadow: 0 0 18px rgba(63, 224, 197, 0.09), inset 0 0 12px rgba(63, 224, 197, 0.025), 0 24px 64px rgba(0, 0, 0, 0.2);
-  text-align: left;
-}
+
 .about-content h3 {
   margin: 0;
   color: #f8f9fc;
@@ -78,27 +60,37 @@
 }
 .about-content h3 span:first-child { color: var(--about-cyan); }
 .about-content h3 span:last-child { color: var(--about-blue); }
-.about-content__description { margin-top: 22px; }
-.about-content__description p {
-  text-align: justify;
-  hyphens: auto;
-  margin: 0 0 14px;
+
+.about-content__description { margin-top: 20px; }
+.about-content__description p { margin: 0; }
+.about-content__description p + p {
+  margin-top: 12px;
+  color: #9baac0;
+  font-size: 0.9rem;
   color: #c8d1dd;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.65;
 }
-.about-actions { clear: both; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
 .about-actions a {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 16px;
   min-height: 48px;
   padding: 12px 20px;
   border: 0;
   border-radius: 0;
-  background: rgba(23, 48, 71, 0.2);
-  backdrop-filter: blur(8px);
+  background: rgba(23, 48, 71, 0.3);
   color: #e5edf5;
   font: 600 0.78rem/1.2 ui-monospace, Consolas, monospace;
   letter-spacing: 0.06em;
@@ -106,121 +98,62 @@
   text-transform: uppercase;
 }
 .about-actions a:first-child {
-  background: linear-gradient(135deg, rgba(43, 116, 190, 0.38), rgba(20, 52, 98, 0.34));
-  box-shadow: 0 0 24px rgba(75, 138, 255, 0.2);
+  background: linear-gradient(135deg, rgba(43, 116, 190, 0.45), rgba(20, 52, 98, 0.4));
   color: #fff;
 }
 .about-actions a:focus-visible { outline: 2px solid var(--about-cyan); outline-offset: 4px; }
 
-/* region Componente Home | Estilos | Estela de botones Sobre mi */
-.about-actions a {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-
+/* Barrido de color al pasar el ratón o enfocar */
 .about-actions a::before {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(90deg, rgba(8, 30, 80, 0.78), rgba(16, 55, 112, 0.6));
+  background: linear-gradient(90deg, rgba(8, 30, 80, 0.85), rgba(16, 55, 112, 0.7));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 650ms ease;
+  transition: transform 500ms ease;
   pointer-events: none;
   content: "";
 }
-
 .about-actions a:hover::before,
-.about-actions a:focus-visible::before {
-  transform: scaleX(1);
-}
+.about-actions a:focus-visible::before { transform: scaleX(1); }
 
-@media (prefers-reduced-motion: reduce) {
-  .about-actions a::before { transition: none; }
-}
-/* endregion */
-
-/* region Componente Home | Estilos | Entrada independiente Sobre mi */
+/* Entrada: un único desplazamiento y aparición suave */
 .about-reveal {
   opacity: 1;
   transform: none;
-  transition: opacity 650ms ease var(--reveal-delay, 0ms),
-    transform 650ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  transition: opacity 600ms ease var(--reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
 }
-.about-reveal {
-  transition: opacity 700ms ease var(--reveal-delay, 0ms),
-    transform 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
-    filter 700ms ease var(--reveal-delay, 0ms),
-    clip-path 1000ms cubic-bezier(0.77, 0, 0.18, 1) var(--reveal-delay, 0ms);
-}
-.about-reveal.is-pending { opacity: 0; transform: translateY(30px); filter: blur(8px); }
-/* Foto: entrada sencilla. El marco aparece y la imagen se asienta con un zoom suave
-   hacia su tamaño real mientras gana luz. El efecto va en la imagen, no en el contenedor
-   observado, para que el IntersectionObserver siga detectandolo. */
-.about-photo.about-reveal { transition: opacity 400ms ease var(--reveal-delay, 0ms); }
-.about-photo.about-reveal.is-pending { transform: none; filter: none; }
-.about-photo.about-reveal img {
-  transform: none;
-  opacity: 1;
-  transition: transform 1400ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--reveal-delay, 0ms) + 100ms),
-    opacity 900ms ease calc(var(--reveal-delay, 0ms) + 100ms);
-}
-.about-photo.about-reveal.is-pending img { transform: scale(1.15); opacity: 0; }
-
-.about-content h3.about-reveal.is-pending { transform: translateX(-30px); filter: none; }
-/* Parrafos: barrido de arriba abajo, como si se fueran escribiendo las lineas */
-.about-content__description p.about-reveal {
-  -webkit-mask-image: linear-gradient(180deg, #000 33%, transparent 66%);
-  mask-image: linear-gradient(180deg, #000 33%, transparent 66%);
-  -webkit-mask-size: 100% 300%;
-  mask-size: 100% 300%;
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
-  transition: opacity 400ms ease var(--reveal-delay, 0ms),
-    transform 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
-    -webkit-mask-position 1400ms cubic-bezier(0.45, 0, 0.2, 1) var(--reveal-delay, 0ms),
-    mask-position 1400ms cubic-bezier(0.45, 0, 0.2, 1) var(--reveal-delay, 0ms);
-}
-.about-content__description p.about-reveal.is-pending {
-  transform: translateY(12px);
-  filter: none;
-  -webkit-mask-position: 0 100%;
-  mask-position: 0 100%;
-}
-.about-actions a.about-reveal.is-pending { transform: translateY(20px) scale(0.85); }
-.about-photo.about-reveal { --reveal-delay: 80ms; }
-.about-content h3.about-reveal { --reveal-delay: 120ms; }
-.about-content__description p:nth-child(1).about-reveal { --reveal-delay: 160ms; }
-.about-actions a:nth-child(1).about-reveal { --reveal-delay: 300ms; }
-.about-actions a:nth-child(2).about-reveal { --reveal-delay: 350ms; }
-.about-actions a:nth-child(3).about-reveal { --reveal-delay: 400ms; }
+.about-reveal.is-pending { opacity: 0; transform: translateY(20px); }
+.about-photo.about-reveal.is-pending { transform: none; }
+.about-content h3.about-reveal.is-pending { transform: translateX(-20px); }
 .about-reveal.is-pending:focus-within { opacity: 1; transform: none; transition: none; }
+
+.about-header.about-reveal { --reveal-delay: 0ms; }
+.about-photo.about-reveal { --reveal-delay: 100ms; }
+.about-content h3.about-reveal { --reveal-delay: 150ms; }
+.about-content__description p.about-reveal { --reveal-delay: 220ms; }
+.about-actions a.about-reveal:nth-child(1) { --reveal-delay: 320ms; }
+.about-actions a.about-reveal:nth-child(2) { --reveal-delay: 380ms; }
+.about-actions a.about-reveal:nth-child(3) { --reveal-delay: 440ms; }
+
 @media (prefers-reduced-motion: reduce) {
-  .about-reveal, .about-reveal.is-pending, .about-photo.about-reveal.is-pending {
+  .about-reveal, .about-reveal.is-pending {
     opacity: 1;
     transform: none;
-    filter: none;
-    clip-path: none;
-    -webkit-mask-image: none;
-    mask-image: none;
     transition: none;
   }
-  .about-photo.about-reveal img,
-  .about-photo.about-reveal.is-pending img { transform: none; opacity: 1; transition: none;
-  }
+  .about-actions a::before { transition: none; }
 }
-/* endregion */
 
-@media (max-width: 900px) {
-  .about-layout { grid-template-columns: minmax(0, 1fr); width: min(620px, 100%); gap: 28px; }
-  .about-header { grid-column: auto; }
-  .about-content h3 { font-size: clamp(1.8rem, 6vw, 2.7rem); }
+@media (max-width: 760px) {
+  .about-content { grid-template-columns: minmax(0, 1fr); }
+  .about-photo { grid-row: auto; width: min(220px, 70%); margin-bottom: 24px; }
+  .about-content h3 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
 }
 @media (max-width: 520px) {
-  .about-photo { width: 28%; min-width: 82px; margin-right: 16px; }
   .about-header h2 { font-size: clamp(2.4rem, 11vw, 3rem); }
-  .about-header p { font-size: 0.8rem; }
-  .about-actions a { flex: 1 1 180px; }
+  .about-actions a { flex: 1 1 100%; }
 }
 /* endregion */

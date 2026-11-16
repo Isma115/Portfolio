@@ -118,6 +118,18 @@
 @media (max-width: 650px) {
   .projects-header { margin-bottom: 30px; }
   .projects-track { grid-template-columns: 1fr; --slide-width: 100%; }
+  /* En móvil no hay carrusel: las dos tarjetas se apilan y se leen con el scroll normal de la página. */
+  .projects-carousel.is-enhanced .projects-track {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .projects-carousel.is-enhanced .project-preview {
+    flex: none;
+    scroll-snap-align: none;
+  }
   .project-preview__cover { min-height: 200px; }
   .project-preview__content { padding: 22px; }
 }
